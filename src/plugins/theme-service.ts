@@ -2,6 +2,7 @@ import BordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
 import LightBlue from "@/styles/themes/light-blue.css?inline"
 import DefaultDsfr from "@/styles/themes/default-dsfr.css?inline"
 import Soliguide from "@/styles/themes/soliguide.css?inline"
+import VilleDeVannes from "@/styles/themes/ville-de-vannes.css?inline"
 import * as Sentry from "@sentry/vue"
 import { Theme, ThemeLabel } from "@/../lib/enums/themes.js"
 
@@ -25,6 +26,11 @@ const options = [
     title: ThemeLabel.Soliguide,
     label: Theme.Soliguide,
     value: Soliguide,
+  },
+  {
+    title: ThemeLabel.VilleDeVannes,
+    label: Theme.VilleDeVannes,
+    value: VilleDeVannes,
   },
 ]
 

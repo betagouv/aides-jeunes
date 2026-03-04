@@ -1,0 +1,41 @@
+:root {
+  /* input focus */
+  --input-outline: #000000;
+
+  /* buttons */
+  --main-color: #078293;
+  --main-color-hover: #099faf;
+  --main-color-active: #056874;
+  --main-btn-text-color: #ffffff;
+  --secondary-btn-text-color: #000000;
+  --secondary-btn-border-color: #000000;
+  --border-radius: 0.2rem;
+
+  /*
+    progress bar
+    home colored background
+    home main text
+    */
+  --secondary-color: #078293;
+
+  /* en savoir plus text */
+  --info-main-color: #078293;
+
+  /* en savoir plus background */
+  --info-secondary-color: #e6f3f2;
+  --info-secondary-color-hover: #cce6e4;
+  --info-secondary-color-active: #b3d9d6;
+
+  /* header tool links */
+  --tool-link-color: #ffffff;
+  --tool-link-background-color: #000000;
+  --tool-link-background-color-hover: #333333;
+  --sidemenu-active-link-text-color: #000000;
+
+  /* sidemenu text inactive */
+  --text-action-high-grey: #666666;
+
+  /* input checkbox color */
+  --border-action-high-blue-france: #078293;
+  --border-active-blue-france: #078293;
+}

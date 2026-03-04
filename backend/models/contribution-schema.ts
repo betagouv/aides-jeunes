@@ -1,22 +1,26 @@
 import mongoose from "mongoose"
 import type { Contribution } from "../../lib/types/contributions.d.js"
+import {
+  ContributionPullRequestStatus,
+  ContributionCategory,
+} from "../../lib/enums/contribution.js"
 import { ContributionModel } from "../types/models.d.js"
 
 const ContributionSchema = new mongoose.Schema<Contribution, ContributionModel>(
   {
     type: {
       type: String,
-      enum: ["benefit", "institution"],
+      enum: Object.values(ContributionCategory),
       required: true,
     },
     contributorName: { type: String },
     contributorEmail: { type: String, required: true },
     body: { type: mongoose.Schema.Types.Mixed, required: true },
-    status: {
+    pullRequestStatus: {
       type: String,
-      enum: ["pending", "succeeded", "failed"],
+      enum: Object.values(ContributionPullRequestStatus),
       required: true,
-      default: "pending",
+      default: ContributionPullRequestStatus.PENDING,
     },
     githubError: { type: String },
     pullRequestUrl: { type: String },

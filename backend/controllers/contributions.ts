@@ -7,7 +7,10 @@ import type {
   BenefitContributionBody,
   InstitutionContributionBody,
 } from "../../lib/types/contributions.d.js"
-import { ContributionCategory } from "../../lib/enums/contribution.js"
+import {
+  ContributionCategory,
+  ContributionPullRequestStatus,
+} from "../../lib/enums/contribution.js"
 import {
   checkInstitutionExists,
   commitBinaryFile,
@@ -66,7 +69,7 @@ async function createPRAndRecordContribution(params: {
     contributorName,
     contributorEmail,
     body: requestBody,
-    status: "pending",
+    pullRequestStatus: ContributionPullRequestStatus.PENDING,
   })
 
   try {
@@ -79,7 +82,10 @@ async function createPRAndRecordContribution(params: {
 
     await Contributions.updateOne(
       { _id: contributionRecord._id },
-      { status: "succeeded", pullRequestUrl },
+      {
+        pullRequestStatus: ContributionPullRequestStatus.SUCCEEDED,
+        pullRequestUrl,
+      },
     )
 
     return pullRequestUrl
@@ -87,7 +93,7 @@ async function createPRAndRecordContribution(params: {
     await Contributions.updateOne(
       { _id: contributionRecord._id },
       {
-        status: "failed",
+        pullRequestStatus: ContributionPullRequestStatus.FAILED,
         githubError:
           error?.response?.data?.message || error?.message || String(error),
       },

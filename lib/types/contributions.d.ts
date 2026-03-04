@@ -1,4 +1,7 @@
-import { ContributionCategory } from "../../lib/enums/contribution.js"
+import {
+  ContributionCategory,
+  ContributionPullRequestStatus,
+} from "../../lib/enums/contribution.js"
 
 export type ContributionType =
   | ContributionCategory.BENEFIT
@@ -48,7 +51,7 @@ export interface Contribution {
   contributorName?: string
   contributorEmail: string
   body: BenefitContributionBody | InstitutionContributionBody
-  status: "pending" | "succeeded" | "failed"
+  pullRequestStatus: ContributionPullRequestStatus
   githubError?: string
   pullRequestUrl?: string
   createdAt?: Date

@@ -60,9 +60,21 @@ export function sanitizeMultiline(str?: string): string[] {
 export function validateRequiredBenefitFields(
   body: BenefitContributionBody,
 ): string | null {
-  const { institutionName, institutionSlug, title, description } = body
+  const {
+    contributorEmail,
+    institutionName,
+    institutionSlug,
+    title,
+    description,
+  } = body
 
-  if (!institutionName || !institutionSlug || !title || !description) {
+  if (
+    !contributorEmail ||
+    !institutionName ||
+    !institutionSlug ||
+    !title ||
+    !description
+  ) {
     return "Champs obligatoires manquants"
   }
   if (!isValidSlug(institutionSlug)) {

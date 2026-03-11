@@ -81,7 +81,7 @@ export function validateRequiredBenefitFields(
     return "Format institutionSlug invalide"
   }
   if (description.length > 420) {
-    return "Description > 420 caractères"
+    return "La description doit faire moins de 420 caractères"
   }
   return null
 }

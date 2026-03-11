@@ -1,0 +1,15 @@
+label: rendez-vous d'accompagnement pour faire sa demande de logement social
+institution: ville_chemille_en_anjou
+description: Vous avez besoin d’aide pour remplir votre demande de logement social ? Prenez un rendez-vous avec une agente du Centre Communal d’Action Sociale de Chemillé-en-Anjou. Vous avez le choix entre un rendez-vous par téléphone ou sur place.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "49092"
+  - type: difficultes_acces_ou_frais_logement
+    value: true
+type: bool
+periodicite: autre
+teleservice: https://rdv.anct.gouv.fr/prendre_rdv?departement=49&public_link_organisation_id=1266
+link: https://rdv.anct.gouv.fr/prendre_rdv?departement=49&public_link_organisation_id=1266
+top: -1

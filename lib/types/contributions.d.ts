@@ -12,19 +12,17 @@ export interface BenefitContributionBody {
   contributorEmail: string
   institutionName: string
   institutionSlug: string
-  title: string
+  label: string
   description: string
   criteres?: Record<string, string>
   profils?: string[]
-  urls?: {
-    information?: string
-    guide?: string
-    form?: string
-    teleservice?: string
-  }
-  typeCategorie?: string[]
+  link?: string
+  instructions?: string
+  form?: string
+  teleservice?: string
+  type?: string
   periodicite?: string
-  autresConditions?: string
+  conditions?: string
 }
 
 export interface InstitutionContributionBody {

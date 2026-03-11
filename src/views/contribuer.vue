@@ -273,17 +273,15 @@ async function submit() {
       contributorName: contributorName.value?.trim() || undefined,
       contributorEmail: contributorEmail.value.trim(),
       institutionName: institutionName.value.trim(),
-      title: label.value.trim(), // Le backend attend 'title' pas 'label'
+      label: label.value.trim(),
       description: description.value.trim(),
       periodicite: selectedPeriodicite.value,
-      typeCategorie: [], // Pour le moment vide car nous avons retiré cette section
-      urls: {
-        information: link.value.trim() || undefined,
-        teleservice: teleservice.value.trim() || undefined,
-        form: form.value.trim() || undefined,
-        guide: instructions.value.trim() || undefined,
-      },
-      criteres: {}, // Les critères complexes ne sont pas dans le formulaire simplifié
+      type: undefined,
+      link: link.value.trim() || undefined,
+      teleservice: teleservice.value.trim() || undefined,
+      form: form.value.trim() || undefined,
+      instructions: instructions.value.trim() || undefined,
+      criteres: {},
       profils: profils.value.slice(),
     }
 
@@ -292,9 +290,9 @@ async function submit() {
       payload.institutionSlug = institutionSlug.value
     }
 
-    // Ajouter autresConditions seulement si non vide
+    // Ajouter conditions seulement si non vide
     if (conditions.value.length > 0) {
-      payload.autresConditions = conditions.value.join("\n")
+      payload.conditions = conditions.value.join("\n")
     }
 
     await axios.post("/api/contributions/benefit", payload)

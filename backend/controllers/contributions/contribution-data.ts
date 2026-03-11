@@ -64,7 +64,7 @@ export function validateRequiredBenefitFields(
     contributorEmail,
     institutionName,
     institutionSlug,
-    title,
+    label,
     description,
   } = body
 
@@ -72,7 +72,7 @@ export function validateRequiredBenefitFields(
     !contributorEmail ||
     !institutionName ||
     !institutionSlug ||
-    !title ||
+    !label ||
     !description
   ) {
     return "Champs obligatoires manquants"
@@ -114,31 +114,34 @@ export function validateRequiredInstitutionFields(
 
 export function buildBenefitData(body: BenefitContributionBody) {
   const {
-    title,
+    label,
     institutionSlug,
     description,
     criteres,
     profils,
-    urls,
-    typeCategorie,
+    link,
+    instructions,
+    form,
+    teleservice,
+    type,
     periodicite,
-    autresConditions,
+    conditions,
   } = body
 
   return {
-    label: title,
+    label,
     institution: institutionSlug,
     description,
-    conditions: sanitizeMultiline(autresConditions),
+    conditions: sanitizeMultiline(conditions),
     conditions_generales: Object.entries(criteres || {})
       .filter(([, value]) => value)
       .map(([key, value]) => key + ": " + value),
     profils: profils || [],
-    link: urls?.information || undefined,
-    instructions: urls?.guide || undefined,
-    form: urls?.form || undefined,
-    teleservicePrefill: urls?.teleservice || undefined,
-    type: typeCategorie?.[0] || "bool",
+    link,
+    instructions,
+    form,
+    teleservice,
+    type: type || "bool",
     periodicite: periodicite || "ponctuelle",
   }
 }
@@ -158,13 +161,12 @@ export function createDefaultInstitutionData(
 export function buildBenefitPullRequestBody(
   body: BenefitContributionBody,
 ): string {
-  const { title, institutionName, typeCategorie, periodicite, description } =
-    body
+  const { label, institutionName, type, periodicite, description } = body
 
   const sections = [
-    `Aide : **${title}**`,
+    `Aide : **${label}**`,
     `Institution: ${institutionName}`,
-    `Type: ${typeCategorie}`,
+    `Type: ${type}`,
     `Périodicité: ${periodicite}`,
     `Description: ${description}`,
   ]

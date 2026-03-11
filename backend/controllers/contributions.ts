@@ -112,7 +112,7 @@ export async function handleBenefitContribution(
   }
 
   try {
-    const { institutionName, institutionSlug, title } = req.body || {}
+    const { institutionName, institutionSlug, label } = req.body || {}
 
     // Validation
     const validationError = validateRequiredBenefitFields(req.body)
@@ -121,7 +121,7 @@ export async function handleBenefitContribution(
     }
 
     // Generate and validate benefit slug
-    const benefitSlug = `${institutionSlug}_${slugify(title)}`
+    const benefitSlug = `${institutionSlug}_${slugify(label)}`
     if (!isValidSlug(benefitSlug)) {
       return res.status(400).json({ message: "Format benefitSlug invalide" })
     }
@@ -164,7 +164,7 @@ export async function handleBenefitContribution(
 
     const pullRequestUrl = await createPRAndRecordContribution({
       githubApi,
-      title: `[Contribution] Ajout aide - ${title}`,
+      title: `[Contribution] Ajout aide - ${label}`,
       branchName: newBranch,
       body: buildBenefitPullRequestBody(req.body),
       requestBody: req.body,

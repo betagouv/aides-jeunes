@@ -1,0 +1,17 @@
+label: '- Aide de Test -'
+institution: caf_gironde
+description: Description test
+conditions: []
+conditions_generales: []
+profils:
+  - etudiant
+  - collegien
+  - lyceen
+  - salarie
+  - apprenti
+link: https://mes-aides.1jeune1solution.beta.gouv.fr/
+instructions: https://mes-aides.1jeune1solution.beta.gouv.fr/
+form: https://mes-aides.1jeune1solution.beta.gouv.fr/
+teleservice: https://mes-aides.1jeune1solution.beta.gouv.fr/
+type: bool
+periodicite: ponctuelle

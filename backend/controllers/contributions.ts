@@ -207,9 +207,9 @@ export async function handleInstitutionContribution(
     // Generate institution slug
     const institutionSlug = slugify(institutionName)
     if (!isValidSlug(institutionSlug)) {
-      return res
-        .status(400)
-        .json({ message: "Format institutionSlug invalide" })
+      return res.status(400).json({
+        message: "Le format de l'identifiant de l'institution est invalide",
+      })
     }
 
     // Build institution data

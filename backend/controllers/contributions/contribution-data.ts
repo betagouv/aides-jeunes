@@ -78,7 +78,7 @@ export function validateRequiredBenefitFields(
     return "Champs obligatoires manquants"
   }
   if (!isValidSlug(institutionSlug)) {
-    return "Format institutionSlug invalide"
+    return "Le format de l'identifiant de l'institution est invalide"
   }
   if (description.length > 420) {
     return "La description doit faire moins de 420 caractères"

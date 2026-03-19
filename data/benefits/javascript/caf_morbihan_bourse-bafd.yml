@@ -1,0 +1,21 @@
+label: Bourse Bafd
+institution: caf_morbihan
+description: >-
+  La CAF du Morbihan participe financièrement à la formation des directeurs de
+  Centres de vacances et de loisirs (BAFD).
+
+  Les organismes de formation doivent être agréés,
+
+  La demande doit parvenir à la Caf au plus tard 3 mois à compter de la date de
+  fin du dernier stage de formation générale pour le Bafd.
+
+  L'imprimé de demande est à faire compléter au fur et à mesure de la
+  réalisation des sessions de formation.
+conditions:
+  - Le demandeur doit être ressortissant du régime général
+conditions_generales: []
+profils: []
+link: >-
+  https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/bourses-bafa-et-bafd
+type: bool
+periodicite: ponctuelle

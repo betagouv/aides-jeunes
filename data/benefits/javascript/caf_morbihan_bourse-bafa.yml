@@ -1,0 +1,22 @@
+label: Bourse Bafa
+institution: caf_morbihan
+description: >-
+  La CAF du Morbihan participe financièrement à la formation des animateurs de
+  Centres de vacances et de loisirs.
+
+  Les organismes de formation doivent être agréés,
+
+  La demande doit parvenir à la Caf au plus tard 3 mois à compter de la date de
+  fin du dernier stage.
+
+  L'imprimé de demande est à faire compléter au fur et à mesure de la
+  réalisation des sessions de formation.
+conditions:
+  - Le jeune doit être âgé de moins de 25 ans au premier jour du dernier stage
+  - Le bénéficiaire doit résider dans le Morbihan
+conditions_generales: []
+profils: []
+link: >-
+  https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/bourses-bafa-et-bafd
+type: bool
+periodicite: ponctuelle

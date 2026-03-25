@@ -7,8 +7,7 @@ description: >-
   Equipe niveau 2 (PSE2). Pour toute demande, contacter le BIJ (Bureau Information
   Jeunesse) au 02 97 01 61 00 ou bij@mairie-vannes.fr.
 conditions:
-  - Avoir moins de 25 ans révolus
-  - Être domicilié fiscalement à Vannes depuis au moins 1 an
+  - Être domicilié fiscalement à Vannes depuis au moins 1 an.
 conditions_generales:
   - type: communes
     values:

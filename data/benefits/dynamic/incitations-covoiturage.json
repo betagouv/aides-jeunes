@@ -284,7 +284,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par passager et par trajet.",
-    "si_zone_exclue_liste": "Trajets sur l'axe de la ligne A des TC",
+    "si_zone_exclue_liste": "Noter que les trajets effectués sur l'axe de la ligne A des Transports en Commun d'Angers Loire Métropole ne sont pas couverts par la subvention.",
     "passager_gratuite": "Non"
   },
   {
@@ -352,22 +352,6 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://smt-touraine.fr/parcourez-les-services-publics/klaxit-service-de-covoiturage",
-    "code_siren": "200085108",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 30,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par passager et par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://epernay-agglo.fr/lagglo-soutient-le-developpement-du-covoiturage#:~:text=Pour%20les%20conducteurs%2C%20les%20covoits,covoiturage%2C%20selon%20la%20distance%20parcourue.",
     "code_siren": "200067684",
     "nom_plateforme": "",
@@ -414,22 +398,6 @@
     "passager_montant_ticket": "Vous ne payez que 0,50 € par passager et par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.paysdebarr.fr/",
-    "code_siren": "200051944",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 100,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
   },
   {
     "link": "https://cc-hautvaldesevre.fr/competences/environnement/mobilite/1906-vous-allez-adorer-covoiturer-au-quotidien.html",
@@ -718,38 +686,6 @@
     "passager_montant_ticket": "Vous ne payez que 1,50 € pour des trajets jusqu’à 50 km.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.smtc90.fr",
-    "code_siren": "259000016",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 180,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 1,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 1 € par passager jusqu’à 20 km, puis 0,10 € par kilomètre au-delà.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.karos.fr",
-    "code_siren": "259710218",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 10,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Vous ne payez que 0,5 € par passager jusqu'à 20 km, puis 0,60 € par kilomètre supplémentaire.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
   },
   {
     "link": "https://www.cholet.fr/dossiers/dossier_4898_place+velo+dans+ville.html",
@@ -1244,7 +1180,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par passager et par trajet.",
-    "si_zone_exclue_liste": "Les trajets ayant soit une origine ou une distination à l'intérieur de la lige de covoiturage dans ce territoire.",
+    "si_zone_exclue_liste": "Noter que les trajets ayant une origine ou une destination à l'intérieur de la ligne de covoiturage du territoire de Rennes Métropole sont exclus de la subvention.",
     "passager_gratuite": "Non"
   },
   {
@@ -1275,7 +1211,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vos trajets sont gratuits jusqu'à 20 km puis vous coûtent 0,20 € + 0,10 € par kilomètre jusqu'à 30km, puis 0,20 € par kilomètre jusqu'à 50 km, puis 0,10 € par kilomètre jusqu'à 80 km. Un trajet de 50 kilomètres vous coûte donc 5 € et un trajet de 80 kilomètres vous coûte 8 €.",
+    "passager_montant_ticket": "Vos trajets sont gratuits jusqu'à 20 km puis vous coûtent 0,20 € + 0,10 € par kilomètre jusqu'à 30km, puis 0,20 € par kilomètre jusqu'à 50 km, puis 0,10 € par kilomètre jusqu'à 80 km.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },

@@ -12,6 +12,9 @@ description: >-
 
   Pour demander cette aide, vous devez contacter le BIJ (Bureau information jeunesse) au 02 97 01 61 00 ou bij@mairie-vannes.fr.
 conditions_generales:
+  - type: communes
+    values:
+      - "56260"
   - type: age
     operator: ">="
     value: 25

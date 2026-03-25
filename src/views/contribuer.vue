@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue"
-import type { Ref } from "vue"
 import axios from "axios"
 import { EventAction, EventCategory } from "@lib/enums/event"
 import InstitutionSelect from "@/components/institution-select.vue"
@@ -63,61 +62,6 @@ const instructions = ref("")
 const conditionsText = ref("")
 const conditionsMax = 5000
 
-const interestFlagOptions = [
-  { value: "", label: "Non" },
-  {
-    value: "_interetBafa",
-    label: "Oui, l'afficher en cas d'intérêt pour le BAFA ou le BAFD",
-  },
-  {
-    value: "_interetPermisDeConduire",
-    label: "Oui, l'afficher en cas d'intérêt pour passer le permis de conduire",
-  },
-  {
-    value: "_interetEtudesEtranger",
-    label:
-      "Oui, l'afficher en cas d'intérêt pour faire des études à l'étranger",
-  },
-  {
-    value: "_interetAidesSanitaireSocial",
-    label:
-      "Oui, l'afficher en cas d'intérêt pour faire une formation dans le sanitaire et social",
-  },
-]
-const selectedInterestFlag = ref("")
-
-const profilOptions = [
-  { value: "collegien", label: "Collégien ou collégienne" },
-  { value: "lyceen", label: "Lycéen ou lycéenne" },
-  { value: "enseignement_superieur", label: "Dans l'enseignement supérieur" },
-  {
-    value: "etudiant",
-    label: "Scolarisé ou scolarisée (collège + lycée + enseignement supérieur)",
-  },
-  { value: "stagiaire", label: "Stagiaire" },
-  { value: "apprenti", label: "Apprenti ou apprentie" },
-  {
-    value: "professionnalisation",
-    label: "En contrat de professionnalisation",
-  },
-  { value: "chomeur", label: "En recherche d'emploi" },
-  { value: "salarie", label: "Salarié ou salariée" },
-  {
-    value: "independant",
-    label: "Travailleur indépendant ou travailleuse indépendante",
-  },
-  { value: "service_civique", label: "En service civique" },
-  { value: "beneficiaire_rsa", label: "Bénéficiaire RSA" },
-  { value: "situation_handicap", label: "En situation de handicap" },
-  {
-    value: "inactif",
-    label:
-      "Inactif ou inactive (personne ni scolarisée, ni en emploi, ni en formation, ni en recherche d’emploi)",
-  },
-  { value: "parent", label: "Parent" },
-]
-const profils = ref<string[]>([])
-
 function clearError(field: string) {
   const idx = errorFields.value.indexOf(field)
   if (idx >= 0) errorFields.value.splice(idx, 1)
@@ -127,13 +71,6 @@ function clearLinkErrors() {
   errorFields.value = errorFields.value.filter(
     (f) => !["link", "teleservice", "form", "instructions"].includes(f),
   )
-}
-
-function toggle(list: Ref<string[]> | string[], value: string) {
-  const target = Array.isArray(list) ? list : list.value
-  const idx = target.indexOf(value)
-  if (idx >= 0) target.splice(idx, 1)
-  else target.push(value)
 }
 
 function onPeriodiciteChange() {

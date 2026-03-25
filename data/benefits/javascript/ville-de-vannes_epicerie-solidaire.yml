@@ -1,20 +1,20 @@
-label: Epicerie solidaire
+label: épicerie solidaire
 institution: ville-de-vannes
-description: >-
+prefix: l'
+description:
   L’épicerie solidaire s’adresse aux ménages qui ont des ressources, rencontrent
   des difficultés financières et s’inscrivent dans une démarche d’insertion. Le
   demandeur doit résider ou bénéficier d’une domiciliation administrative sur
-  Vannes.
-
-  Pour toute demande d'instruction, prendre rendez-vous auprès du CCAS au 02 97
-  01 65 00.
+  Vannes. Aide soumise à un reste à vivre calculé lors de l'instruction de la demande.
+conditions_generales:
+  - type: attached_to_institution
+  - type: age
+    operator: ">="
+    value: 18
 conditions:
-  - Avoir plus de 25 ans
-  - >-
-    Pour les moins de 25 ans, justifier d'une autonomie financière et avoir sa
-    propre déclaration fiscale
-  - Aide soumise à un reste à vivre calculé lors de l'instruction de la demande
-conditions_generales: []
+  - Prendre rendez-vous auprès du CCAS au 02 97 01 65 00 pour toute demande d'instruction.
+  - Pour les personnes de moins de 25 ans, justifier d'une autonomie financière et avoir sa
+    propre déclaration fiscale.
 profils:
   - chomeur
   - professionnalisation

@@ -28,7 +28,7 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-prefix: l'
+prefix: l’
 link: https://bij-vannes.fr/aide-aux-sejours-letranger
 type: bool
 periodicite: annuelle

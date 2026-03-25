@@ -29,13 +29,13 @@ const mailAnalytics = {
 }
 
 const contributorName = ref("")
+const contributorOrganization = ref("")
 const contributorEmail = ref("")
 const institutionName = ref("")
 const institutionSlug = ref("")
 const label = ref("")
 const description = ref("")
-const descriptionMax = 420
-const prefix = ref("")
+const descriptionMax = 5000
 const periodiciteOptions = [
   { value: "ponctuelle", label: "Ponctuelle" },
   { value: "annuelle", label: "Annuelle" },
@@ -48,7 +48,6 @@ const legend = ref("")
 const unit = ref("€")
 const resultType = ref("float")
 
-const prefixOptions = ["le", "la", "les", "l'", "une", "un", "l'aide"]
 const unitOptions = ["€", "%", "séances"]
 const resultTypeOptions = [
   { value: "float", label: "Valeur numérique" },
@@ -61,10 +60,8 @@ const teleservice = ref("")
 const form = ref("")
 const instructions = ref("")
 
-const conditions = ref<string[]>([])
-const newCondition = ref("")
-const voluntaryConditions = ref<string[]>([])
-const newVoluntaryCondition = ref("")
+const conditionsText = ref("")
+const conditionsMax = 5000
 
 const interestFlagOptions = [
   { value: "", label: "Non" },
@@ -143,34 +140,12 @@ function onPeriodiciteChange() {
   clearError("periodicite")
 }
 
-function toggleProfil(profil: string) {
-  toggle(profils, profil)
-}
-
-function addCondition() {
-  if (newCondition.value.trim()) {
-    conditions.value.push(newCondition.value.trim())
-    newCondition.value = ""
-  }
-}
-
-function removeCondition(index: number) {
-  conditions.value.splice(index, 1)
-}
-
-function addVoluntaryCondition() {
-  if (newVoluntaryCondition.value.trim()) {
-    voluntaryConditions.value.push(newVoluntaryCondition.value.trim())
-    newVoluntaryCondition.value = ""
-  }
-}
-
-function removeVoluntaryCondition(index: number) {
-  voluntaryConditions.value.splice(index, 1)
-}
-
 const descriptionCharsLeft = computed(
   () => descriptionMax - description.value.length,
+)
+
+const conditionsCharsLeft = computed(
+  () => conditionsMax - conditionsText.value.length,
 )
 
 function validate(): { isValid: boolean; firstErrorField?: string } {
@@ -203,11 +178,6 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
     e.push("Le titre de l'aide est requis")
     ef.push("label")
     if (!firstErrorField) firstErrorField = "label"
-  }
-  if (!prefix.value) {
-    e.push("L'article défini est requis")
-    ef.push("prefix")
-    if (!firstErrorField) firstErrorField = "prefix"
   }
   if (!description.value.trim()) {
     e.push("La description est requise")
@@ -271,18 +241,17 @@ async function submit() {
     // Adapter le payload au format attendu par le backend actuel
     const payload: any = {
       contributorName: contributorName.value?.trim() || undefined,
+      contributorOrganization:
+        contributorOrganization.value?.trim() || undefined,
       contributorEmail: contributorEmail.value.trim(),
       institutionName: institutionName.value.trim(),
       label: label.value.trim(),
       description: description.value.trim(),
       periodicite: selectedPeriodicite.value,
-      type: undefined,
       link: link.value.trim() || undefined,
       teleservice: teleservice.value.trim() || undefined,
       form: form.value.trim() || undefined,
       instructions: instructions.value.trim() || undefined,
-      criteres: {},
-      profils: profils.value.slice(),
     }
 
     // Ajouter institutionSlug seulement s'il existe
@@ -291,8 +260,8 @@ async function submit() {
     }
 
     // Ajouter conditions seulement si non vide
-    if (conditions.value.length > 0) {
-      payload.conditions = conditions.value.join("\n")
+    if (conditionsText.value.trim()) {
+      payload.conditions = conditionsText.value.trim()
     }
 
     await axios.post("/api/contributions/benefit", payload)
@@ -394,8 +363,21 @@ async function submit() {
                 id="contributorName"
                 v-model="contributorName"
                 class="fr-input"
-                placeholder="Votre nom complet"
+                placeholder="Ex: Jeanne Dupont"
                 @input="clearError('contributorName')"
+              />
+            </div>
+          </div>
+          <div class="fr-col-12">
+            <div class="fr-input-group">
+              <label class="fr-label" for="contributorOrganization"
+                >Votre organisation</label
+              >
+              <input
+                id="contributorOrganization"
+                v-model="contributorOrganization"
+                class="fr-input"
+                placeholder="Ex: Mairie de Lyon"
               />
             </div>
           </div>
@@ -485,37 +467,20 @@ async function submit() {
               @input="clearError('description')"
             />
           </div>
-          <div
-            class="fr-input-group"
-            :class="{
-              'fr-input-group--error': errorFields.includes('prefix'),
-            }"
-          >
-            <label class="fr-label" for="prefix"
-              >Article défini <span class="fr-text--error">*</span></label
+          <div class="fr-input-group">
+            <label class="fr-label" for="conditionsText"
+              >Conditions générales (max {{ conditionsMax }} caractères)
+              <span class="fr-hint-text"
+                >{{ conditionsCharsLeft }} restants</span
+              ></label
             >
-            <span class="fr-hint-text"
-              >L’ajout d’un article défini permet la formation de phrase
-              grammaticalement correcte. Par exemple, dans la phrase « Comment
-              obtenir la Bourse de mobilité internationale Mermoz ? », on
-              choisit le préfixe « la ».</span
-            >
-            <select
-              id="prefix"
-              v-model="prefix"
-              class="fr-select"
-              required
-              @change="clearError('prefix')"
-            >
-              <option value="">Sélectionner un article</option>
-              <option
-                v-for="option in prefixOptions"
-                :key="option"
-                :value="option"
-              >
-                {{ option }}
-              </option>
-            </select>
+            <textarea
+              id="conditionsText"
+              v-model="conditionsText"
+              class="fr-input"
+              rows="5"
+              placeholder="Ex: Âge : 18-30 ans. Résidence : Île-de-France. Profil : lycéen, étudiant ou apprenti. Situation : sans emploi depuis au moins 6 mois. Documents requis : preuve de scolarité et justificatif de domicile."
+            />
           </div>
           <div
             class="fr-input-group"
@@ -619,42 +584,6 @@ async function submit() {
               class="fr-input"
               placeholder="Ex: maximum, montant plafond, etc."
             />
-          </div>
-        </div>
-      </fieldset>
-      <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">Profils concernés</legend>
-        <p class="fr-text--xs fr-mb-1w">
-          Cette aide est-elle destinée à des publics spécifiques ? (lycéen(ne)s,
-          apprenti(e)s, en recherche d’emploi, etc.)
-        </p>
-        <p class="fr-text--xs fr-mb-2w">
-          Seuls les profils sélectionnés verront votre aide dans leurs résultats
-          de simulation. Vous ne trouvez pas le profil concerné ? Dites-le nous
-          :
-          <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">
-            {{ contactEmail }}
-          </a>
-          .
-        </p>
-        <div class="fr-grid-row fr-grid-row--gutters">
-          <div
-            v-for="profilOption in profilOptions"
-            :key="profilOption.value"
-            class="fr-col-12 fr-col-sm-6 fr-col-md-4"
-          >
-            <div class="fr-checkbox-group">
-              <input
-                :id="'profil_' + profilOption.value"
-                name="profils"
-                type="checkbox"
-                :checked="profils.includes(profilOption.value)"
-                @change="toggleProfil(profilOption.value)"
-              />
-              <label class="fr-label" :for="'profil_' + profilOption.value">{{
-                profilOption.label
-              }}</label>
-            </div>
           </div>
         </div>
       </fieldset>
@@ -763,140 +692,6 @@ async function submit() {
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">
-          Conditions non prises en compte par le simulateur
-        </legend>
-        <p class="fr-text--sm fr-mb-3w">
-          Certains critères d’éligibilité ne peuvent pas être demandés (trop
-          précis) ni pris en compte (trop complexe) dans le cadre d’un
-          simulateur multi-prestations (plus de 1000 aides sont calculées
-          simultanément). Cette liste permet d’informer les usagers sur ces
-          critères supplémentaires.
-        </p>
-        <div class="fr-container fr-px-0">
-          <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
-            <div class="fr-input-group fr-col-md-10">
-              <input
-                id="newCondition"
-                v-model="newCondition"
-                class="fr-input"
-                placeholder="Ex: Signer un contrat d'engagement réciproque (CER)"
-                @keyup.enter="addCondition"
-              />
-            </div>
-            <div class="fr-col-md-2">
-              <button
-                type="button"
-                class="fr-btn fr-btn--secondary"
-                @click="addCondition"
-              >
-                Ajouter
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="fr-col-12">
-          <ul v-if="conditions.length > 0" class="fr-mb-2w fr-p-0">
-            <li
-              v-for="(condition, index) in conditions"
-              :key="index"
-              class="aj-contribuer-condition-item"
-            >
-              <span>{{ condition }}</span>
-              <button
-                type="button"
-                class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
-                @click="removeCondition(index)"
-              >
-                Supprimer
-              </button>
-            </li>
-          </ul>
-        </div>
-      </fieldset>
-      <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">
-          Conditions bénévoles à satisfaire
-        </legend>
-        <p class="fr-text--sm fr-mb-3w">
-          Votre aide est remise en échange d’un engagement bénévole et citoyen
-          du jeune dans des associations locales ? En complétant ce champ, un
-          lien dynamique vers la plateforme jeveuxaider.gouv.fr s’ajoutera pour
-          orienter l’utilisateur vers des organismes de bénévolat à proximité.
-        </p>
-        <div class="fr-container fr-px-0">
-          <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
-            <div class="fr-input-group fr-col-md-10">
-              <input
-                id="newVoluntaryCondition"
-                v-model="newVoluntaryCondition"
-                class="fr-input"
-                placeholder="Ex: Réaliser 50 heures de bénévolat par an"
-                @keyup.enter="addVoluntaryCondition"
-              />
-            </div>
-            <div class="fr-col-md-2">
-              <button
-                type="button"
-                class="fr-btn fr-btn--secondary"
-                @click="addVoluntaryCondition"
-              >
-                Ajouter
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="fr-col-12">
-          <ul v-if="voluntaryConditions.length > 0" class="fr-p-0 fr-mb-2w">
-            <li
-              v-for="(condition, index) in voluntaryConditions"
-              :key="index"
-              class="aj-contribuer-condition-item"
-            >
-              <span>{{ condition }}</span>
-              <button
-                type="button"
-                class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
-                @click="removeVoluntaryCondition(index)"
-              >
-                Supprimer
-              </button>
-            </li>
-          </ul>
-        </div>
-      </fieldset>
-      <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">Intérêt particulier</legend>
-        <div class="fr-input-group">
-          <p class="fr-label">
-            Faut-il limiter l’affichage de l’aide en fonction d’un intérêt
-            particulier ?
-          </p>
-          <p class="fr-hint-text"
-            >À la fin de la simulation, des questions sont posées pour connaître
-            certains intérêts des usagers. Cela permet d’éviter d’afficher
-            certaines aides qui ne seraient pas pertinentes pour tous les
-            usagers.
-          </p>
-          <div
-            v-for="option in interestFlagOptions"
-            :key="option.value"
-            class="fr-radio-group"
-          >
-            <input
-              :id="`interest_${option.value || 'none'}`"
-              v-model="selectedInterestFlag"
-              type="radio"
-              name="interestFlag"
-              :value="option.value"
-            />
-            <label class="fr-label" :for="`interest_${option.value || 'none'}`">
-              {{ option.label }}
-            </label>
           </div>
         </div>
       </fieldset>

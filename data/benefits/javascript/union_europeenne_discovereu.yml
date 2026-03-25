@@ -1,5 +1,6 @@
 label: DiscoverEU
 institution: union_europeenne
+prefix: le
 description: >-
   DiscoverEU est une action du programme Erasmus+ qui donne l’occasion aux
   jeunes âgés de 18 ans de voyager et d’explorer la diversité de l’Europe. 40
@@ -8,9 +9,12 @@ description: >-
   2026 et se terminer le 30 septembre 2027. La période de candidature aura lieu
   entre le 8 et le 22 avril 2026.
 conditions:
-  - être né entre le 1er juillet 2007 (inclus) et le 30 juin 2008 (inclus).
   - être citoyen ou résident de l’un des États membres de l’Union européenne.
-conditions_generales: []
+  - être né entre le 1er juillet 2007 (inclus) et le 30 juin 2008 (inclus).
+conditions_generales:
+  - type: age
+    operator: "=="
+    value: 18
 profils: []
 link: https://youth.europa.eu/discovereu_fr
 type: bool

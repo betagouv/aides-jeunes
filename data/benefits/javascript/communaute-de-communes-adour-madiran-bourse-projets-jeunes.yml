@@ -1,0 +1,25 @@
+label: Bourse Projets Jeunes
+institution: communaute-de-communes-adour-madiran
+description: La Bourse Projets Jeunes vise à mettre en lumière des projets «
+  Coup de cœur » et accompagner un projet « Lauréat » grâce à un soutien
+  technique, une communication et par l’attribution d’une subvention dont le
+  montant est déterminé par un jury.
+prefix: la
+conditions_generales:
+  - type: attached_to_institution
+voluntary_conditions: []
+profils: []
+conditions:
+  - Avoir entre 12 et 25 ans.
+  - Habiter dans l’une des 72 communes du territoire Adour Madiran.
+  - "Votre projet doit présenter un caractère d’intérêt général et s’inscrire
+    dans une des thématiques suivantes : l’environnement, la culture, la santé,
+    la solidarité, la mobilité, l’inclusion, l’éducation, l’orientation, la
+    citoyenneté, la participation, l’intergénérationnel, l’animation sociale,
+    l’aménagement du territoire."
+type: float
+unit: €
+periodicite: autre
+link: https://www.adour-madiran.fr/bourse-projets-jeunes/
+form: https://www.adour-madiran.fr/wp-content/uploads/2024/07/BPJ-Dossier-de-candidature-VF.pdf
+instructions: https://www.adour-madiran.fr/wp-content/uploads/2024/07/BPJ-Cahier-des-charges-VF-1.pdf

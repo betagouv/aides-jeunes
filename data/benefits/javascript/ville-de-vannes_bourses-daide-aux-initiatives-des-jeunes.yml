@@ -1,11 +1,11 @@
-label: Bourses d'aide aux initiatives des jeunes
+label: Bourses d’aide aux initiatives des jeunes
 institution: ville-de-vannes
 prefix: la
 description: >-
-  La ville de Vannes propose deux types de bourses :
+    La ville de Vannes propose deux types de bourses ":"
 
-  - Loisirs'Ados pour les 14-20 ans qui souhaitent réaliser un projet de voyage,
-  de loisirs, d'animation.
+  - Loisirs’Ados pour les 14-20 ans qui souhaitent réaliser un projet de voyage,
+  de loisirs, d’animation.
 
   - Proj’Jeunes qui a pour ambition de valoriser l’initiative des jeunes dans
   tous les domaines.
@@ -27,19 +27,32 @@ conditions_generales:
     operator: "<="
     value: 25
 profils:
-  - enseignement_superieur
-  - etudiant
-  - chomeur
-  - stagiaire
-  - professionnalisation
-  - apprenti
-  - salarie
-  - service_civique
-  - independant
-  - situation_handicap
-  - inactif
-  - lyceen
-  - collegien
+  - type: enseignement_superieur
+    conditions: []
+  - type: etudiant
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: salarie
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: situation_handicap
+    conditions: []
+  - type: inactif
+    conditions: []
+  - type: lyceen
+    conditions: []
+  - type: collegien
+    conditions: []
 link: https://bij-vannes.fr/bourses-daide-aux-initiatives-des-jeunes
 type: bool
 periodicite: ponctuelle

@@ -1,0 +1,10 @@
+label: test
+institution: ville_saint_louis
+description: test
+conditions: []
+conditions_generales: []
+profils:
+  - collegien
+link: https://mes-aides.1jeune1solution.beta.gouv.fr/aides
+type: bool
+periodicite: ponctuelle

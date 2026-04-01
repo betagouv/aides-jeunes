@@ -2,6 +2,10 @@ const init = () => {
   cy.intercept("GET", "/api/simulation/*/results").as("results")
   cy.intercept("GET", "/api/outils/communes/*").as("communes")
   cy.intercept("POST", "/api/simulation").as("post-simulation")
+  cy.intercept(
+    "GET",
+    "https://etablissements-publics.api.gouv.fr/v3/communes/*",
+  ).as("lieux")
   cy.visit("http://localhost:8080/init-ci")
 }
 

@@ -3,7 +3,7 @@ const init = () => {
   cy.intercept("GET", "/api/outils/communes/*").as("communes")
   cy.intercept("POST", "/api/simulation").as("post-simulation")
   cy.intercept("GET", "**/v3/communes/**", (req) => {
-    if (req.url.includes("/caf")) {
+    if (req.url.includes("caf")) {
       req.reply({
         statusCode: 200,
         body: {
@@ -30,7 +30,7 @@ const init = () => {
       return
     }
 
-    if (req.url.includes("/mairie")) {
+    if (req.url.includes("mairie")) {
       req.reply({
         statusCode: 200,
         body: {
@@ -59,6 +59,8 @@ const init = () => {
     req.continue()
   }).as("lieux")
   cy.intercept("GET", "**/api/lieux/**").as("lieux")
+  cy.clearCookies()
+  cy.clearAllLocalStorage()
   cy.visit("http://localhost:8080/init-ci")
 }
 

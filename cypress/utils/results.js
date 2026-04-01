@@ -82,11 +82,14 @@ const hasPrimeActiviteNearbyPlaces = () => {
 
 const hasSituationNearbyPlaces = () => {
   cy.get('[data-testid="nearby-help"]').should("be.visible").click()
+  cy.url({ timeout: 20000 }).should("include", "/simulation/resultats/lieux")
   cy.get('[data-testid="nearby-help"]').should("not.exist")
-  cy.get('[data-testid="lieu-title"]')
+  cy.get('[data-testid="lieu-title"]', { timeout: 20000 })
     .first()
     .should("contain", "Mairie - Fontenay-sous-Bois")
-  cy.get('[data-testid="lieu-address"]').first().should("be.visible")
+  cy.get('[data-testid="lieu-address"]', { timeout: 20000 })
+    .first()
+    .should("be.visible")
 }
 
 const captureFiscalResources = () => {

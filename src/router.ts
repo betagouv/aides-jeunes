@@ -518,28 +518,4 @@ router.afterEach((to, from) => {
   })
 })
 
-const CHUNK_RELOAD_FLAG = "aj_chunk_reload_once"
-
-router.onError((error) => {
-  const message = String(error?.message || "")
-  const isChunkLoadError =
-    message.includes("Failed to fetch dynamically imported module") ||
-    message.includes("Importing a module script failed")
-
-  if (!isChunkLoadError) {
-    return
-  }
-
-  const hasAlreadyReloaded =
-    window.sessionStorage.getItem(CHUNK_RELOAD_FLAG) === "1"
-
-  if (hasAlreadyReloaded) {
-    window.sessionStorage.removeItem(CHUNK_RELOAD_FLAG)
-    return
-  }
-
-  window.sessionStorage.setItem(CHUNK_RELOAD_FLAG, "1")
-  window.location.reload()
-})
-
 export default router

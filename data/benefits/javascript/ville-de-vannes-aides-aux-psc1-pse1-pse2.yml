@@ -4,10 +4,10 @@ description: >-
   La Ville de Vannes soutient les jeunes qui souhaitent
   suivre les formations de secourisme Prévention et Secours Civiques de niveau
   1 (PSC1), Premiers Secours en Equipe niveau 1 ou 2 (PSE1, PSE2). Le montant pris en charge 
-  est variable selon la formation suivie et le quotient familial. Pour toute demande, contacter le BIJ (Bureau Information Jeunesse)
-  au 02 97 01 61 00 ou bij@mairie-vannes.fr.
+  est variable selon la formation suivie et le quotient familial.
 conditions:
   - Être domicilié fiscalement à Vannes depuis au moins 1 an.
+  - Faire une demande au BIJ (Bureau Information Jeunesse) par téléphone au <a href="tel:+33297016100">02 97 01 61 00</a> ou par email à <a href="mailto:bij@mairie-vannes.fr">bij@mairie-vannes.fr</a>.
 conditions_generales:
   - type: communes
     values:

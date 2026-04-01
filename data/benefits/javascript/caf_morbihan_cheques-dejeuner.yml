@@ -1,31 +1,36 @@
 label: Chèques déjeuner
 institution: caf_morbihan
 description: >-
-  Cette aide, associée à une démarche d'insertion, est destinée aux jeunes pour
-  leur permettre de disposer de conditions minimales d'existence. D'un montant
-  de 5 €, les chèques déjeuner sont adressés par courrier suivi à partir de la
-  date de réception de la demande à la Caf.
-
-  Pour demander cette aide, envoyez le formulaire à Caf du Morbihan - Unité AFI
-  - 70 rue de Sainte Anne - BP 322 - 56018 VANNES Cedex.
+  Des chèques déjeuner d'une valeur de 5 € sont proposés aux jeunes de moins de 21 ans et adréssés
+  par courrier suivi à partir de la date de réception de la demande à la Caf.
+prefix: le
 conditions:
-  - Avoir moins de 21 ans
-  - >-
-    Être à la charge de ses parents mais possibilité de bénéficier d'une aide au
-    logement à titre personnel. Les parents doivent résider dans le Morbihan.
-  - >-
-    Les ressources du jeune (y compris indemnités repas ou trajets) ne doivent
+  - Être à la charge de ses parents mais possibilité de bénéficier d'une aide au
+    logement à titre personnel.
+  - Les ressources du jeune (y compris indemnités repas ou trajets) ne doivent
     pas être supérieures à 55 % du SMIC brut sur la base d'un contrat de travail
     à temps plein, hors prestations logement.
-  - >-
-    Les ressources des parents ne doivent pas dépasser un quotient familial
-    supérieur à 700 €.
-conditions_generales: []
+  - Remplir le formulaire de demande d'aide et l'envoyer à la Caf du Morbihan - Unité AFI, 70 rue de Sainte Anne - BP 322 - 56018 VANNES Cedex.
+conditions_generales:
+  - type: age
+    operator: "<"
+    value: 21
+  - type: departements
+    values:
+      - "56"
+  - type: quotient_familial
+    operator: "<="
+    value: 700
+    period: month
 profils:
-  - professionnalisation
-  - apprenti
-  - salarie
-link: >-
-  https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/aides-aux-jeunes-les-cheques-dejeuner
+  - type: professionnalisation
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: salarie
+    conditions: []
+link: https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/aides-aux-jeunes-les-cheques-dejeuner
+instructions: https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/aides-aux-jeunes-les-cheques-dejeuner
+form: https://www.caf.fr/sites/default/files/medias/561/vie%20professionnelle/2023-imprime-ddd-TR-jeunes.pdf
 type: bool
 periodicite: mensuelle

@@ -13,7 +13,7 @@ conditions:
   - être né entre le 1er juillet 2007 (inclus) et le 30 juin 2008 (inclus).
 conditions_generales:
   - type: age
-    operator: "=="
+    operator: =
     value: 18
 profils: []
 link: https://youth.europa.eu/discovereu_fr

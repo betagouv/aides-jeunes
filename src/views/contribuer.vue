@@ -267,63 +267,8 @@ async function submit() {
     </div>
     <form v-if="!sent" class="fr-my-4w" novalidate @submit.prevent="submit">
       <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">
-          Identité et institution porteuse
-        </legend>
+        <legend class="fr-fieldset__legend fr-h4">Institution porteuse</legend>
         <div class="fr-grid-row fr-grid-row--gutters">
-          <div class="fr-col-12">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error':
-                  errorFields.includes('contributorName'),
-              }"
-            >
-              <label class="fr-label" for="contributorName">Votre nom</label>
-              <input
-                id="contributorName"
-                v-model="contributorName"
-                class="fr-input"
-                placeholder="Ex: Jeanne Dupont"
-                @input="clearError('contributorName')"
-              />
-            </div>
-          </div>
-          <div class="fr-col-12">
-            <div class="fr-input-group">
-              <label class="fr-label" for="contributorOrganization"
-                >Votre organisation</label
-              >
-              <input
-                id="contributorOrganization"
-                v-model="contributorOrganization"
-                class="fr-input"
-                placeholder="Ex: Mairie de Lyon"
-              />
-            </div>
-          </div>
-          <div class="fr-col-12">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error':
-                  errorFields.includes('contributorEmail'),
-              }"
-            >
-              <label class="fr-label" for="contributorEmail"
-                >Votre email <span class="fr-text--error">*</span></label
-              >
-              <input
-                id="contributorEmail"
-                v-model="contributorEmail"
-                class="fr-input"
-                type="email"
-                placeholder="nom@exemple.fr"
-                required
-                @input="clearError('contributorEmail')"
-              />
-            </div>
-          </div>
           <div class="fr-col-12">
             <InstitutionSelect
               :institution-slug="institutionSlug"
@@ -595,6 +540,64 @@ async function submit() {
                   @input="clearLinkErrors"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="fr-fieldset fr-mb-4w">
+        <legend class="fr-fieldset__legend fr-h4">Vos informations</legend>
+        <div class="fr-grid-row fr-grid-row--gutters">
+          <div class="fr-col-12">
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error':
+                  errorFields.includes('contributorName'),
+              }"
+            >
+              <label class="fr-label" for="contributorName">Votre nom</label>
+              <input
+                id="contributorName"
+                v-model="contributorName"
+                class="fr-input"
+                placeholder="Ex: Jeanne Dupont"
+                @input="clearError('contributorName')"
+              />
+            </div>
+          </div>
+          <div class="fr-col-12">
+            <div class="fr-input-group">
+              <label class="fr-label" for="contributorOrganization"
+                >Votre organisation</label
+              >
+              <input
+                id="contributorOrganization"
+                v-model="contributorOrganization"
+                class="fr-input"
+                placeholder="Ex: Mairie de Lyon"
+              />
+            </div>
+          </div>
+          <div class="fr-col-12">
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error':
+                  errorFields.includes('contributorEmail'),
+              }"
+            >
+              <label class="fr-label" for="contributorEmail"
+                >Votre email <span class="fr-text--error">*</span></label
+              >
+              <input
+                id="contributorEmail"
+                v-model="contributorEmail"
+                class="fr-input"
+                type="email"
+                placeholder="nom@exemple.fr"
+                required
+                @input="clearError('contributorEmail')"
+              />
             </div>
           </div>
         </div>

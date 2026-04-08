@@ -142,7 +142,7 @@ async function submit() {
     <LoadingOverlay
       :open="sending"
       aria-label="Envoi de la demande en cours"
-      message="Nous préparons votre proposition."
+      message="Nous analysons votre suggestion et revenons vers vous ensuite."
     />
     <div class="fr-grid-row fr-grid-row--gutters">
       <aside class="fr-col-12 fr-col-lg-3">

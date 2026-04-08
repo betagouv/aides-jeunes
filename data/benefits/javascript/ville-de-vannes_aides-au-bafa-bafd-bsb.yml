@@ -15,7 +15,7 @@ conditions_generales:
     values:
       - "56260"
   - type: age
-    operator: ">="
+    operator: "<="
     value: 25
 conditions:
   - Être domicilié fiscalement à Vannes depuis au moins 1 an.

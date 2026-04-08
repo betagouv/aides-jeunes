@@ -1,6 +1,6 @@
 label: épicerie solidaire
 institution: ville-de-vannes
-prefix: lʼ
+prefix: l’
 description:
   Lʼépicerie solidaire s’adresse aux ménages qui ont des ressources, rencontrent
   des difficultés financières et sʼinscrivent dans une démarche dʼinsertion. Le
@@ -23,15 +23,15 @@ profils:
   - type: salarie
     conditions: []
   - type: independant
-    conditions: []  
+    conditions: []
   - type: beneficiaire_rsa
-    conditions: []  
+    conditions: []
   - type: parent
-    conditions: []  
+    conditions: []
   - type: inactif
-    conditions: []   
+    conditions: []
   - type: situation_handicap
-    conditions: [] 
+    conditions: []
 link: https://www.mairie-vannes.fr/action-sociale-et-insertion
 type: bool
 periodicite: autre

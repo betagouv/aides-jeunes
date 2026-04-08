@@ -12,7 +12,7 @@ conditions_generales:
     operator: ">="
     value: 18
 conditions:
-  - Prendre rendez-vous auprès du CCAS au 02 97 01 65 00 pour toute demande dʼinstruction.
+  - Prendre rendez-vous auprès du CCAS au <a href="tel:+33297016100">02 97 01 61 00</a> pour toute demande dʼinstruction.
   - Pour les personnes de moins de 25 ans, justifier dʼune autonomie financière et avoir sa
     propre déclaration fiscale.
 profils:

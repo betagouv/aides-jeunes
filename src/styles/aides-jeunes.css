@@ -745,3 +745,63 @@ textarea {
 .fr-list--no-bullet {
   list-style-type: none;
 }
+
+.aj-contribuer-condition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--background-alt-grey);
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.aj-contribuer-institution-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-default-grey);
+  border: 1px solid var(--border-default-grey);
+  border-top: none;
+  max-height: calc(6 * 2.75rem);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.aj-contribuer-institution-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.aj-contribuer-institution-option:hover,
+.aj-contribuer-institution-option:focus {
+  background: var(--background-alt-grey);
+}
+
+.aj-contribuer-institution-empty {
+  padding: 0.75rem 1rem;
+  color: var(--text-mention-grey);
+}
+
+.aj-contribuer-loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.aj-contribuer-loading-card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}

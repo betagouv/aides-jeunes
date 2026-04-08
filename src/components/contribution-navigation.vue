@@ -10,7 +10,7 @@
         <router-link
           class="fr-sidemenu__link"
           to="/contribuer"
-          :aria-current="isCurrent('/contribuer') ? 'page' : undefined"
+          :aria-current="ariaCurrent('/contribuer')"
         >
           Ajouter une aide
         </router-link>
@@ -19,9 +19,7 @@
         <router-link
           class="fr-sidemenu__link"
           to="/contribuer/institution"
-          :aria-current="
-            isCurrent('/contribuer/institution') ? 'page' : undefined
-          "
+          :aria-current="ariaCurrent('/contribuer/institution')"
         >
           Ajouter une institution
         </router-link>
@@ -30,9 +28,7 @@
         <router-link
           class="fr-sidemenu__link"
           to="/contribuer/aides"
-          :aria-current="
-            isCurrentAny(['/contribuer/aides', '/aides']) ? 'page' : undefined
-          "
+          :aria-current="ariaCurrent('/contribuer/aides')"
         >
           Voir la liste des aides
         </router-link>
@@ -46,11 +42,7 @@ import { useRoute } from "vue-router"
 
 const route = useRoute()
 
-function isCurrent(path: string) {
-  return route.path === path
-}
-
-function isCurrentAny(paths: string[]) {
-  return paths.includes(route.path)
+function ariaCurrent(path: string) {
+  return route.path === path ? "page" : undefined
 }
 </script>

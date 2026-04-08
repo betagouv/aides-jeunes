@@ -1,0 +1,56 @@
+label: Bourses d’aide aux initiatives des jeunes
+institution: ville-de-vannes
+prefix: la
+description: >-
+  La ville de Vannes propose deux types de bourses ":"
+
+  - Loisirs’Ados pour les 14-20 ans qui souhaitent réaliser un projet de voyage,
+    de loisirs, d’animation.
+
+  - Proj’Jeunes qui a pour ambition de valoriser l’initiative des jeunes dans
+    tous les domaines.
+conditions:
+  - Formuler par écrit son projet.
+  - S’engager à réaliser le projet présenté et fournir un compte rendu de sa
+    réalisation.
+  - Faire une demande au BIJ (Bureau Information Jeunesse) par téléphone au <a href="tel:+33297016100">02 97 01 61 00</a> ou par email à <a href="mailto:bij@mairie-vannes.fr">bij@mairie-vannes.fr</a>.
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: age
+    operator: ">="
+    value: 14
+  - type: age
+    operator: "<="
+    value: 25
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: etudiant
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: salarie
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: situation_handicap
+    conditions: []
+  - type: inactif
+    conditions: []
+  - type: lyceen
+    conditions: []
+  - type: collegien
+    conditions: []
+link: https://bij-vannes.fr/bourses-daide-aux-initiatives-des-jeunes
+type: bool
+periodicite: ponctuelle

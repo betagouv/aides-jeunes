@@ -57,10 +57,8 @@ const init = () => {
     }
 
     req.continue()
-  }).as("lieux")
+  }).as("lieux-geo")
   cy.intercept("GET", "**/api/lieux/**").as("lieux")
-  cy.clearCookies()
-  cy.clearAllLocalStorage()
   cy.visit("http://localhost:8080/init-ci")
 }
 

@@ -67,6 +67,7 @@ const hasPrimeActivite = () => {
 }
 
 const hasPrimeActiviteNearbyPlaces = () => {
+  cy.wait("@lieux-geo")
   cy.get('[data-testid="nearby-places"]').should("be.visible")
   cy.get('[data-testid="lieu-title"]').should(
     "contain",
@@ -80,6 +81,8 @@ const hasPrimeActiviteNearbyPlaces = () => {
 
 const hasSituationNearbyPlaces = () => {
   cy.get('[data-testid="nearby-help"]').should("be.visible").click()
+  cy.wait("@lieux-geo")
+  cy.url().should("include", "/simulation/resultats/lieux")
   cy.get('[data-testid="nearby-help"]').should("not.exist")
   cy.get('[data-testid="lieu-title"]')
     .first()

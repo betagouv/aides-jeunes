@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, nextTick } from "vue"
+import { ref, nextTick } from "vue"
 import axios from "axios"
 import { EventAction, EventCategory } from "@lib/enums/event"
 import InstitutionSelect from "@/components/institution-select.vue"
 import LoadingOverlay from "@/components/loading-overlay.vue"
+import InputTextareaMax from "@/components/input-textarea-max.vue"
 
 const sending = ref(false)
 const sent = ref(false)
@@ -77,60 +78,48 @@ function onPeriodiciteChange() {
   clearError("periodicite")
 }
 
-const descriptionCharsLeft = computed(
-  () => descriptionMax - description.value.length,
-)
-
-const conditionsCharsLeft = computed(
-  () => conditionsMax - conditionsText.value.length,
-)
-
-function validate(): { isValid: boolean; firstErrorField?: string } {
+function validate(): boolean {
   const e: string[] = []
   const ef: string[] = []
-  let firstErrorField: string | undefined
 
   if (!contributorEmail.value.trim()) {
     e.push("L'email du contributeur est requis")
     ef.push("contributorEmail")
-    if (!firstErrorField) firstErrorField = "contributorEmail"
   } else if (
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contributorEmail.value.trim())
   ) {
     e.push("L'email du contributeur n'est pas valide")
     ef.push("contributorEmail")
-    if (!firstErrorField) firstErrorField = "contributorEmail"
   }
   if (!institutionName.value.trim()) {
     e.push("Le nom de l'institution est requis")
     ef.push("institutionName")
-    if (!firstErrorField) firstErrorField = "institutionName"
   }
   if (!institutionSlug.value) {
     e.push("Vous devez sélectionner une institution dans la liste proposée")
     ef.push("institutionName")
-    if (!firstErrorField) firstErrorField = "institutionName"
   }
   if (!label.value.trim()) {
     e.push("Le titre de l'aide est requis")
     ef.push("label")
-    if (!firstErrorField) firstErrorField = "label"
   }
   if (!description.value.trim()) {
     e.push("La description est requise")
     ef.push("description")
-    if (!firstErrorField) firstErrorField = "description"
   }
   if (description.value.length > descriptionMax) {
     e.push(`La description ne doit pas dépasser ${descriptionMax} caractères`)
     ef.push("description")
-    if (!firstErrorField) firstErrorField = "description"
+  }
+  if (conditionsText.value.length > conditionsMax) {
+    e.push(
+      `Les conditions générales ne doivent pas dépasser ${conditionsMax} caractères`,
+    )
+    ef.push("conditionsText")
   }
   if (!selectedPeriodicite.value) {
     e.push("Une périodicité doit être sélectionnée")
     ef.push("periodicite")
-    if (!firstErrorField)
-      firstErrorField = "period_" + periodiciteOptions[0].value
   }
 
   // Au moins un lien doit être renseigné
@@ -148,23 +137,18 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
     ef.push("teleservice")
     ef.push("form")
     ef.push("instructions")
-    if (!firstErrorField) firstErrorField = "link"
   }
 
   errors.value = e
   errorFields.value = ef
-  return {
-    isValid: !e.length,
-    firstErrorField,
-  }
+  return !e.length
 }
 
 async function submit() {
   errors.value = []
   errorFields.value = []
   generalError.value = ""
-  const validation = validate()
-  if (!validation.isValid) {
+  if (!validate()) {
     await nextTick()
     // Scroll to top alert
     const alertElement = document.querySelector(".fr-alert--error")
@@ -381,44 +365,27 @@ async function submit() {
               @input="clearError('label')"
             />
           </div>
-          <div
-            class="fr-input-group"
-            :class="{
-              'fr-input-group--error': errorFields.includes('description'),
-            }"
-          >
-            <label class="fr-label" for="description"
-              >Description (max {{ descriptionMax }} caractères)
-              <span class="fr-text--error">*</span
-              ><span class="fr-hint-text"
-                >{{ descriptionCharsLeft }} restants</span
-              ></label
-            >
-            <textarea
-              id="description"
-              v-model="description"
-              class="fr-input"
-              rows="5"
-              placeholder="Ex: La Région Hauts-de-France a mis en place ce dispositif afin d'aider les étudiants et étudiantes à suivre à l'étranger un parcours de formation dans un établissement d'enseignement supérieur, un stage, ou un séjour de recherche dans un laboratoire."
-              required
-              @input="clearError('description')"
-            />
-          </div>
-          <div class="fr-input-group">
-            <label class="fr-label" for="conditionsText"
-              >Conditions générales (max {{ conditionsMax }} caractères)
-              <span class="fr-hint-text"
-                >{{ conditionsCharsLeft }} restants</span
-              ></label
-            >
-            <textarea
-              id="conditionsText"
-              v-model="conditionsText"
-              class="fr-input"
-              rows="5"
-              placeholder="Ex: Âge : 18-30 ans. Résidence : Île-de-France. Profil : lycéen, étudiant ou apprenti. Situation : sans emploi depuis au moins 6 mois. Documents requis : preuve de scolarité et justificatif de domicile."
-            />
-          </div>
+          <InputTextareaMax
+            id="description"
+            v-model="description"
+            label="Description"
+            :max="descriptionMax"
+            :required="true"
+            :has-error="errorFields.includes('description')"
+            :over-limit-message="`La description ne doit pas dépasser ${descriptionMax} caractères.`"
+            placeholder="Ex: La Région Hauts-de-France a mis en place ce dispositif afin d'aider les étudiants et étudiantes à suivre à l'étranger un parcours de formation dans un établissement d'enseignement supérieur, un stage, ou un séjour de recherche dans un laboratoire."
+            @clear-error="clearError('description')"
+          />
+          <InputTextareaMax
+            id="conditionsText"
+            v-model="conditionsText"
+            label="Conditions générales"
+            :max="conditionsMax"
+            :has-error="errorFields.includes('conditionsText')"
+            :over-limit-message="`Les conditions générales ne doivent pas dépasser ${conditionsMax} caractères.`"
+            placeholder="Ex: Âge : 18-30 ans. Résidence : Île-de-France. Profil : lycéen, étudiant ou apprenti. Situation : sans emploi depuis au moins 6 mois. Documents requis : preuve de scolarité et justificatif de domicile."
+            @clear-error="clearError('conditionsText')"
+          />
           <div
             class="fr-input-group"
             :class="{

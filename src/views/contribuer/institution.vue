@@ -3,7 +3,6 @@ import { ref } from "vue"
 import InstitutionLogoUpload from "@/components/institution-logo-upload.vue"
 import LoadingOverlay from "@/components/loading-overlay.vue"
 import ContributionNavigation from "@/components/contribution-navigation.vue"
-import { postJson } from "@/lib/fetch-json"
 
 const sending = ref(false)
 const sent = ref(false)
@@ -113,7 +112,14 @@ async function submit() {
       payload.logoBase64 = logoBase64
     }
 
-    const response = await postJson("/api/contributions/institution", payload)
+    const response = await fetch("/api/contributions/institution", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
 
     const data = await response.json().catch(() => null)
 

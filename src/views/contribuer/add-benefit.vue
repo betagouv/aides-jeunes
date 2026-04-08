@@ -5,7 +5,6 @@ import InstitutionSelect from "@/components/institution-select.vue"
 import LoadingOverlay from "@/components/loading-overlay.vue"
 import InputTextareaMax from "@/components/input-textarea-max.vue"
 import ContributionNavigation from "@/components/contribution-navigation.vue"
-import { postJson } from "@/lib/fetch-json"
 
 const sending = ref(false)
 const sent = ref(false)
@@ -179,7 +178,14 @@ async function submit() {
       payload.conditions = conditionsText.value.trim()
     }
 
-    const response = await postJson("/api/contributions/benefit", payload)
+    const response = await fetch("/api/contributions/benefit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
 
     const data = await response.json().catch(() => null)
 

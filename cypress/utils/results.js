@@ -67,10 +67,9 @@ const hasPrimeActivite = () => {
 }
 
 const hasPrimeActiviteNearbyPlaces = () => {
-  cy.get('[data-testid="nearby-places"]', { timeout: 30000 }).should(
-    "be.visible",
-  )
-  cy.get('[data-testid="lieu-title"]', { timeout: 30000 }).should(
+  cy.wait("@lieux-geo")
+  cy.get('[data-testid="nearby-places"]').should("be.visible")
+  cy.get('[data-testid="lieu-title"]').should(
     "contain",
     "Caisse d'allocations familiales",
   )

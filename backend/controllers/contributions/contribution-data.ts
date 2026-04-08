@@ -80,8 +80,8 @@ export function validateRequiredBenefitFields(
   if (!isValidSlug(institutionSlug)) {
     return "Le format de l'identifiant de l'institution est invalide"
   }
-  if (description.length > 420) {
-    return "La description doit faire moins de 420 caractères"
+  if (description.length > 5000) {
+    return "La description doit faire moins de 5000 caractères"
   }
   return null
 }
@@ -117,13 +117,10 @@ export function buildBenefitData(body: BenefitContributionBody) {
     label,
     institutionSlug,
     description,
-    criteres,
-    profils,
     link,
     instructions,
     form,
     teleservice,
-    type,
     periodicite,
     conditions,
   } = body
@@ -133,15 +130,10 @@ export function buildBenefitData(body: BenefitContributionBody) {
     institution: institutionSlug,
     description,
     conditions: sanitizeMultiline(conditions),
-    conditions_generales: Object.entries(criteres || {})
-      .filter(([, value]) => value)
-      .map(([key, value]) => key + ": " + value),
-    profils: profils || [],
     link,
     instructions,
     form,
     teleservice,
-    type: type || "bool",
     periodicite: periodicite || "ponctuelle",
   }
 }
@@ -161,12 +153,11 @@ export function createDefaultInstitutionData(
 export function buildBenefitPullRequestBody(
   body: BenefitContributionBody,
 ): string {
-  const { label, institutionName, type, periodicite, description } = body
+  const { label, institutionName, periodicite, description } = body
 
   const sections = [
     `Aide : **${label}**`,
     `Institution: ${institutionName}`,
-    `Type: ${type}`,
     `Périodicité: ${periodicite}`,
     `Description: ${description}`,
   ]

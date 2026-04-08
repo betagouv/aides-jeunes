@@ -68,6 +68,8 @@ export interface Configuration {
     tracesSampleRate: float
     profilesSampleRate: float
     debug: boolean
+    org?: string
+    url?: string
   }
   smsService: {
     show: boolean | undefined

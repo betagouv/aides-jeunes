@@ -1,0 +1,29 @@
+label: Aide aux séjours à l'étranger
+institution: ville-de-vannes
+description: >-
+  La Ville de Vannes soutient les étudiants post-bac qui partent étudier ou
+  faire un stage à l'étranger. L'aide est accordée une fois par an, sans
+  condition de ressources. Son montant dépend de la durée du séjour (minimum 3
+  semaines) et de la destination. Contact: BIJ de Vannes (02 97 01 61 00,
+  bij@mairie-vannes.fr).
+conditions:
+  - Avoir des parents domiciliés fiscalement à Vannes depuis au moins un an.
+  - Être inscrit au moins en 1ère année d'un cursus post-bac sanctionné par un
+    diplôme reconnu par le Ministère de l'Education Nationale.
+  - Justifier soit d'une attestation de l'université d'origine ou d'une
+    inscription dans une université à l'étranger pour complément de formation,
+    soit d'une attestation ou convention de stage.
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: age
+    operator: "<="
+    value: 25
+profils:
+  - type: enseignement_superieur
+    conditions: []
+prefix: l’
+link: https://bij-vannes.fr/aide-aux-sejours-letranger
+type: bool
+periodicite: annuelle

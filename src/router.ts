@@ -18,7 +18,7 @@ const router = createRouter({
     {
       path: "/contribuer",
       name: "contribuer",
-      component: () => import("./views/contribuer.vue"),
+      component: () => import("./views/contribuer/add-benefit.vue"),
       meta: {
         headTitle: `Proposer une nouvelle aide sur ${context.name}`,
       },
@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path: "/contribuer/institution",
       name: "contribuer-institution",
-      component: () => import("./views/contribuer-institution.vue"),
+      component: () => import("./views/contribuer/institution.vue"),
       meta: {
         headTitle: `Ajouter une institution sur ${context.name}`,
       },
@@ -249,6 +249,14 @@ const router = createRouter({
       path: "/aides",
       name: "liste-aides",
       component: () => import("./views/liste-aides.vue"),
+      meta: {
+        headTitle: `Toutes les aides du simulateur ${context.name}`,
+      },
+    },
+    {
+      path: "/contribuer/aides",
+      name: "contribuer-liste-aides",
+      component: () => import("./views/contribuer/benefits-list.vue"),
       meta: {
         headTitle: `Toutes les aides du simulateur ${context.name}`,
       },

@@ -9,8 +9,8 @@ description: >-
   2026 et le 30 septembre 2027. La période de candidature aura lieu
   entre le 8 et le 22 avril 2026.
 conditions:
-  - être citoyen ou résident de l’un des États membres de l’Union européenne.
-  - être né entre le 1er juillet 2007 (inclus) et le 30 juin 2008 (inclus).
+  - Être citoyen ou résident de l’un des États membres de l’Union européenne.
+  - Être né entre le 1er juillet 2007 (inclus) et le 30 juin 2008 (inclus).
 conditions_generales:
   - type: age
     operator: =

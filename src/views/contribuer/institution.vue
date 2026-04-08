@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import axios from "axios"
 import InstitutionLogoUpload from "@/components/institution-logo-upload.vue"
 import LoadingOverlay from "@/components/loading-overlay.vue"
 import ContributionNavigation from "@/components/contribution-navigation.vue"
@@ -91,7 +90,6 @@ async function submit() {
     } catch {
       generalError.value =
         "Erreur lors du traitement de l'image du logo. Veuillez réessayer."
-      sending.value = false
       return
     }
 
@@ -114,23 +112,36 @@ async function submit() {
       payload.logoBase64 = logoBase64
     }
 
-    await axios.post("/api/contributions/institution", payload)
+    const response = await fetch("/api/contributions/institution", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+
+    const data = await response.json().catch(() => null)
+
+    if (!response.ok) {
+      if (data?.missingFields) {
+        generalError.value = `Champs manquants : ${data.missingFields.join(", ")}`
+        errorFields.value = data.missingFields
+      } else if (data?.errors) {
+        generalError.value = `Erreurs : ${JSON.stringify(data.errors)}`
+      } else {
+        generalError.value =
+          data?.message || "Erreur lors de l'envoi de la demande d'institution"
+      }
+      return
+    }
 
     sent.value = true
     window.scrollTo({ top: 0, behavior: "smooth" })
-  } catch (err: any) {
-    console.error("Erreur lors de l'envoi:", err.response?.data || err)
-
-    const data = err?.response?.data
-    if (data?.missingFields) {
-      generalError.value = `Champs manquants : ${data.missingFields.join(", ")}`
-      errorFields.value = data.missingFields
-    } else if (data?.errors) {
-      generalError.value = `Erreurs : ${JSON.stringify(data.errors)}`
-    } else {
-      generalError.value =
-        data?.message || "Erreur lors de l'envoi de la demande d'institution"
-    }
+  } catch (err: unknown) {
+    console.error("Erreur lors de l'envoi:", err)
+    generalError.value =
+      "Erreur réseau lors de l'envoi de la demande d'institution"
   } finally {
     sending.value = false
   }

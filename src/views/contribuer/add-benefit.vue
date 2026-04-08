@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue"
-import axios from "axios"
 import { EventAction, EventCategory } from "@lib/enums/event"
 import InstitutionSelect from "@/components/institution-select.vue"
 import LoadingOverlay from "@/components/loading-overlay.vue"
@@ -186,23 +185,45 @@ async function submit() {
       payload.conditions = conditionsText.value.trim()
     }
 
-    await axios.post("/api/contributions/benefit", payload)
+    const response = await fetch("/api/contributions/benefit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+
+    const data = await response.json().catch(() => null)
+
+    if (!response.ok) {
+      if (data?.missingFields) {
+        generalError.value = `Champs manquants : ${data.missingFields.join(", ")}`
+        errorFields.value = data.missingFields
+      } else if (data?.errors) {
+        generalError.value = `Erreurs : ${JSON.stringify(data.errors)}`
+      } else {
+        generalError.value =
+          data?.message || "Erreur lors de l'envoi de la contribution"
+      }
+
+      // Scroll vers le message d'erreur
+      await nextTick()
+      const alertElement = document.querySelector(".fr-alert--error")
+      if (alertElement) {
+        alertElement.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+      return
+    }
+
     sent.value = true
 
     // Scroll vers le message de succès
     await nextTick()
     window.scrollTo({ top: 0, behavior: "smooth" })
-  } catch (err: any) {
-    const data = err?.response?.data
-    if (data?.missingFields) {
-      generalError.value = `Champs manquants : ${data.missingFields.join(", ")}`
-      errorFields.value = data.missingFields
-    } else if (data?.errors) {
-      generalError.value = `Erreurs : ${JSON.stringify(data.errors)}`
-    } else {
-      generalError.value =
-        data?.message || "Erreur lors de l'envoi de la contribution"
-    }
+  } catch (err: unknown) {
+    console.error("Erreur lors de l'envoi:", err)
+    generalError.value = "Erreur réseau lors de l'envoi de la contribution"
 
     // Scroll vers le message d'erreur
     await nextTick()

@@ -2,6 +2,63 @@ const init = () => {
   cy.intercept("GET", "/api/simulation/*/results").as("results")
   cy.intercept("GET", "/api/outils/communes/*").as("communes")
   cy.intercept("POST", "/api/simulation").as("post-simulation")
+  cy.intercept("GET", "**/v3/communes/**", (req) => {
+    if (req.url.includes("caf")) {
+      req.reply({
+        statusCode: 200,
+        body: {
+          features: [
+            {
+              properties: {
+                id: "caf-fontenay-1",
+                nom: "Caisse d'allocations familiales - Fontenay-sous-Bois",
+                pivotLocal: "caf",
+                url: "https://www.caf.fr",
+                adresses: [
+                  {
+                    type: "physique",
+                    codePostal: "94120",
+                    commune: "Fontenay-sous-Bois",
+                    lignes: ["1 Rue de la CAF"],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      })
+      return
+    }
+
+    if (req.url.includes("mairie")) {
+      req.reply({
+        statusCode: 200,
+        body: {
+          features: [
+            {
+              properties: {
+                id: "mairie-fontenay-1",
+                nom: "Mairie - Fontenay-sous-Bois",
+                pivotLocal: "mairie",
+                adresses: [
+                  {
+                    type: "physique",
+                    codePostal: "94120",
+                    commune: "Fontenay-sous-Bois",
+                    lignes: ["4 Esplanade Louis Bayeurte"],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      })
+      return
+    }
+
+    req.continue()
+  }).as("lieux-geo")
+  cy.intercept("GET", "**/api/lieux/**").as("lieux")
   cy.visit("http://localhost:8080/init-ci")
 }
 

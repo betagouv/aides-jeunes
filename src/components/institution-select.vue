@@ -41,7 +41,7 @@
           class="aj-contribuer-institution-option"
           @click="selectInstitution(institution)"
         >
-          {{ institution.label }}
+          {{ formatInstitutionSuggestion(institution) }}
         </button>
         <div
           v-if="!filteredInstitutions.length"
@@ -95,6 +95,9 @@ interface Institution {
   label: string
   type: string
   benefits: { id: string; label: string }[]
+  code_insee?: string
+  department?: string
+  departments?: string[]
 }
 
 interface Props {
@@ -130,12 +133,43 @@ const showDropdown = ref(false)
 const debouncedFilter = ref("")
 let debounceTimer: number | undefined
 
+// const filteredInstitutions = computed(() => {
+//   const query = normalizeString(debouncedFilter.value)
+//   if (!query) return institutions
+//   return institutions.filter((inst) =>
+//     normalizeString(inst.label).includes(query),
+
+const matchesAllTerms = (value: string, query: string) => {
+  const normalizedValue = normalizeString(value)
+  const tokens = normalizeString(query).split(/\s+/).filter(Boolean)
+  if (!tokens.length) return true
+  return tokens.every((token) => normalizedValue.includes(token))
+}
+
+const getDepartmentCode = (institution: Institution) => {
+  const departments = institution.departments?.filter(Boolean) ?? []
+  if (departments.length) return departments.join(", ")
+
+  const codeInsee = institution.code_insee?.trim().toUpperCase()
+  if (!codeInsee) return ""
+  if (/^(97|98)/.test(codeInsee)) return codeInsee.slice(0, 3) // DOM TOM (ex: 971, 972, 973, 974, 976)
+  return codeInsee.slice(0, 2)
+}
+
+const formatInstitutionSuggestion = (institution: Institution) => {
+  const departmentCode = getDepartmentCode(institution)
+  if (!departmentCode) return institution.label
+  return `${institution.label} (${departmentCode})`
+}
+
 const filteredInstitutions = computed(() => {
-  const query = normalizeString(debouncedFilter.value)
-  if (!query) return institutions
-  return institutions.filter((inst) =>
-    normalizeString(inst.label).includes(query),
+  const list = institutions.filter((inst) =>
+    matchesAllTerms(formatInstitutionSuggestion(inst), debouncedFilter.value),
   )
+  return list
+    .slice()
+    .sort((a, b) => a.label.localeCompare(b.label))
+    .slice(0, 50)
 })
 
 const selectedInstitution = computed(() =>

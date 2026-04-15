@@ -1600,22 +1600,6 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.tulleagglo.fr/",
-    "code_siren": "241927201",
-    "nom_plateforme": "",
-    "operateurs": "BlaBlaCar Daily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 60,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuit",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
     "link": "https://www.comcomdubonnevalais.com/",
     "code_siren": "242852465",
     "nom_plateforme": "",

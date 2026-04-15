@@ -36,7 +36,7 @@
           class="aj-contribuer-institution-option"
           @click="selectInstitution(institution)"
         >
-          {{ institution.label }}
+          {{ formatInstitutionSuggestion(institution) }}
         </button>
         <div
           v-if="!filteredInstitutions.length"
@@ -58,6 +58,8 @@ interface Institution {
   slug: string
   label: string
   type: string
+  code_insee?: string
+  departments?: string[]
 }
 
 interface Props {
@@ -92,9 +94,25 @@ const matchesAllTerms = (value: string, query: string) => {
   return tokens.every((token) => normalizedValue.includes(token))
 }
 
+const getDepartmentCode = (institution: Institution) => {
+  const departments = institution.departments?.filter(Boolean) ?? []
+  if (departments.length) return departments.join(", ")
+
+  const codeInsee = institution.code_insee?.trim().toUpperCase()
+  if (!codeInsee) return ""
+  if (/^(97|98)/.test(codeInsee)) return codeInsee.slice(0, 3) // DOM TOM (ex: 971, 972, 973, 974, 976)
+  return codeInsee.slice(0, 2)
+}
+
+const formatInstitutionSuggestion = (institution: Institution) => {
+  const departmentCode = getDepartmentCode(institution)
+  if (!departmentCode) return institution.label
+  return `${institution.label} (${departmentCode})`
+}
+
 const filteredInstitutions = computed(() => {
   const list = institutions.value.filter((inst) =>
-    matchesAllTerms(inst.label, debouncedFilter.value),
+    matchesAllTerms(formatInstitutionSuggestion(inst), debouncedFilter.value),
   )
   return list
     .slice()

@@ -8,7 +8,7 @@ prefix: la
 conditions_generales:
   - type: attached_to_institution
   - type: age
-    operator: >=
+    operator: ">="
     value: 12
   - type: age
     operator: "<"

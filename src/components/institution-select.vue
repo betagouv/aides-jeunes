@@ -59,7 +59,6 @@ interface Institution {
   label: string
   type: string
   code_insee?: string
-  department?: string
   departments?: string[]
 }
 

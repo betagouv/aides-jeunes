@@ -571,7 +571,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuit pour les trajets en échange de trajets.",
+    "passager_montant_ticket": "Gratuité jusqu'à 40km",
     "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },

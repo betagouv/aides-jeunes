@@ -13,7 +13,6 @@ conditions_generales:
   - type: age
     operator: <
     value: 26
-voluntary_conditions: []
 profils: []
 conditions:
   - Habiter dans l’une des 72 communes du territoire Adour Madiran.

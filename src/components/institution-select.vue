@@ -96,7 +96,6 @@ interface Institution {
   type: string
   benefits: { id: string; label: string }[]
   code_insee?: string
-  department?: string
   departments?: string[]
 }
 

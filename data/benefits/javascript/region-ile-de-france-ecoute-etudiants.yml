@@ -11,7 +11,6 @@ profils:
   - type: etudiant
     conditions: []
 link: https://www.iledefrance.fr/ecoute-etudiants-ile-de-france-plateforme-daide-pour-les-etudiants-en-souffrance
-# teleservice: https://ecouteetudiants-iledefrance.fr/home # Lien erroné, la plateforme n'existe plus (?)
 prefix: l’
 type: float
 unit: séances

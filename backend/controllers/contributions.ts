@@ -12,7 +12,6 @@ import {
   ContributionPullRequestStatus,
 } from "../../lib/enums/contribution.js"
 import {
-  checkInstitutionExists,
   commitBinaryFile,
   commitFile,
   createPullRequest,
@@ -24,7 +23,6 @@ import {
   buildBenefitPullRequestBody,
   buildInstitutionData,
   buildInstitutionPullRequestBody,
-  createDefaultInstitutionData,
   getImageExtension,
   isValidSlug,
   parseDataUrl,
@@ -120,38 +118,29 @@ export async function handleBenefitContribution(
       return res.status(400).json({ message: validationError })
     }
 
+    const institutionSlugToUse = institutionSlug || slugify(institutionName)
+    if (!isValidSlug(institutionSlugToUse)) {
+      return res.status(400).json({
+        message: "Le format de l'identifiant de l'institution est invalide",
+      })
+    }
+
+    const benefitBodyWithResolvedSlug: BenefitContributionBody = {
+      ...req.body,
+      institutionSlug: institutionSlugToUse,
+    }
+
     // Generate and validate benefit slug
-    const benefitSlug = `${institutionSlug}_${slugify(label)}`
+    const benefitSlug = `${institutionSlugToUse}_${slugify(label)}`
     if (!isValidSlug(benefitSlug)) {
       return res.status(400).json({ message: "Format benefitSlug invalide" })
     }
 
     // Build data
-    const benefitData = buildBenefitData(req.body)
+    const benefitData = buildBenefitData(benefitBodyWithResolvedSlug)
 
     const branchBase = `contribution/${benefitSlug}`
     const { githubApi, newBranch } = await initContributionBranch(branchBase)
-
-    // Check if institution exists
-    const institutionExists = await checkInstitutionExists(
-      institutionSlug,
-      githubApi,
-    )
-
-    // Commit files to new branch
-    if (!institutionExists) {
-      const institutionPath = `data/institutions/${institutionSlug}.yml`
-      const institutionFile = yamlDump(
-        createDefaultInstitutionData(institutionName, institutionSlug),
-      )
-      await commitFile(
-        githubApi,
-        institutionPath,
-        institutionFile,
-        newBranch,
-        `Contribution: ajout fichier ${institutionPath}`,
-      )
-    }
 
     const benefitPath = `data/benefits/javascript/${benefitSlug}.yml`
     await commitFile(

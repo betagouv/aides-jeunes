@@ -68,16 +68,16 @@ export function validateRequiredBenefitFields(
     description,
   } = body
 
-  if (
-    !contributorEmail ||
-    !institutionName ||
-    !institutionSlug ||
-    !label ||
-    !description
-  ) {
-    return "Champs obligatoires manquants"
+  if (!contributorEmail || !label || !description) {
+    return "Les champs email, titre et description sont obligatoires"
   }
-  if (!isValidSlug(institutionSlug)) {
+
+  const institutionNameChars = (institutionName || "").replace(/\s/g, "")
+  if (institutionNameChars.length < 2) {
+    return "Le nom de l'institution doit contenir au moins 2 caractères"
+  }
+
+  if (institutionSlug && !isValidSlug(institutionSlug)) {
     return "Le format de l'identifiant de l'institution est invalide"
   }
   if (description.length > 5000) {
@@ -153,15 +153,19 @@ export function createDefaultInstitutionData(
 export function buildBenefitPullRequestBody(
   body: BenefitContributionBody,
 ): string {
-  const { label, institutionName, periodicite, description } = body
+  const { label, institutionName, institutionSlug, periodicite, description } =
+    body
 
   const sections = [
+    !institutionSlug &&
+      ":warning: L'institution associée à cette demande n'existe pas ou n'a pas été trouvée :warning:",
+    `Périodicité: ${periodicite}`,
     `Aide : **${label}**`,
     `Institution: ${institutionName}`,
-    `Périodicité: ${periodicite}`,
+
     `Description: ${description}`,
   ]
-  return sections.join("\n")
+  return sections.filter(Boolean).join("\n")
 }
 
 export function buildInstitutionPullRequestBody(params: {

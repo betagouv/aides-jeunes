@@ -77,6 +77,11 @@ export function validateRequiredBenefitFields(
     return "Le nom de l'institution doit contenir au moins 2 caractères"
   }
 
+  const normalizedInstitutionSlug = slugify(institutionName || "")
+  if (!normalizedInstitutionSlug) {
+    return "Le nom de l'institution doit contenir au moins un caractère alphanumérique"
+  }
+
   if (institutionSlug && !isValidSlug(institutionSlug)) {
     return "Le format de l'identifiant de l'institution est invalide"
   }

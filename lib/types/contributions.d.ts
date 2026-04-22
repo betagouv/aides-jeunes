@@ -11,7 +11,7 @@ export interface BenefitContributionBody {
   contributorName?: string
   contributorEmail: string
   institutionName: string
-  institutionSlug: string
+  institutionSlug?: string | null
   label: string
   description: string
   criteres?: Record<string, string>

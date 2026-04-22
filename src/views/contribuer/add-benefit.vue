@@ -33,7 +33,7 @@ const contributorName = ref("")
 const contributorOrganization = ref("")
 const contributorEmail = ref("")
 const institutionName = ref("")
-const institutionSlug = ref("")
+const institutionSlug = ref<string | null>(null)
 const label = ref("")
 const description = ref("")
 const descriptionMax = 5000
@@ -92,12 +92,9 @@ function validate(): boolean {
     e.push("L'email du contributeur n'est pas valide")
     ef.push("contributorEmail")
   }
-  if (!institutionName.value.trim()) {
-    e.push("Le nom de l'institution est requis")
-    ef.push("institutionName")
-  }
-  if (!institutionSlug.value) {
-    e.push("Vous devez sélectionner une institution dans la liste proposée")
+  const institutionNameChars = institutionName.value.replace(/\s/g, "")
+  if (institutionNameChars.length < 2) {
+    e.push("Une institution existante ou un nom d'institution est requis")
     ef.push("institutionName")
   }
   if (!label.value.trim()) {
@@ -167,6 +164,7 @@ async function submit() {
         contributorOrganization.value?.trim() || undefined,
       contributorEmail: contributorEmail.value.trim(),
       institutionName: institutionName.value.trim(),
+      institutionSlug: institutionSlug.value,
       label: label.value.trim(),
       description: description.value.trim(),
       periodicite: selectedPeriodicite.value,
@@ -174,11 +172,6 @@ async function submit() {
       teleservice: teleservice.value.trim() || undefined,
       form: form.value.trim() || undefined,
       instructions: instructions.value.trim() || undefined,
-    }
-
-    // Ajouter institutionSlug seulement s'il existe
-    if (institutionSlug.value) {
-      payload.institutionSlug = institutionSlug.value
     }
 
     // Ajouter conditions seulement si non vide
@@ -302,7 +295,7 @@ async function submit() {
                   :institution-name="institutionName"
                   :has-error="errorFields.includes('institutionName')"
                   @update:institution-slug="
-                    (val: string) => {
+                    (val: string | null) => {
                       institutionSlug = val
                     }
                   "

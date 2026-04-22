@@ -91,7 +91,6 @@ async function submit() {
     } catch {
       generalError.value =
         "Erreur lors du traitement de l'image du logo. Veuillez réessayer."
-      sending.value = false
       return
     }
 

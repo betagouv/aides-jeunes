@@ -488,10 +488,10 @@ async function submit() {
                       'fr-input-group--error': errorFields.includes('link'),
                     }"
                   >
-                    <label class="fr-label" for="link"
+                    <label class="fr-label fr-mb-1w" for="link"
                       >Lien vers la page d'informations de référence</label
                     >
-                    <span class="fr-hint-text"
+                    <span class="fr-hint-text fr-my-2v"
                       >Vers un site institutionnel (ex: site web de la mairie,
                       du département, service-public.fr).</span
                     >
@@ -511,10 +511,10 @@ async function submit() {
                       'fr-input-group--error': errorFields.includes('form'),
                     }"
                   >
-                    <label class="fr-label" for="form"
+                    <label class="fr-label fr-mb-1w" for="form"
                       >Lien vers un formulaire à imprimer</label
                     >
-                    <span class="fr-hint-text"
+                    <span class="fr-hint-text fr-my-2v"
                       >Vers un PDF à télécharger. Si besoin, nous pouvons
                       l’héberger : envoyez-le par email à notre équipe
                       <a
@@ -541,10 +541,10 @@ async function submit() {
                         errorFields.includes('teleservice'),
                     }"
                   >
-                    <label class="fr-label" for="teleservice"
+                    <label class="fr-label fr-mb-1w" for="teleservice"
                       >Lien vers un téléservice</label
                     >
-                    <span class="fr-hint-text"
+                    <span class="fr-hint-text fr-my-2v"
                       >Lorsqu'il y a la possibilité de faire la démarche en
                       ligne.</span
                     >
@@ -565,7 +565,7 @@ async function submit() {
                         errorFields.includes('instructions'),
                     }"
                   >
-                    <label class="fr-label" for="instructions">
+                    <label class="fr-label fr-mb-1w" for="instructions">
                       Lien vers des instructions à suivre pour demander l’aide
                     </label>
                     <input

@@ -11,7 +11,7 @@
         >Nom de l'institution porteuse
         <span class="fr-text--error">*</span></label
       >
-      <span class="fr-hint-text"
+      <span class="fr-hint-text fr-my-3v"
         >Si votre institution n'apparaît pas dans la liste, vous pouvez
         <router-link to="/contribuer/institution"
           ><b>l'ajouter en cliquant ici</b></router-link

@@ -28,7 +28,11 @@
         @focus="showDropdown = true"
         @blur="hideDropdown"
       />
-      <div v-if="showDropdown" class="aj-contribuer-institution-list">
+      <div
+        v-if="showDropdown"
+        class="aj-contribuer-institution-list"
+        @pointerdown.prevent
+      >
         <button
           v-for="institution in filteredInstitutions"
           :key="institution.slug"

@@ -65,7 +65,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {{ benefit.label }}
+                    {{ capitalize(benefit.label) }}
                   </a>
                 </li>
               </ul>
@@ -82,7 +82,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue"
-import { normalizeString } from "@lib/utils"
+import { capitalize, normalizeString } from "@lib/utils"
 import institutionsBenefits from "generator:institutions"
 
 interface Institution {

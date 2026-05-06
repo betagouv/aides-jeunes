@@ -22,19 +22,17 @@ async function main() {
       return process.exit(1)
     }
 
+    const simulationDbId = simulation._id.toString()
     const situation = generateSituation(simulation) as Situation
 
     calculate(situation, function (err, result) {
       if (err) return process.exit(1)
 
-      const openfiscaResponse = Object.assign(
-        { _id: simulation._id as string },
-        result,
-      )
+      const openfiscaResponse = Object.assign({ _id: simulationDbId }, result)
 
       const simulationResult = compute(
         situation,
-        simulation._id as string,
+        simulationDbId,
         openfiscaResponse,
         false,
       )

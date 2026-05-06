@@ -81,6 +81,17 @@ export default defineConfig(async ({ mode }) => {
   }
 
   return {
+    // Enable LightningCSS error recovery during production build to strip legacy
+    // invalid media query hacks (eg. `@media (min-width:0\0)`) coming from
+    // upstream CSS like DSFR. This avoids minifier crashes while keeping dev
+    // server behavior unchanged.
+    css: {
+      // Vite exposes LightningCSS options under `css.lightningcss`.
+      // Only enable errorRecovery for the build command.
+      lightningcss: {
+        errorRecovery: true,
+      },
+    },
     server: {
       port: 8080,
       strictPort: true,

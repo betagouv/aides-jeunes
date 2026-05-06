@@ -1,6 +1,8 @@
-import data from "../data/all"
+import data from "../data/all.js"
 import express from "express"
 import { __express } from "ejs"
+import type { BenefitCatalog } from "../data/types/generator.d.js"
+import type { Institution } from "../data/types/institutions.d.js"
 
 const port = 9090
 const app = express()
@@ -10,13 +12,17 @@ app.set("view engine", "html")
 app.use(express.static("public"))
 
 app.route("/").get(function (req, res) {
+  const catalog = data as BenefitCatalog
+
   res.render("institutions", {
-    institutions: Object.values(data.institutionsMap).map((institution) => {
-      return {
-        image: institution.imgSrc,
-        title: institution.label,
-      }
-    }),
+    institutions: Object.values(catalog.institutionsMap).map(
+      (institution: Institution) => {
+        return {
+          image: institution.imgSrc,
+          title: institution.label,
+        }
+      },
+    ),
   })
 })
 

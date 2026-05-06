@@ -3,8 +3,8 @@
     "sourceType": "module"
   },
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ES2022",
+    "module": "NodeNext",
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "noImplicitAny": false,
     "noImplicitThis": false,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "types": [],
     "paths": {

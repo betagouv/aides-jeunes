@@ -19,24 +19,25 @@ function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.situation = generateSituation(req.simulation)
 }
 
+function isSimulationObject(value: unknown): value is Simulation {
+  return typeof value === "object" && value !== null && "_id" in value
+}
+
 async function simulation(
   req: Request,
   res,
   next,
   simulationOrSimulationId: Simulation | Simulation["_id"] | string,
 ) {
-  if (
-    simulationOrSimulationId &&
-    typeof simulationOrSimulationId === "object" &&
-    "_id" in simulationOrSimulationId
-  ) {
-    const simulation = simulationOrSimulationId as Simulation
-    setSimulationOnRequest(req, simulation)
+  // Handle case where simulation object is passed directly
+  if (isSimulationObject(simulationOrSimulationId)) {
+    setSimulationOnRequest(req, simulationOrSimulationId)
     return next()
   }
 
+  // Handle case where simulation ID is passed as string or ObjectId
   try {
-    const simulationId = simulationOrSimulationId as Simulation["_id"]
+    const simulationId = String(simulationOrSimulationId)
     const simulation = await Simulations.findById(simulationId)
 
     if (!simulation) {

@@ -136,7 +136,10 @@ export function showSurveyResults(req: Request, res: Response) {
     })
 }
 
-export function showSurveyResultByEmail(req: Request, res: Response) {
+export function showSurveyResultByEmail(
+  req: Request<{ email: string }>,
+  res: Response,
+) {
   Followups.findByEmail(req.params.email)
     .then((followups: Followup[]) => {
       if (!followups || !followups.length)

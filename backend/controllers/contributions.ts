@@ -119,6 +119,7 @@ export async function handleBenefitContribution(
       return res.status(400).json({ message: validationError })
     }
 
+    const hasSelectedInstitution = Boolean(req.body.institutionSlug?.trim())
     const institutionSlug = generateInstitutionSlug(req.body)
 
     if (!isValidSlug(institutionSlug)) {
@@ -157,7 +158,10 @@ export async function handleBenefitContribution(
       githubApi,
       title: `[Contribution] Ajout aide - ${label}`,
       branchName: newBranch,
-      body: buildBenefitPullRequestBody(benefitBodyWithResolvedSlug),
+      body: buildBenefitPullRequestBody(
+        benefitBodyWithResolvedSlug,
+        hasSelectedInstitution,
+      ),
       requestBody: req.body,
       category: ContributionCategory.BENEFIT,
       contributorName: req.body.contributorName,

@@ -162,9 +162,9 @@ export function createDefaultInstitutionData(
 
 export function buildBenefitPullRequestBody(
   body: BenefitContributionBody,
+  hasSelectedInstitution: boolean,
 ): string {
   const { label, institutionName, periodicite, description } = body
-  const hasSelectedInstitution = Boolean(body.institutionSlug?.trim())
 
   const sections = [
     !hasSelectedInstitution &&

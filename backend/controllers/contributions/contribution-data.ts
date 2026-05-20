@@ -117,6 +117,11 @@ export function validateRequiredInstitutionFields(
   return null
 }
 
+export function generateInstitutionSlug(body: BenefitContributionBody): string {
+  const providedInstitutionSlug = body.institutionSlug?.trim()
+  return providedInstitutionSlug || slugify(body.institutionName)
+}
+
 export function buildBenefitData(body: BenefitContributionBody) {
   const {
     label,
@@ -158,12 +163,12 @@ export function createDefaultInstitutionData(
 export function buildBenefitPullRequestBody(
   body: BenefitContributionBody,
 ): string {
-  const { label, institutionName, institutionSlug, periodicite, description } =
-    body
+  const { label, institutionName, periodicite, description } = body
+  const hasSelectedInstitution = Boolean(body.institutionSlug?.trim())
 
   const sections = [
-    !institutionSlug &&
-      ":warning: L'institution associée à cette demande n'existe pas ou n'a pas été trouvée :warning:",
+    !hasSelectedInstitution &&
+      ":warning: Institution saisie manuellement à créer dans un second temps :warning:",
     `Périodicité: ${periodicite}`,
     `Aide : **${label}**`,
     `Institution: ${institutionName}`,

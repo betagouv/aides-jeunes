@@ -26,6 +26,7 @@ import {
   getImageExtension,
   isValidSlug,
   parseDataUrl,
+  generateInstitutionSlug,
   slugify,
   validateRequiredBenefitFields,
   validateRequiredInstitutionFields,
@@ -110,7 +111,7 @@ export async function handleBenefitContribution(
   }
 
   try {
-    const { institutionName, institutionSlug, label } = req.body || {}
+    const { label } = req.body || {}
 
     // Validation
     const validationError = validateRequiredBenefitFields(req.body)
@@ -118,8 +119,9 @@ export async function handleBenefitContribution(
       return res.status(400).json({ message: validationError })
     }
 
-    const institutionSlugToUse = institutionSlug || slugify(institutionName)
-    if (!isValidSlug(institutionSlugToUse)) {
+    const institutionSlug = generateInstitutionSlug(req.body)
+
+    if (!isValidSlug(institutionSlug)) {
       return res.status(400).json({
         message: "Le format de l'identifiant de l'institution est invalide",
       })
@@ -127,11 +129,11 @@ export async function handleBenefitContribution(
 
     const benefitBodyWithResolvedSlug: BenefitContributionBody = {
       ...req.body,
-      institutionSlug: institutionSlugToUse,
+      institutionSlug,
     }
 
     // Generate and validate benefit slug
-    const benefitSlug = `${institutionSlugToUse}_${slugify(label)}`
+    const benefitSlug = `${institutionSlug}_${slugify(label)}`
     if (!isValidSlug(benefitSlug)) {
       return res.status(400).json({ message: "Format benefitSlug invalide" })
     }
@@ -155,7 +157,7 @@ export async function handleBenefitContribution(
       githubApi,
       title: `[Contribution] Ajout aide - ${label}`,
       branchName: newBranch,
-      body: buildBenefitPullRequestBody(req.body),
+      body: buildBenefitPullRequestBody(benefitBodyWithResolvedSlug),
       requestBody: req.body,
       category: ContributionCategory.BENEFIT,
       contributorName: req.body.contributorName,

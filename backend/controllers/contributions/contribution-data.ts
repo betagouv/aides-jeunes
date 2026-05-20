@@ -38,6 +38,7 @@ export function slugify(input: string) {
     .replace(/[^a-z0-9\s_-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
+    .replace(/^[-_]+|[-_]+$/g, "")
     .slice(0, 80)
 }
 

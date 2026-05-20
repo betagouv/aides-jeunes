@@ -65,7 +65,7 @@
     "@sentry/vue": "^8.55.0",
     "@vitejs/plugin-legacy": "^5.1.5",
     "@vitejs/plugin-vue": "^5.2.0",
-    "axios": "^1.15.2",
+    "axios": "^1.7.7",
     "communes-lonlat": "^1.1.0",
     "consolidate": "^0.16.0",
     "cookie-parser": "^1.4.7",

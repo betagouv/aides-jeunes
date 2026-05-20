@@ -66,10 +66,15 @@ export function validateRequiredBenefitFields(
     institutionSlug,
     label,
     description,
+    periodicite,
   } = body
 
   if (!contributorEmail || !label || !description) {
-    return "Les champs email, titre et description sont obligatoires"
+    return "Les champs email, titre et description sont requis"
+  }
+
+  if (!periodicite) {
+    return "La sélection d'une périodicité est requise"
   }
 
   const institutionNameChars = (institutionName || "").replace(/\s/g, "")
@@ -144,7 +149,7 @@ export function buildBenefitData(body: BenefitContributionBody) {
     instructions,
     form,
     teleservice,
-    periodicite: periodicite || "ponctuelle",
+    periodicite,
   }
 }
 

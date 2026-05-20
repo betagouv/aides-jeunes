@@ -21,7 +21,7 @@ export interface BenefitContributionBody {
   form?: string
   teleservice?: string
   type?: string
-  periodicite?: string
+  periodicite: string
   conditions?: string
 }
 

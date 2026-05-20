@@ -36,8 +36,7 @@ async function simulation(
   }
 
   try {
-    const simulationId = simulationOrSimulationId as Simulation["_id"]
-    const simulation = await Simulations.findById(simulationId)
+    const simulation = await Simulations.findById(simulationOrSimulationId)
 
     if (!simulation) {
       return res.sendStatus(404)

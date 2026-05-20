@@ -1,5 +1,5 @@
 import { generateSituation } from "../lib/situations.js"
-import { calculate } from "../backend/lib/openfisca/index.js"
+import { calculate } from "../backend/lib/openfisca"
 import { computeAides } from "../lib/benefits/compute.js"
 import benefits from "../data/all.js"
 import("../backend/lib/mongo-connector.js")
@@ -28,13 +28,13 @@ async function main() {
       if (err) return process.exit(1)
 
       const openfiscaResponse = Object.assign(
-        { _id: simulation._id as string },
+        { _id: simulation._id.toString() },
         result,
       )
 
       const simulationResult = compute(
         situation,
-        simulation._id as string,
+        simulation._id.toString(),
         openfiscaResponse,
         false,
       )

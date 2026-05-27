@@ -1,11 +1,15 @@
 import express, { ErrorRequestHandler, Application } from "express"
 import path from "path"
 import morgan from "morgan"
+import axios from "axios"
 
 import configure from "./configure.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 const app: Application = express()
+
+// Keep legacy Axios behavior while we prepare the migration to fetch.
+axios.defaults.allowAbsoluteUrls = true
 
 app.use(morgan("combined"))
 configure(app)

@@ -1,4 +1,4 @@
-import axios from "axios"
+import { create } from "axios"
 import config from "../../../config/index.js"
 import {
   phoneNumberFormatting,
@@ -23,7 +23,7 @@ async function getSMSConfig() {
 }
 
 async function createAxiosInstance() {
-  const instance = axios.create({
+  const instance = create({
     timeout: 10000,
   })
   instance.interceptors.response.use(

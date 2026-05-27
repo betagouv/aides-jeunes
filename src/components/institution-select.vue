@@ -11,8 +11,9 @@
         >Nom de l'institution porteuse
         <span class="fr-text--error">*</span></label
       >
-      <span class="fr-hint-text fr-my-3v"
-        >Si votre institution n'apparaît pas dans la liste, vous pouvez
+      <span class="fr-hint-text"
+        >Si votre institution n'apparaît pas dans la liste, vous pouvez écrire
+        son nom ou
         <router-link to="/contribuer/institution"
           ><b>l'ajouter en cliquant ici</b></router-link
         >.</span
@@ -97,19 +98,19 @@ interface Institution {
 }
 
 interface Props {
-  institutionSlug?: string
+  institutionSlug?: string | null
   institutionName?: string
   hasError?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   hasError: false,
-  institutionSlug: "",
+  institutionSlug: null,
   institutionName: "",
 })
 
 const emit = defineEmits<{
-  "update:institutionSlug": [value: string]
+  "update:institutionSlug": [value: string | null]
   "update:institutionName": [value: string]
   clearError: []
   selected: [value: Institution]
@@ -166,7 +167,7 @@ watch(filter, (value) => {
 })
 
 function handleInput() {
-  emit("update:institutionSlug", "")
+  emit("update:institutionSlug", null)
   emit("update:institutionName", filter.value)
   showDropdown.value = true
   emit("clearError")

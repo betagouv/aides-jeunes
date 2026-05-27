@@ -1,0 +1,24 @@
+label: Aide au BAFA, BAFD et BSB
+prefix: l’
+institution: ville-de-vannes
+description: >-
+  La Ville de Vannes apporte une aide financière aux jeunes qui souhaitent
+  suivre lʼune des formations suivantes : Brevet dʼAptitude aux Fonctions dʼAnimateurs (BAFA), 
+  Brevet dʼAptitude aux Fonctions de Directeurs (BAFD), 
+  Brevet de Surveillant de Baignade (BSB).
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: age
+    operator: "<="
+    value: 25
+conditions:
+  - Être domicilié fiscalement à Vannes depuis au moins 1 an.
+  - Contacter le BIJ (Bureau information jeunesse) par téléphone au <a href="tel:+33297016100">02 97 01 61 00</a>
+    ou par email à <a href="mailto:bij@mairie-vannes.fr">bij@mairie-vannes.fr</a>.
+profils: []
+link: https://bij-vannes.fr/aides-au-bafa-bafd-bsb
+type: bool
+periodicite: ponctuelle
+interestFlag: _interetBafa

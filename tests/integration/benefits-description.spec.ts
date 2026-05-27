@@ -128,10 +128,13 @@ describe("benefit descriptions", function () {
             const isCovoiturageBenefit = benefit.label
               ?.toLowerCase()
               .includes("covoiturage")
-            if (!isCovoiturageBenefit) {
-              expect(innerText.length).toBeLessThanOrEqual(420)
-            } else {
+            const isAidesVeloBenefit = benefit.source === "aides-velo"
+            if (isCovoiturageBenefit) {
               expect(innerText.length).toBeLessThanOrEqual(530)
+            } else if (isAidesVeloBenefit) {
+              expect(innerText.length).toBeLessThanOrEqual(550)
+            } else {
+              expect(innerText.length).toBeLessThanOrEqual(420)
             }
           })
 

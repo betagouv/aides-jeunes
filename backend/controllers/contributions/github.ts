@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios"
+import { create, AxiosInstance } from "axios"
 import type { Response } from "express"
 
 const repositoryName = process.env.GITHUB_REPOSITORY || ""
@@ -20,7 +20,7 @@ export function ensureGithubToken(res: Response): boolean {
 }
 
 export function createGithubApi(): AxiosInstance {
-  return axios.create({
+  return create({
     baseURL: "https://api.github.com",
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,

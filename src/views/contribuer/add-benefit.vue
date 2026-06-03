@@ -344,7 +344,7 @@ async function submit() {
               <InputTextareaMax
                 id="conditionsText"
                 v-model="conditionsText"
-                label="Conditions générales"
+                label="Conditions générales : qui a droit à cette aide ? Listez tous les critères d'éligibilité."
                 :max="conditionsMax"
                 :has-error="errorFields.includes('conditionsText')"
                 :over-limit-message="`Les conditions générales ne doivent pas dépasser ${conditionsMax} caractères.`"

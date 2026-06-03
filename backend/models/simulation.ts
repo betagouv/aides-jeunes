@@ -66,6 +66,7 @@ const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
     },
     teleservice: String,
     token: String,
+    trackedInstitution: String,
   },
   { minimize: false },
 )

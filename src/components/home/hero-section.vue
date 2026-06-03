@@ -22,7 +22,10 @@ const ctaLabel = computed(() =>
 )
 
 function newSituation() {
-  store.clear(route.query.external_id as string)
+  store.clear(
+    route.query.external_id as string,
+    route.query.mtm_campaign as string,
+  )
   next()
 }
 

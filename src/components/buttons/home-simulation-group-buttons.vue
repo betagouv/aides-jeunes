@@ -27,7 +27,10 @@ const initializeOpenfiscaParameters = () => {
 }
 
 const newSituation = () => {
-  store.clear(route.query.external_id as string)
+  store.clear(
+    route.query.external_id as string,
+    route.query.mtm_campaign as string,
+  )
   initializeOpenfiscaParameters()
   router.push(SIMULATION_START_PATH)
 }

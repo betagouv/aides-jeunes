@@ -43,6 +43,7 @@ export interface Simulation {
   simulationToken?: string | undefined
   status: SimulationStatus
   teleservice?: any
+  trackedInstitution?: string
 }
 
 export interface PersistedStore {

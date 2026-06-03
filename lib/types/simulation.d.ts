@@ -21,6 +21,7 @@ interface SimulationAttributes {
   status: SimulationStatus
   teleservice?: string
   token: string
+  trackedInstitution?: string
 }
 
 interface SimulationMethods {

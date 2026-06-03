@@ -48,6 +48,7 @@ function defaultStore(): Store {
         current: [],
       },
       dateDeValeur: new Date(),
+      trackedInstitution: undefined,
       version,
       simulationToken: undefined,
       status: SimulationStatus.New,
@@ -100,6 +101,12 @@ function restoreLocal() {
   }
 
   return getPersitedStateProperties(state)
+}
+
+function getTrackedInstitution(
+  campaign: string | undefined,
+): string | undefined {
+  return campaign === "CZNRUPCite" ? "Université Paris Cité" : undefined
 }
 
 export function persistDataOnSessionStorage({
@@ -309,13 +316,18 @@ export const useStore = defineStore("store", {
       const newStore = getPersitedStateProperties(state)
       Object.assign(this, newStore)
     },
-    clear(external_id: string) {
+    clear(external_id?: string, campaign?: string) {
+      const previousTrackedInstitution = this.simulation.trackedInstitution
+      const trackedInstitution = getTrackedInstitution(campaign)
+
       this.access.forbidden = false
       this.access.fetching = false
 
       this.resetSimulation()
 
       this.external_id = external_id
+      this.simulation.trackedInstitution =
+        trackedInstitution ?? previousTrackedInstitution
     },
     setDebug(debug: boolean) {
       this.debug = debug

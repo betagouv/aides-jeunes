@@ -545,6 +545,7 @@ export const useStore = defineStore("store", {
         .then((response) => {
           this.openFiscaParameters = response.data
         })
+        .catch(() => undefined) // Prevent unhandled promise rejection noise in Sentry on network hiccups.
     },
     verifyOpenfiscaBenefitVariables() {
       return axios

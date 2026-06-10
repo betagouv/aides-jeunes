@@ -88,15 +88,14 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue"
 import { capitalize, normalizeString } from "@lib/utils"
-import institutionsBenefits from "generator:institutions"
+import institutionMap from "generator:institutions"
 
 interface Institution {
   slug: string
   label: string
   type: string
   benefits: { id: string; label: string }[]
-  code_insee?: string
-  departments?: string[]
+  locationCodes: string[]
 }
 
 interface Props {
@@ -118,13 +117,20 @@ const emit = defineEmits<{
   selected: [value: Institution]
 }>()
 
-const institutions = Object.values(institutionsBenefits).flatMap((group) =>
-  group.map((inst) => ({
-    slug: inst.id,
-    label: inst.label,
-    type: inst.type,
-    benefits: inst.benefits,
-  })),
+const institutions: Institution[] = Object.values(institutionMap).flatMap(
+  (group) =>
+    group.map((inst) => ({
+      slug: inst.id,
+      label: inst.label,
+      type: inst.type,
+      benefits: inst.benefits,
+      locationCodes:
+        typeof inst.location === "string"
+          ? [inst.location]
+          : Array.isArray(inst.location)
+            ? inst.location
+            : [],
+    })),
 )
 
 const filter = ref("")
@@ -132,11 +138,12 @@ const showDropdown = ref(false)
 const debouncedFilter = ref("")
 let debounceTimer: number | undefined
 
-// const filteredInstitutions = computed(() => {
-//   const query = normalizeString(debouncedFilter.value)
-//   if (!query) return institutions
-//   return institutions.filter((inst) =>
-//     normalizeString(inst.label).includes(query),
+const normalizeLocationCodes = (locationCodes: string[]) => {
+  let normalizedLocationCodes = locationCodes
+    .map((department) => department.trim().slice(0, 2))
+    .filter(Boolean)
+  return [...new Set(normalizedLocationCodes)].join(", ") // delete duplicates and return as string of codes joined by comma
+}
 
 const matchesAllTerms = (value: string, query: string) => {
   const normalizedValue = normalizeString(value)
@@ -145,30 +152,18 @@ const matchesAllTerms = (value: string, query: string) => {
   return tokens.every((token) => normalizedValue.includes(token))
 }
 
-const getDepartmentCode = (institution: Institution) => {
-  const departments = institution.departments?.filter(Boolean) ?? []
-  if (departments.length) return departments.join(", ")
-
-  const codeInsee = institution.code_insee?.trim().toUpperCase()
-  if (!codeInsee) return ""
-  if (/^(97|98)/.test(codeInsee)) return codeInsee.slice(0, 3) // DOM TOM (ex: 971, 972, 973, 974, 976)
-  return codeInsee.slice(0, 2)
-}
-
-const formatInstitutionSuggestion = (institution: Institution) => {
-  const departmentCode = getDepartmentCode(institution)
-  if (!departmentCode) return institution.label
-  return `${institution.label} (${departmentCode})`
+const formatInstitutionSuggestion = ({ label, locationCodes }: Institution) => {
+  const locationCode = normalizeLocationCodes(locationCodes)
+  if (!locationCode) return label
+  return `${label} (${locationCode})`
 }
 
 const filteredInstitutions = computed(() => {
-  const list = institutions.filter((inst) =>
+  const query = normalizeString(debouncedFilter.value)
+  if (!query) return institutions
+  return institutions.filter((inst) =>
     matchesAllTerms(formatInstitutionSuggestion(inst), debouncedFilter.value),
   )
-  return list
-    .slice()
-    .sort((a, b) => a.label.localeCompare(b.label))
-    .slice(0, 50)
 })
 
 const selectedInstitution = computed(() =>

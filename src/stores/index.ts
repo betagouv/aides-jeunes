@@ -318,7 +318,10 @@ export const useStore = defineStore("store", {
     },
     clear(external_id?: string, campaign?: string) {
       const previousTrackedInstitution = this.simulation.trackedInstitution
-      const trackedInstitution = getTrackedInstitution(campaign)
+      const trackedInstitution =
+        campaign === undefined
+          ? previousTrackedInstitution
+          : getTrackedInstitution(campaign)
 
       this.access.forbidden = false
       this.access.fetching = false
@@ -326,9 +329,8 @@ export const useStore = defineStore("store", {
       this.resetSimulation()
 
       this.external_id = external_id
-      this.simulation.trackedInstitution =
-        trackedInstitution ?? previousTrackedInstitution
-    },
+      this.simulation.trackedInstitution = trackedInstitution
+    }
     setDebug(debug: boolean) {
       this.debug = debug
     },

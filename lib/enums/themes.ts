@@ -1,6 +1,6 @@
 export enum Theme {
   Default = "default-dsfr",
-  LightBlue = "light-blue",
+  LightBlue = "univ-paris-cite",
   BordeauxMetropole = "bordeaux-metropole",
   Soliguide = "soliguide",
   VilleDeVannes = "ville-de-vannes",

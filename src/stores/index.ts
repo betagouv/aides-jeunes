@@ -420,7 +420,6 @@ export const useStore = defineStore("store", {
       }
 
       //custom interest school
-      console.log("rr", useThemeStore().theme)
       if (useThemeStore().theme === "univ-paris-cite") {
         const flagAnswer: Answer = {
           entityName: "individu",

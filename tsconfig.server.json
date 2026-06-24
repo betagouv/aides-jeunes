@@ -37,5 +37,5 @@
     "tools/**/*.ts",
     "tools/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "tests", "dist-server", "dist"]
+  "exclude": ["node_modules", "tests", "dist-server", "dist", "tools/aj-llm"]
 }

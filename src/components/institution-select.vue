@@ -12,7 +12,8 @@
         <span class="fr-text--error">*</span></label
       >
       <span class="fr-hint-text"
-        >Si votre institution n'apparaît pas dans la liste, vous pouvez
+        >Si votre institution n'apparaît pas dans la liste, vous pouvez écrire
+        son nom ou
         <router-link to="/contribuer/institution"
           ><b>l'ajouter en cliquant ici</b></router-link
         >.</span
@@ -28,7 +29,11 @@
         @focus="showDropdown = true"
         @blur="hideDropdown"
       />
-      <div v-if="showDropdown" class="aj-contribuer-institution-list">
+      <div
+        v-if="showDropdown"
+        class="aj-contribuer-institution-list"
+        @pointerdown.prevent
+      >
         <button
           v-for="institution in filteredInstitutions"
           :key="institution.slug"
@@ -46,74 +51,100 @@
         </div>
       </div>
     </div>
+    <div v-if="selectedInstitution" class="fr-notice fr-notice--info fr-mt-2w">
+      <div class="fr-container">
+        <div class="fr-notice__body">
+          <div>
+            <span v-if="selectedInstitution.benefits.length">
+              <p class="fr-notice__title"
+                >Aides déjà publiées pour cette institution</p
+              >
+              <ul class="fr-mt-1w fr-mb-0">
+                <li
+                  v-for="benefit in selectedInstitution.benefits"
+                  :key="benefit.id"
+                >
+                  <a
+                    :href="`/aides/${benefit.id}`"
+                    class="fr-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {{ capitalize(benefit.label) }}
+                  </a>
+                </li>
+              </ul>
+            </span>
+            <p v-else class="fr-notice__title fr-mt-1w fr-mb-0">
+              Aucune aide n'est encore associée à cette institution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue"
-import axios from "axios"
-import { normalizeString } from "@lib/utils"
+import { capitalize, normalizeString } from "@lib/utils"
+import institutionsBenefits from "generator:institutions"
 
 interface Institution {
   slug: string
   label: string
   type: string
+  benefits: { id: string; label: string }[]
 }
 
 interface Props {
-  institutionSlug?: string
+  institutionSlug?: string | null
   institutionName?: string
   hasError?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   hasError: false,
-  institutionSlug: "",
+  institutionSlug: null,
   institutionName: "",
 })
 
 const emit = defineEmits<{
-  "update:institutionSlug": [value: string]
+  "update:institutionSlug": [value: string | null]
   "update:institutionName": [value: string]
   clearError: []
   selected: [value: Institution]
 }>()
 
-const institutions = ref<Institution[]>([])
+const institutions = Object.values(institutionsBenefits).flatMap((group) =>
+  group.map((inst) => ({
+    slug: inst.id,
+    label: inst.label,
+    type: inst.type,
+    benefits: inst.benefits,
+  })),
+)
+
 const filter = ref("")
 const showDropdown = ref(false)
 const debouncedFilter = ref("")
 let debounceTimer: number | undefined
 
-const matchesAllTerms = (value: string, query: string) => {
-  const normalizedValue = normalizeString(value)
-  const tokens = normalizeString(query).split(/\s+/).filter(Boolean)
-  if (!tokens.length) return true
-  return tokens.every((token) => normalizedValue.includes(token))
-}
-
 const filteredInstitutions = computed(() => {
-  const list = institutions.value.filter((inst) =>
-    matchesAllTerms(inst.label, debouncedFilter.value),
+  const query = normalizeString(debouncedFilter.value)
+  if (!query) return institutions
+  return institutions.filter((inst) =>
+    normalizeString(inst.label).includes(query),
   )
-  return list
-    .slice()
-    .sort((a, b) => a.label.localeCompare(b.label))
-    .slice(0, 50)
 })
 
-// Charger les institutions au montage du composant
-async function loadInstitutions() {
-  try {
-    const response = await axios.get("/api/institutions")
-    institutions.value = response.data
-  } catch (error) {
-    console.error("Erreur lors du chargement des institutions:", error)
-  }
-}
+const selectedInstitution = computed(() =>
+  props.institutionSlug
+    ? (institutions.find((inst) => inst.slug === props.institutionSlug) ?? null)
+    : null,
+)
 
 onMounted(() => {
-  loadInstitutions()
   if (props.institutionName) {
     filter.value = props.institutionName
   }
@@ -136,7 +167,7 @@ watch(filter, (value) => {
 })
 
 function handleInput() {
-  emit("update:institutionSlug", "")
+  emit("update:institutionSlug", null)
   emit("update:institutionName", filter.value)
   showDropdown.value = true
   emit("clearError")

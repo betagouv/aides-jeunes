@@ -4,7 +4,7 @@
       <div class="fr-col-12">
         <h1>Toutes les aides</h1>
       </div>
-      <div class="aj-home-group-buttons-container">
+      <div v-if="showNavigationButtons" class="aj-home-group-buttons-container">
         <div class="fr-mb-2w fr-mr-2w">
           <BackButton
             data-testid="benefits-liste-back-button"
@@ -140,6 +140,9 @@ import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize, normalizeString } from "@lib/utils.js"
 import HomeSimulationGroupButtons from "@/components/buttons/home-simulation-group-buttons.vue"
+
+const props = defineProps<{ showNavigationButtons?: boolean }>()
+const { showNavigationButtons = true } = props
 
 const route = useRoute()
 const zipCode = ref<string | null>(null)

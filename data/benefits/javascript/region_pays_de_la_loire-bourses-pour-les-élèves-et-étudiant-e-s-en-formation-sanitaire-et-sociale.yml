@@ -20,4 +20,3 @@ type: bool
 unit: €
 periodicite: ponctuelle
 interestFlag: _interetAidesSanitaireSocial
-private: true

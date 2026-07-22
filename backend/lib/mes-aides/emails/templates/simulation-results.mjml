@@ -28,7 +28,7 @@
     <mj-spacer height="8px" />
   </mj-column>
 </mj-section>
-<mj-wrapper background-color="#FFFFFF" padding="16px">
+<mj-wrapper background-color="#FFFFFF" padding="16px 24px">
   <mj-section padding="0px">
     <mj-group>
       <mj-column width="20%" vertical-align="middle">

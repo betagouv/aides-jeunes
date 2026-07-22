@@ -12,7 +12,6 @@ import {
   ContributionPullRequestStatus,
 } from "../../lib/enums/contribution.js"
 import {
-  checkInstitutionExists,
   commitBinaryFile,
   commitFile,
   createPullRequest,
@@ -24,10 +23,10 @@ import {
   buildBenefitPullRequestBody,
   buildInstitutionData,
   buildInstitutionPullRequestBody,
-  createDefaultInstitutionData,
   getImageExtension,
   isValidSlug,
   parseDataUrl,
+  generateInstitutionSlug,
   slugify,
   validateRequiredBenefitFields,
   validateRequiredInstitutionFields,
@@ -112,12 +111,26 @@ export async function handleBenefitContribution(
   }
 
   try {
-    const { institutionName, institutionSlug, label } = req.body || {}
+    const { label } = req.body || {}
 
     // Validation
     const validationError = validateRequiredBenefitFields(req.body)
     if (validationError) {
       return res.status(400).json({ message: validationError })
+    }
+
+    const hasSelectedInstitution = Boolean(req.body.institutionSlug?.trim())
+    const institutionSlug = generateInstitutionSlug(req.body)
+
+    if (!isValidSlug(institutionSlug)) {
+      return res.status(400).json({
+        message: "Le format de l'identifiant de l'institution est invalide",
+      })
+    }
+
+    const benefitBodyWithResolvedSlug: BenefitContributionBody = {
+      ...req.body,
+      institutionSlug,
     }
 
     // Generate and validate benefit slug
@@ -127,31 +140,10 @@ export async function handleBenefitContribution(
     }
 
     // Build data
-    const benefitData = buildBenefitData(req.body)
+    const benefitData = buildBenefitData(benefitBodyWithResolvedSlug)
 
     const branchBase = `contribution/${benefitSlug}`
     const { githubApi, newBranch } = await initContributionBranch(branchBase)
-
-    // Check if institution exists
-    const institutionExists = await checkInstitutionExists(
-      institutionSlug,
-      githubApi,
-    )
-
-    // Commit files to new branch
-    if (!institutionExists) {
-      const institutionPath = `data/institutions/${institutionSlug}.yml`
-      const institutionFile = yamlDump(
-        createDefaultInstitutionData(institutionName, institutionSlug),
-      )
-      await commitFile(
-        githubApi,
-        institutionPath,
-        institutionFile,
-        newBranch,
-        `Contribution: ajout fichier ${institutionPath}`,
-      )
-    }
 
     const benefitPath = `data/benefits/javascript/${benefitSlug}.yml`
     await commitFile(
@@ -166,7 +158,10 @@ export async function handleBenefitContribution(
       githubApi,
       title: `[Contribution] Ajout aide - ${label}`,
       branchName: newBranch,
-      body: buildBenefitPullRequestBody(req.body),
+      body: buildBenefitPullRequestBody(
+        benefitBodyWithResolvedSlug,
+        hasSelectedInstitution,
+      ),
       requestBody: req.body,
       category: ContributionCategory.BENEFIT,
       contributorName: req.body.contributorName,

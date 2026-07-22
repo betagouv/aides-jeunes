@@ -186,7 +186,7 @@ export default {
       this.$push()
     },
     sort(array) {
-      return array.sort(
+      return [...array].sort(
         (a, b) =>
           (a.positionInList || Infinity) - (b.positionInList || Infinity) ||
           a.label.localeCompare(b.label),

@@ -38,6 +38,7 @@ export function slugify(input: string) {
     .replace(/[^a-z0-9\s_-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
+    .replace(/^[-_]+|[-_]+$/g, "")
     .slice(0, 80)
 }
 
@@ -66,18 +67,28 @@ export function validateRequiredBenefitFields(
     institutionSlug,
     label,
     description,
+    periodicite,
   } = body
 
-  if (
-    !contributorEmail ||
-    !institutionName ||
-    !institutionSlug ||
-    !label ||
-    !description
-  ) {
-    return "Champs obligatoires manquants"
+  if (!contributorEmail || !label || !description) {
+    return "Les champs email, titre et description sont requis"
   }
-  if (!isValidSlug(institutionSlug)) {
+
+  if (!periodicite) {
+    return "La sélection d'une périodicité est requise"
+  }
+
+  const institutionNameChars = (institutionName || "").replace(/\s/g, "")
+  if (institutionNameChars.length < 2) {
+    return "Le nom de l'institution doit contenir au moins 2 caractères"
+  }
+
+  const normalizedInstitutionSlug = slugify(institutionName || "")
+  if (!normalizedInstitutionSlug) {
+    return "Le nom de l'institution doit contenir au moins un caractère alphanumérique"
+  }
+
+  if (institutionSlug && !isValidSlug(institutionSlug)) {
     return "Le format de l'identifiant de l'institution est invalide"
   }
   if (description.length > 5000) {
@@ -112,6 +123,11 @@ export function validateRequiredInstitutionFields(
   return null
 }
 
+export function generateInstitutionSlug(body: BenefitContributionBody): string {
+  const providedInstitutionSlug = body.institutionSlug?.trim()
+  return providedInstitutionSlug || slugify(body.institutionName)
+}
+
 export function buildBenefitData(body: BenefitContributionBody) {
   const {
     label,
@@ -134,7 +150,7 @@ export function buildBenefitData(body: BenefitContributionBody) {
     instructions,
     form,
     teleservice,
-    periodicite: periodicite || "ponctuelle",
+    periodicite,
   }
 }
 
@@ -152,16 +168,20 @@ export function createDefaultInstitutionData(
 
 export function buildBenefitPullRequestBody(
   body: BenefitContributionBody,
+  hasSelectedInstitution: boolean,
 ): string {
   const { label, institutionName, periodicite, description } = body
 
   const sections = [
+    !hasSelectedInstitution &&
+      ":warning: Institution saisie manuellement à créer dans un second temps :warning:",
+    `Périodicité: ${periodicite}`,
     `Aide : **${label}**`,
     `Institution: ${institutionName}`,
-    `Périodicité: ${periodicite}`,
+
     `Description: ${description}`,
   ]
-  return sections.join("\n")
+  return sections.filter(Boolean).join("\n")
 }
 
 export function buildInstitutionPullRequestBody(params: {

@@ -16,7 +16,7 @@ profils: []
 conditions:
   - Envoyer le <a target="_blank" title="Formulaire - Nouvelle fenêtre"
     rel="noopener"
-    href="https://caf.fr/sites/default/files/medias/281/Documents/Action-sociale/Bafa/Cerfa_bafa.pdf">formulaire</a>
+    href="https://www.calameo.com/caf-d-eure-et-loir/read/006004434a4b66221cb45">formulaire</a>
     dans un délai de 3 mois maximum suivant l'inscription au stage
     d'approfondissement ou de qualification.
 interestFlag: _interetBafa
@@ -26,5 +26,5 @@ periodicite: ponctuelle
 legend: maximum
 montant: 600
 link: https://caf.fr/allocataires/caf-d-eure-et-loir/offre-de-service/vie-personnelle/bafa
-form: https://caf.fr/sites/default/files/medias/281/Documents/Action-sociale/Bafa/Cerfa_bafa.pdf
+form: https://www.calameo.com/caf-d-eure-et-loir/read/006004434a4b66221cb45
 private: true

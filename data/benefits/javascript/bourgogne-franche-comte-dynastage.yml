@@ -21,5 +21,6 @@ type: float
 unit: €
 periodicite: autre
 legend: maximum
-montant: 2280
+montant: Variable entre 150 € et 2 280 € selon durée, quotient familial et
+  barème
 interestFlag: _interetEtudesEtranger

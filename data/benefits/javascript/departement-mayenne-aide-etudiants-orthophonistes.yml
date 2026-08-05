@@ -1,9 +1,9 @@
 label: Aide financière pour les stagiaires en 5e année d'études d'orthophonie
 institution: departement_mayenne
-description:
-  Le Département de la Mayenne souhaite encourager les étudiants en 5ème année d'orthophonie
-  à réaliser leur stage de fin de cycle sur le territoire du département en leur versant une aide
-  forfaitaire de 200 euros par période de stage.
+description: Le Département de la Mayenne souhaite encourager les étudiants en
+  5ème année d'orthophonie à réaliser leur stage de fin de cycle sur le
+  territoire du département en leur versant une aide forfaitaire de 200 euros
+  par période de stage.
 prefix: l’
 conditions_generales:
   - type: departements
@@ -20,3 +20,6 @@ periodicite: autre
 link: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-5e-annee-dorthophonie
 instructions: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-5e-annee-dorthophonie
 teleservicePrefill: ds?procedure=cd53_da_an5_orthophonie
+conditions:
+  - Stages longs dans le cadre de la dernière année d’orthophonie
+  - Aide ouverte aux étudiants réalisant un stage long en Mayenne

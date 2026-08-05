@@ -22,3 +22,4 @@ type: bool
 periodicite: autre
 link: https://www.redon.fr/transport-plus/
 instructions: https://www.redon.fr/transport-plus/
+private: true

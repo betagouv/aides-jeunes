@@ -1,9 +1,9 @@
 label: Aide financière pour les stagiaires en 4e année d'études de maïeutique
 institution: departement_mayenne
-description:
-  Le Département de la Mayenne souhaite encourager les étudiants en 4ème année de maïeutique
-  à réaliser leur stage de fin de cycle sur le territoire du département en leur versant une aide
-  forfaitaire de 200 euros par période de stage.
+description: Le Département de la Mayenne souhaite encourager les étudiants en
+  4ème année de maïeutique à réaliser leur stage de fin de cycle sur le
+  territoire du département en leur versant une aide forfaitaire de 200 euros
+  par période de stage.
 prefix: l’
 conditions_generales:
   - type: departements
@@ -20,3 +20,6 @@ periodicite: autre
 link: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-4e-annee-de-maieutique
 instructions: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-4e-annee-de-maieutique
 teleservicePrefill: ds?procedure=cd53_da_an4_maieutique
+conditions:
+  - Être étudiant en dernière année de maïeutique à l'Université d'Angers et
+    réaliser son stage long en Mayenne

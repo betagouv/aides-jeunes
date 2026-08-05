@@ -1,10 +1,10 @@
 label: Bourse au permis de conduire
 institution: ca_grand_verdun
-description:
-  En échange d’un engagement bénévole de 70 heures dans des associations locales,
-  la communauté d'agglomérations du Grand Verdun vous aide à financer votre
-  permis de conduire B. Pour en bénéficier, il faut contacter et rencontrer l’équipe
-  de la Mission Locale de Verdun qui vous accompagnera tout au long de la démarche.
+description: En échange d’un engagement bénévole de 70 heures dans des
+  associations locales, la communauté d'agglomérations du Grand Verdun vous aide
+  à financer votre permis de conduire B. Pour en bénéficier, il faut contacter
+  et rencontrer l’équipe de la Mission Locale de Verdun qui vous accompagnera
+  tout au long de la démarche.
 prefix: la
 conditions_generales:
   - type: attached_to_institution
@@ -21,9 +21,11 @@ profils:
   - type: service_civique
 conditions:
   - Être suivi par la Mission Locale de Verdun.
-  - Résider dans un QPV (quartier prioritaire de la politique de la ville) du Grand Verdun.
+  - Résider dans un QPV (quartier prioritaire de la politique de la ville) du
+    Grand Verdun.
 voluntary_conditions:
-  - Vous engager à réaliser 70 heures de bénévolat dans une association basée sur le territoire du Grand Verdun.
+  - Vous engager à réaliser 70 heures de bénévolat dans une association basée sur
+    le territoire du Grand Verdun.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €
@@ -31,3 +33,4 @@ periodicite: ponctuelle
 montant: 1000
 link: https://www.meuse.fr/information-transversale/faq/jai-moins-de-26-ans-et-je-nai-pas-les-moyens-de-passer-le-permis-de-conduire-existe-t-il-des-solutions-16935
 instructions: https://www.meuse.fr/information-transversale/faq/jai-moins-de-26-ans-et-je-nai-pas-les-moyens-de-passer-le-permis-de-conduire-existe-t-il-des-solutions-16935
+private: true

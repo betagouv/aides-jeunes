@@ -1,9 +1,10 @@
-label: Aide financière pour les stagiaires en 3e année d'études de soins infirmiers
+label: Aide financière pour les stagiaires en 3e année d'études de soins
+  infirmiers
 institution: departement_mayenne
-description:
-  Le Département de la Mayenne souhaite encourager les étudiants en 3ème année de soins infirmiers
-  à réaliser leur stage de fin de cycle sur le territoire du département en leur versant une aide
-  forfaitaire de 200 euros par période de stage.
+description: Le Département de la Mayenne souhaite encourager les étudiants en
+  3ème année de soins infirmiers à réaliser leur stage de fin de cycle sur le
+  territoire du département en leur versant une aide forfaitaire de 200 euros
+  par période de stage.
 prefix: l’
 conditions_generales:
   - type: departements
@@ -20,3 +21,6 @@ periodicite: autre
 link: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-3e-annee-de-soins-infirmiers
 instructions: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-3e-annee-de-soins-infirmiers
 teleservicePrefill: ds?procedure=cd53_da_an3_soins_infirmiers
+conditions:
+  - Stage en Mayenne d'au moins 6 semaines dans le cadre de la dernière année
+    d'IFSI

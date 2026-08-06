@@ -81,7 +81,12 @@ function validateAccess(req: Request, res, next) {
 }
 
 function show(req: Request, res) {
-  res.send(req.simulation)
+  // `computedResults` est un état interne de cache : ni le front ni les
+  // téléservices ne le consomment, et il alourdit une route chaude.
+  const simulation = req.simulation?.toObject
+    ? req.simulation.toObject()
+    : req.simulation
+  res.send(omit(simulation, "computedResults"))
 }
 
 function clearCookies(req: Request, res) {

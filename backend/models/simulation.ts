@@ -139,7 +139,14 @@ function calculate(situation): Promise<any> {
 // Rafales de requêtes sur un même document — restauration d'onglet, iframes
 // rechargées — : un seul calcul est mené, les appelants concurrents partagent
 // son résultat. La clé porte la signature, donc la situation calculée.
-const inFlightComputations = new Map<string, Promise<any>>()
+const inFlightComputations = new Map<
+  string,
+  { promise: Promise<any>; startedAt: number }
+>()
+
+// Au-delà, un calcul en cours n'est plus partagé : une requête qui ne se règle
+// jamais ne doit pas condamner le document pour la vie du process.
+const IN_FLIGHT_MAX_SHARE_MS = 60000
 
 function readCachedResults(simulation, signature: string, id: string) {
   const cached = simulation.computedResults
@@ -219,18 +226,6 @@ SimulationSchema.method("compute", async function (options = {}) {
   const situation = this.getSituation()
   const id = String(this._id)
 
-  // Les paramètres alimentent les légendes des aides : les charger avant le
-  // calcul évite d'y inscrire les constantes de repli.
-  try {
-    await getParametersAsync(situation.dateDeValeur)
-  } catch (error) {
-    console.error(
-      `Unable to load the OpenFisca parameters before computing simulation ${id}`,
-      error,
-    )
-    Sentry.captureException(error)
-  }
-
   // `showPrivate` produit un résultat enrichi réservé aux outils internes ;
   // `cache: false` sert les appelants qui modifient le document en mémoire
   // avant de calculer et dont le résultat ne décrit pas le document persisté ;
@@ -244,33 +239,55 @@ SimulationSchema.method("compute", async function (options = {}) {
     ? `${context}|${getSituationSignature(situation)}`
     : null
 
+  // Le cache est lu avant toute attente réseau : les paramètres ne servent
+  // qu'aux légendes produites par le calcul, et les attendre ici rendrait un
+  // OpenFisca saturé capable de bloquer jusqu'aux lectures de cache.
+  if (signature) {
+    const cached = readCachedResults(this, signature, id)
+    if (cached) {
+      return cached
+    }
+  }
+
+  // Les paramètres alimentent les légendes des aides : les charger avant le
+  // calcul évite d'y inscrire les constantes de repli.
+  try {
+    await getParametersAsync(situation.dateDeValeur)
+  } catch (error) {
+    console.error(
+      `Unable to load the OpenFisca parameters before computing simulation ${id}`,
+      error,
+    )
+    Sentry.captureException(error)
+  }
+
   if (!signature) {
     return computeAndCache(this, situation, id, showPrivate, null)
   }
 
-  const cached = readCachedResults(this, signature, id)
-  if (cached) {
-    return cached
-  }
-
   const key = `${id}|${signature}`
   const pending = inFlightComputations.get(key)
-  if (pending) {
-    return pending
+  // Un calcul qui ne se règle jamais — OpenFisca qui accepte la connexion sans
+  // répondre — laisserait sinon toutes les requêtes suivantes du document
+  // rejoindre une promesse morte, bien après le rétablissement du service.
+  if (pending && Date.now() - pending.startedAt < IN_FLIGHT_MAX_SHARE_MS) {
+    return pending.promise
   }
 
-  const computation = computeAndCache(
+  const promise = computeAndCache(
     this,
     situation,
     id,
     showPrivate,
     signature,
   ).finally(() => {
-    inFlightComputations.delete(key)
+    if (inFlightComputations.get(key)?.promise === promise) {
+      inFlightComputations.delete(key)
+    }
   })
-  inFlightComputations.set(key, computation)
+  inFlightComputations.set(key, { promise, startedAt: Date.now() })
 
-  return computation
+  return promise
 })
 
 export default mongoose.model<Simulation, SimulationModel>(

@@ -470,4 +470,48 @@ describe("Simulation.compute", () => {
       expect(updateOneSpy).not.toHaveBeenCalled()
     })
   })
+  describe("resilience when OpenFisca is unresponsive", () => {
+    it("serves a cache hit without waiting for the OpenFisca parameters", async () => {
+      // Un `/parameter` qui pend ne doit pas bloquer une lecture de cache :
+      // les paramètres ne servent qu'aux légendes produites par le calcul.
+      getParametersAsync.mockImplementation(() => new Promise(() => {}))
+      const simulation = buildSimulation(aCacheEntry(cachedResults))
+
+      const results = await simulation.compute()
+
+      expect(results.droitsEligibles[0].montant).toBe(200)
+      expect(calculateSpy).not.toHaveBeenCalled()
+      expect(getParametersAsync).not.toHaveBeenCalled()
+    })
+
+    it("stops sharing a computation that never settles", async () => {
+      // OpenFisca accepte la connexion et ne répond jamais : la promesse
+      // partagée ne se règle pas.
+      calculateSpy.mockImplementation(() => {})
+      const simulation = buildSimulation()
+
+      const abandoned = simulation.compute()
+      abandoned.catch(() => {})
+      await new Promise((resolve) => setImmediate(resolve))
+      expect(calculateSpy).toHaveBeenCalledTimes(1)
+
+      // Tant que la borne n'est pas dépassée, le calcul en cours est partagé.
+      let pending: any = "unresolved"
+      simulation.compute().then((value) => (pending = value))
+      await new Promise((resolve) => setImmediate(resolve))
+      expect(calculateSpy).toHaveBeenCalledTimes(1)
+      expect(pending).toBe("unresolved")
+
+      // Au-delà, un nouvel appel repart sur son propre calcul.
+      const nowSpy = vi.spyOn(Date, "now").mockReturnValue(Date.now() + 120000)
+      calculateSpy.mockImplementation((_situation, callback) =>
+        callback(null, openfiscaResponse),
+      )
+      const results = await simulation.compute()
+      nowSpy.mockRestore()
+
+      expect(results.droitsEligibles[0].montant).toBe(100)
+      expect(calculateSpy).toHaveBeenCalledTimes(2)
+    })
+  })
 })

@@ -57,8 +57,11 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
     }
   })
 
+  // Les réponses du document viennent d'être remplacées par le scénario
+  // demandé : ce calcul décrit une situation hypothétique et ne doit pas
+  // prendre la place du résultat de l'usager dans le cache.
   return this.simulation
-    .compute()
+    .compute({ cache: false })
     .then((r) => {
       return {
         value:

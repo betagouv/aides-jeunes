@@ -1,11 +1,20 @@
 import mongoose from "mongoose"
 import * as Sentry from "@sentry/node"
+import config from "../config/index.js"
 import utils from "../lib/utils.js"
 import openfisca from "../lib/openfisca/index.js"
 import {
   getComputeSignature,
   getSituationSignature,
 } from "../lib/openfisca/compute-signature.js"
+import {
+  areParametersLoaded,
+  getParametersAsync,
+} from "../lib/openfisca/parameters.js"
+import {
+  serializeResults,
+  deserializeResults,
+} from "../lib/computed-results.js"
 import benefits from "../../data/all.js"
 import { computeAides } from "../../lib/benefits/compute.js"
 import { generateSituation } from "../../lib/situations.js"
@@ -127,41 +136,66 @@ function calculate(situation): Promise<any> {
   })
 }
 
-SimulationSchema.method("compute", async function (showPrivate) {
-  const situation = this.getSituation()
-  const id = String(this._id)
+// Rafales de requêtes sur un même document — restauration d'onglet, iframes
+// rechargées — : un seul calcul est mené, les appelants concurrents partagent
+// son résultat. La clé porte la signature, donc la situation calculée.
+const inFlightComputations = new Map<string, Promise<any>>()
 
-  // `showPrivate` produit un résultat enrichi réservé aux outils internes : il
-  // ne doit ni être servi depuis le cache ni l'alimenter.
-  const context = showPrivate ? null : await getComputeSignature()
-  // La situation entre dans la clé de cache : certains appelants modifient le
-  // document en mémoire avant de calculer (scénarios du téléservice logement,
-  // migrations appliquées à la volée) et ne décrivent alors plus le document
-  // persisté.
-  const signature = context
-    ? `${context}|${getSituationSignature(situation)}`
-    : null
+function readCachedResults(simulation, signature: string, id: string) {
+  const cached = simulation.computedResults
 
-  if (signature && this.computedResults?.signature === signature) {
-    return this.computedResults.results
+  if (!cached || cached.signature !== signature) {
+    return null
   }
 
+  // Le TTL borne la dérive que la signature ne voit pas : une correction de la
+  // logique JavaScript ne s'accompagne pas toujours d'un changement de version.
+  const computedAt = cached.computedAt?.getTime?.()
+  if (!computedAt || Date.now() - computedAt >= config.computedResultsTtlMs) {
+    return null
+  }
+
+  try {
+    return deserializeResults(cached.results, id)
+  } catch (error) {
+    console.error(
+      `Unable to read the cached computed results of simulation ${id}`,
+      error,
+    )
+    Sentry.captureException(error)
+    return null
+  }
+}
+
+async function computeAndCache(
+  simulation,
+  situation,
+  id,
+  showPrivate,
+  signature,
+) {
   const openfiscaResponse = await calculate(situation)
   const aides = computeBenefits(situation, id, openfiscaResponse, showPrivate)
 
-  if (signature) {
+  // Sans paramètres OpenFisca, `getParameters` retombe sur des constantes
+  // figées et les légendes produites sont fausses : le résultat est servi, mais
+  // il ne doit pas être gravé en base.
+  if (signature && areParametersLoaded()) {
     try {
       // `updateOne` plutôt que `save` : le hook `pre("save")` régénère le token
       // et une écriture complète du document exposerait à des conflits de
       // version sur une simple lecture des résultats.
-      await (this.constructor as SimulationModel).updateOne(
-        { _id: this._id },
+      await (simulation.constructor as SimulationModel).updateOne(
+        // Un document anonymisé ne repasse jamais par le nettoyage : la
+        // condition de statut vit dans le filtre pour que l'écriture ne puisse
+        // pas y réinjecter des montants dérivés de réponses personnelles.
+        { _id: simulation._id, status: { $ne: SimulationStatus.Anonymized } },
         {
           $set: {
             computedResults: {
               signature,
               computedAt: new Date(),
-              results: aides,
+              results: serializeResults(aides),
             },
           },
         },
@@ -178,6 +212,63 @@ SimulationSchema.method("compute", async function (showPrivate) {
   }
 
   return aides
+}
+
+SimulationSchema.method("compute", async function (options = {}) {
+  const { showPrivate = false, cache = true } = options
+  const situation = this.getSituation()
+  const id = String(this._id)
+
+  // Les paramètres alimentent les légendes des aides : les charger avant le
+  // calcul évite d'y inscrire les constantes de repli.
+  try {
+    await getParametersAsync(situation.dateDeValeur)
+  } catch (error) {
+    console.error(
+      `Unable to load the OpenFisca parameters before computing simulation ${id}`,
+      error,
+    )
+    Sentry.captureException(error)
+  }
+
+  // `showPrivate` produit un résultat enrichi réservé aux outils internes ;
+  // `cache: false` sert les appelants qui modifient le document en mémoire
+  // avant de calculer et dont le résultat ne décrit pas le document persisté.
+  // Ni l'un ni l'autre ne lit ou n'alimente le cache.
+  const context = showPrivate || !cache ? null : getComputeSignature()
+  // La situation entre dans la clé de cache : une migration appliquée à la
+  // volée peut modifier le document en mémoire sans être persistée.
+  const signature = context
+    ? `${context}|${getSituationSignature(situation)}`
+    : null
+
+  if (!signature) {
+    return computeAndCache(this, situation, id, showPrivate, null)
+  }
+
+  const cached = readCachedResults(this, signature, id)
+  if (cached) {
+    return cached
+  }
+
+  const key = `${id}|${signature}`
+  const pending = inFlightComputations.get(key)
+  if (pending) {
+    return pending
+  }
+
+  const computation = computeAndCache(
+    this,
+    situation,
+    id,
+    showPrivate,
+    signature,
+  ).finally(() => {
+    inFlightComputations.delete(key)
+  })
+  inFlightComputations.set(key, computation)
+
+  return computation
 })
 
 export default mongoose.model<Simulation, SimulationModel>(

@@ -30,10 +30,21 @@ interface ComputedResults {
   results?: any
 }
 
+interface ComputeOptions {
+  /** Résultat enrichi réservé aux outils internes, jamais mis en cache. */
+  showPrivate?: boolean
+  /**
+   * `false` pour les appelants qui modifient le document en mémoire avant de
+   * calculer : leur résultat ne décrit pas le document persisté et ne doit ni
+   * être lu ni évincer l'entrée de cache de l'usager.
+   */
+  cache?: boolean
+}
+
 interface SimulationMethods {
   isAccessible(keychain: Record<string, string>): boolean
   getSituation(): any
-  compute(showPrivate?: boolean): Promise<any>
+  compute(options?: ComputeOptions): Promise<any>
 }
 
 interface SimulationVirtuals {

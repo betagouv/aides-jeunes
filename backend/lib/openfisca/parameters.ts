@@ -11,7 +11,14 @@ export const parametersList: OpenfiscaParameters = {
   "marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel": 151.67,
 }
 
+// Une tentative infructueuse n'est mémoïsée que le temps de ce délai : sans
+// lui, un OpenFisca indisponible au démarrage du processus laisserait
+// `parameters` indéfini pour toute sa durée de vie, et les légendes
+// retomberaient sur les constantes de `parametersList`.
+const RETRY_DELAY_MS = 60 * 1000
+
 let parameterPromise
+let parameterFailedAt = 0
 let parameters
 
 async function fetchParameters() {
@@ -29,13 +36,34 @@ async function fetchParameters() {
 }
 
 function requestParameters() {
+  if (parameterFailedAt && Date.now() - parameterFailedAt >= RETRY_DELAY_MS) {
+    parameterPromise = undefined
+  }
+
   if (!parameterPromise) {
-    parameterPromise = fetchParameters().then((values) => {
-      parameters = values
-      return values
-    })
+    parameterFailedAt = 0
+    parameterPromise = fetchParameters().then(
+      (values) => {
+        parameters = values
+        return values
+      },
+      (error) => {
+        parameterFailedAt = Date.now()
+        throw error
+      },
+    )
   }
   return parameterPromise
+}
+
+/**
+ * Les paramètres alimentent les légendes des aides (« au lieu de 0,5 % ») :
+ * tant qu'ils ne sont pas chargés, `computeParameter` retombe sur les
+ * constantes de `parametersList`, dont la valeur ne correspond plus au barème
+ * courant. Un résultat calculé dans cet état ne doit pas être persisté.
+ */
+export function areParametersLoaded(): boolean {
+  return parameters !== undefined
 }
 
 function computeParameter(parameter, date) {
@@ -82,6 +110,7 @@ export async function getParametersAsync(date): Promise<OpenfiscaParameters> {
 
 export default {
   parametersList,
+  areParametersLoaded,
   getParameter,
   getParameters,
   getParametersAsync,

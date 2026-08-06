@@ -28,11 +28,6 @@ const options = [
     value: Soliguide,
   },
   {
-    title: ThemeLabel.UnivParisCite,
-    label: Theme.UnivParisCite,
-    value: DefaultDsfr,
-  },
-  {
     title: ThemeLabel.VilleDeVannes,
     label: Theme.VilleDeVannes,
     value: VilleDeVannes,

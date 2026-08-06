@@ -35,6 +35,83 @@ function callbackOf(fn): Promise<{ err: any; result: any }> {
 describe("remontée des erreurs OpenFisca", () => {
   beforeEach(() => vi.clearAllMocks())
 
+  describe("véracité de l'erreur transmise", () => {
+    // Une réponse d'erreur HTTP à corps vide donne `response.data === ""`.
+    // Transmise telle quelle, elle est falsy : les appelants testent `if (err)`
+    // et poursuivent comme si le calcul avait abouti.
+    it.each([
+      ["chaîne vide", ""],
+      ["zéro", 0],
+      ["objet nul", null],
+    ])("reste vraie quand OpenFisca répond %s", async (_libelle, data) => {
+      vi.mocked(axios.post).mockRejectedValue(
+        Object.assign(new Error("Request failed with status code 502"), {
+          name: "AxiosError",
+          code: "ERR_BAD_RESPONSE",
+          response: { status: 502, data },
+        }),
+      )
+
+      const { err, result } = await callbackOf((cb) =>
+        sendToOpenfisca("calculate", () => ({}))({}, cb),
+      )
+
+      expect(err).toBeTruthy()
+      expect(result).toBeUndefined()
+    })
+
+    it("traite une réponse 200 vide comme une erreur", async () => {
+      vi.mocked(axios.post).mockResolvedValue({ status: 200, data: "" })
+
+      const { err, result } = await callbackOf((cb) =>
+        sendToOpenfisca("calculate", () => ({}))({}, cb),
+      )
+
+      expect(err).toBeTruthy()
+      expect(result).toBeUndefined()
+    })
+
+    it("n'expose pas l'adresse interne du service sur une erreur réseau", async () => {
+      vi.mocked(axios.post).mockRejectedValue(
+        Object.assign(new Error("connect ECONNREFUSED 10.0.0.12:2000"), {
+          name: "Error",
+          code: "ECONNREFUSED",
+        }),
+      )
+
+      const { err } = await callbackOf((cb) =>
+        sendToOpenfisca("calculate", () => ({}))({}, cb),
+      )
+
+      expect(JSON.stringify(err)).not.toContain("10.0.0.12")
+      expect(err.code).toBe("ECONNREFUSED")
+    })
+
+    it("conserve le message d'abandon, que le front utilise", async () => {
+      vi.mocked(axios.post).mockRejectedValue(abortError())
+
+      const { err } = await callbackOf((cb) =>
+        sendToOpenfisca("calculate", () => ({}))({}, cb),
+      )
+
+      expect(err.message).toMatch(/time.?out/i)
+    })
+
+    it("ne renvoie pas la pile quand la construction de la requête échoue", async () => {
+      const { err } = await callbackOf((cb) =>
+        sendToOpenfisca("calculate", () => {
+          throw Object.assign(new TypeError("boom"), {
+            stack: "TypeError\n    at /srv/app/backend/lib/openfisca/x.ts:1:1",
+          })
+        })({}, cb),
+      )
+
+      expect(err).toBeTruthy()
+      expect(err).not.toHaveProperty("stack")
+      expect(JSON.stringify(err)).not.toContain("/srv/app")
+    })
+  })
+
   describe("sendToOpenfisca", () => {
     it("ne divulgue ni la situation personnelle ni les chemins du serveur", async () => {
       vi.mocked(axios.post).mockRejectedValue(abortError())

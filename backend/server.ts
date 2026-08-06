@@ -2,6 +2,7 @@ import express, { ErrorRequestHandler, Application } from "express"
 import path from "path"
 import morgan from "morgan"
 import axios from "axios"
+import { omit } from "lodash-es"
 
 import configure from "./configure.js"
 
@@ -20,9 +21,18 @@ app.route("/*").get(function (req, res) {
   res.sendFile(path.join(__dirname, "../../dist/index.html"))
 })
 
+// Les objets d'erreur des bibliothèques HTTP portent la pile d'appels et la
+// configuration de la requête sortante, avec son URL interne et son contenu.
+// Le reste, dont le corps renvoyé par OpenFisca, est utile au diagnostic.
+const UNSAFE_ERROR_KEYS = ["stack", "config", "request", "response"]
+
 const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err)
-  res.status(parseInt(err.code) || 500).send(err)
+  res.status(parseInt(err?.code) || 500).send({
+    ...omit(err || {}, UNSAFE_ERROR_KEYS),
+    name: err?.name,
+    message: err?.message || "Une erreur est survenue.",
+  })
   next()
 }
 app.use([errorMiddleware, morgan("combined", { stream: process.stderr })])

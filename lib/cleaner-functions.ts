@@ -84,6 +84,8 @@ export function anonymizeSimulation(simulation) {
     all: answersAnonymized,
     current: [],
   }
+  // Montants d'aides dérivés des réponses : donnée personnelle à purger.
+  simulation.computedResults = undefined
   simulation.status = SimulationStatus.Anonymized
 
   return simulation

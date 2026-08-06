@@ -1,6 +1,11 @@
 import mongoose from "mongoose"
+import * as Sentry from "@sentry/node"
 import utils from "../lib/utils.js"
 import openfisca from "../lib/openfisca/index.js"
+import {
+  getComputeSignature,
+  getSituationSignature,
+} from "../lib/openfisca/compute-signature.js"
 import benefits from "../../data/all.js"
 import { computeAides } from "../../lib/benefits/compute.js"
 import { generateSituation } from "../../lib/situations.js"
@@ -66,6 +71,11 @@ const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
     },
     teleservice: String,
     token: String,
+    computedResults: {
+      signature: String,
+      computedAt: Date,
+      results: Object,
+    },
   },
   { minimize: false },
 )
@@ -106,24 +116,68 @@ SimulationSchema.method("getSituation", function () {
   return generateSituation(this)
 })
 
-SimulationSchema.method("compute", function (showPrivate) {
-  const situation = this.getSituation()
-  const id = String(this._id)
+function calculate(situation): Promise<any> {
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
       if (err) {
         return reject(err)
       }
-
-      const aides = computeBenefits(
-        situation,
-        id,
-        openfiscaResponse,
-        showPrivate,
-      )
-      resolve(aides)
+      resolve(openfiscaResponse)
     })
   })
+}
+
+SimulationSchema.method("compute", async function (showPrivate) {
+  const situation = this.getSituation()
+  const id = String(this._id)
+
+  // `showPrivate` produit un résultat enrichi réservé aux outils internes : il
+  // ne doit ni être servi depuis le cache ni l'alimenter.
+  const context = showPrivate ? null : await getComputeSignature()
+  // La situation entre dans la clé de cache : certains appelants modifient le
+  // document en mémoire avant de calculer (scénarios du téléservice logement,
+  // migrations appliquées à la volée) et ne décrivent alors plus le document
+  // persisté.
+  const signature = context
+    ? `${context}|${getSituationSignature(situation)}`
+    : null
+
+  if (signature && this.computedResults?.signature === signature) {
+    return this.computedResults.results
+  }
+
+  const openfiscaResponse = await calculate(situation)
+  const aides = computeBenefits(situation, id, openfiscaResponse, showPrivate)
+
+  if (signature) {
+    try {
+      // `updateOne` plutôt que `save` : le hook `pre("save")` régénère le token
+      // et une écriture complète du document exposerait à des conflits de
+      // version sur une simple lecture des résultats.
+      await (this.constructor as SimulationModel).updateOne(
+        { _id: this._id },
+        {
+          $set: {
+            computedResults: {
+              signature,
+              computedAt: new Date(),
+              results: aides,
+            },
+          },
+        },
+      )
+    } catch (error) {
+      // Le calcul a abouti : l'échec de mise en cache est signalé mais ne prive
+      // pas l'appelant de son résultat.
+      console.error(
+        `Unable to cache the computed results of simulation ${id}`,
+        error,
+      )
+      Sentry.captureException(error)
+    }
+  }
+
+  return aides
 })
 
 export default mongoose.model<Simulation, SimulationModel>(

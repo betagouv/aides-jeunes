@@ -114,7 +114,7 @@ async function create(req: Request, res, next) {
 
   try {
     const persistedSimulation = await Simulations.create(
-      omit(req.body, "createdAt", "status", "token"),
+      omit(req.body, "computedResults", "createdAt", "status", "token"),
     )
 
     clearCookies(req, res)

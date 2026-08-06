@@ -21,12 +21,19 @@ interface SimulationAttributes {
   status: SimulationStatus
   teleservice?: string
   token: string
+  computedResults?: ComputedResults
+}
+
+interface ComputedResults {
+  signature?: string
+  computedAt?: Date
+  results?: any
 }
 
 interface SimulationMethods {
   isAccessible(keychain: Record<string, string>): boolean
   getSituation(): any
-  compute(): Promise<any>
+  compute(showPrivate?: boolean): Promise<any>
 }
 
 interface SimulationVirtuals {

@@ -31,6 +31,12 @@ describe("anonymizeSimulation", () => {
       id: anId,
       status: SimulationStatus.New,
       dateDeValeur: "2023-04-20T13:36:57.634Z",
+      computedResults: {
+        signature:
+          "openfisca:openfisca-france@175.1.7|benefits:abc|simulation:17",
+        computedAt: new Date("2023-04-20T13:36:57.634Z"),
+        results: { droitsEligibles: [{ id: "rsa", montant: 500 }] },
+      },
       answers: {
         all: [
           {
@@ -147,6 +153,7 @@ describe("anonymizeSimulation", () => {
     expect(anonymizedSimulation.id).toEqual(anId)
     expect(anonymizedSimulation.status).toEqual(SimulationStatus.Anonymized)
     expect(anonymizedSimulation.answers.current).toEqual([])
+    expect(anonymizedSimulation.computedResults).toEqual(undefined)
 
     const anonymizedAnswers = anonymizedSimulation.answers.all
 

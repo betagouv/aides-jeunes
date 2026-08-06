@@ -5,7 +5,7 @@ bind = os.getenv('OPENFISCA_BIND_HOST', '127.0.0.1:' + port)
 # Un calcul normal prend quelques secondes. Au-delà, le worker est tué et
 # recyclé plutôt que de rester immobilisé : avec un pool de workers sync,
 # chaque worker bloqué retire une place de concurrence à tout le cluster.
-timeout = int(os.getenv('OPENFISCA_TIMEOUT', 30))
+timeout = int(os.getenv('OPENFISCA_TIMEOUT') or 30)
 workers = os.getenv('OPENFISCA_WORKERS', 8)
 
 profiler = False

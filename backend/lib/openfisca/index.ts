@@ -31,7 +31,18 @@ export function sendToOpenfisca(endpoint, transform?: any) {
       .then(function (result) {
         callback(null, result)
       })
-      .catch(callback)
+      .catch((err) =>
+        // Le corps d'erreur remonte jusqu'au client et jusqu'aux logs. Un
+        // AxiosError brut y ferait figurer `config.data`, c'est-à-dire la
+        // situation personnelle complète, ainsi que les chemins du serveur.
+        callback(
+          err.response?.data ?? {
+            name: err.name,
+            code: err.code,
+            message: err.message,
+          },
+        ),
+      )
   }
 }
 

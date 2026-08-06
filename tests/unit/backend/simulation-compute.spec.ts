@@ -6,13 +6,27 @@ const {
   areParametersLoaded,
   getParametersAsync,
   captureException,
+  ttl,
 } = vi.hoisted(() => ({
   getComputeSignature: vi.fn(),
   computeAides: vi.fn(),
   areParametersLoaded: vi.fn(),
   getParametersAsync: vi.fn(),
   captureException: vi.fn(),
+  ttl: { value: 24 * 60 * 60 * 1000 },
 }))
+
+vi.mock("@backend/config/index.js", async (importOriginal) => {
+  const original = ((await importOriginal()) as any).default
+  return {
+    default: {
+      ...original,
+      get computedResultsTtlMs() {
+        return ttl.value
+      },
+    },
+  }
+})
 
 // Seule la signature globale est simulée : l'empreinte de situation, qui
 // complète la clé de cache, reste celle du code de production, tout comme la
@@ -104,6 +118,7 @@ describe("Simulation.compute", () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
+    ttl.value = 24 * 60 * 60 * 1000
     computeAides.mockReturnValue(freshResults)
     getComputeSignature.mockReturnValue(A_CONTEXT)
     areParametersLoaded.mockReturnValue(true)
@@ -292,6 +307,20 @@ describe("Simulation.compute", () => {
 
       expect(results).toEqual(freshResults)
       expect(getComputeSignature).not.toHaveBeenCalled()
+      expect(calculateSpy).toHaveBeenCalledTimes(1)
+      expect(updateOneSpy).not.toHaveBeenCalled()
+    })
+  })
+
+  // L'interrupteur d'arrêt doit couper l'écriture autant que la lecture.
+  describe("when the TTL is set to zero", () => {
+    it("neither reads nor writes the cache", async () => {
+      ttl.value = 0
+      const simulation = buildSimulation(aCacheEntry(cachedResults))
+
+      const results = await simulation.compute()
+
+      expect(results).toEqual(freshResults)
       expect(calculateSpy).toHaveBeenCalledTimes(1)
       expect(updateOneSpy).not.toHaveBeenCalled()
     })

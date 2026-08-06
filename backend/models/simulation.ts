@@ -233,9 +233,11 @@ SimulationSchema.method("compute", async function (options = {}) {
 
   // `showPrivate` produit un résultat enrichi réservé aux outils internes ;
   // `cache: false` sert les appelants qui modifient le document en mémoire
-  // avant de calculer et dont le résultat ne décrit pas le document persisté.
-  // Ni l'un ni l'autre ne lit ou n'alimente le cache.
-  const context = showPrivate || !cache ? null : getComputeSignature()
+  // avant de calculer et dont le résultat ne décrit pas le document persisté ;
+  // un TTL nul est l'interrupteur d'arrêt du cache. Aucun des trois ne lit ni
+  // n'alimente le cache.
+  const cacheEnabled = cache && !showPrivate && config.computedResultsTtlMs > 0
+  const context = cacheEnabled ? getComputeSignature() : null
   // La situation entre dans la clé de cache : une migration appliquée à la
   // volée peut modifier le document en mémoire sans être persistée.
   const signature = context

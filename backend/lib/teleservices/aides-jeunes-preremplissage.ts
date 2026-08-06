@@ -8,10 +8,8 @@ AidesJeunesPreremplissage.prototype.toInternal = function () {
 
 AidesJeunesPreremplissage.prototype.toExternal = function () {
   try {
-    // Calcul mené pour un tiers sur un document que l'appelant a pu modifier en
-    // mémoire : il reste hors du cache de l'usager.
     const p = this.simulation
-      .compute({ cache: false })
+      .compute()
       .then((results) => {
         return results
       })

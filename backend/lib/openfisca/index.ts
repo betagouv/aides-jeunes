@@ -24,7 +24,9 @@ export function sendToOpenfisca(endpoint, transform?: any) {
     }
 
     axios
-      .post(`${config.openfiscaURL}/${endpoint}`, request)
+      .post(`${config.openfiscaURL}/${endpoint}`, request, {
+        timeout: config.openfiscaTimeout,
+      })
       .then((response) => response.data)
       .then(function (result) {
         callback(null, result)

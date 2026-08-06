@@ -10,7 +10,6 @@ import axios from "axios"
 import { generateSituation } from "@lib/situations.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 import storageService from "@/lib/storage-service.js"
-import { useThemeStore } from "@/stores/theme.js"
 import {
   Calculs,
   PersistedStore,
@@ -417,21 +416,6 @@ export const useStore = defineStore("store", {
       const simulation = { ...this.simulation, _id: undefined }
       if (this.simulationId) {
         simulation.modifiedFrom = this.simulationId
-      }
-
-      //custom interest school
-      if (useThemeStore().theme === "univ-paris-cite") {
-        const flagAnswer: Answer = {
-          entityName: "individu",
-          id: "demandeur",
-          fieldName: "_interetUnivParisCite",
-          value: true,
-        }
-        simulation.answers = {
-          ...simulation.answers,
-          all: storeAnswer(simulation.answers.all, flagAnswer),
-          current: storeAnswer(simulation.answers.current, flagAnswer),
-        }
       }
 
       simulation.abtesting = ABTestingService.getValues()

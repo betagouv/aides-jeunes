@@ -3,7 +3,6 @@ export enum Theme {
   LightBlue = "light-blue",
   BordeauxMetropole = "bordeaux-metropole",
   Soliguide = "soliguide",
-  UnivParisCite = "univ-paris-cite",
   VilleDeVannes = "ville-de-vannes",
 }
 
@@ -13,5 +12,4 @@ export enum ThemeLabel {
   BordeauxMetropole = "Thème Bordeaux Métropole",
   Soliguide = "Thème Soliguide",
   VilleDeVannes = "Thème Ville de Vannes",
-  UnivParisCite = "Thème Université Paris Cité",
 }

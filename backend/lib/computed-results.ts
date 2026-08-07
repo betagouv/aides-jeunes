@@ -9,12 +9,14 @@ type Group = (typeof GROUPS)[number]
 type SerializedDroit = {
   id: string
   overlay?: Record<string, unknown>
-  undefinedKeys?: string[]
+  // Chemins, et non simples clés : BSON écrit `null` pour un `undefined`, à
+  // n'importe quelle profondeur.
+  undefinedPaths?: string[][]
 }
 
 // Une entrée sérialisée sous un autre format ne décrit pas les mêmes données :
 // elle est refusée plutôt que relue de travers.
-const SERIALIZATION_FORMAT = 1
+const SERIALIZATION_FORMAT = 2
 
 export type SerializedResults = Record<Group, SerializedDroit[]> & {
   format: number
@@ -63,17 +65,47 @@ function containsFunction(value: unknown): boolean {
  * `legend`, `compute`…) et les `undefined` ne survivent pas à un aller-retour
  * BSON, et le catalogue les restitue intacts à la relecture.
  */
+// Un `undefined` imbriqué ne se distingue plus d'un `null` après un aller-retour
+// BSON : son emplacement est relevé pour être rétabli à la relecture.
+function collectUndefinedPaths(
+  value: unknown,
+  path: string[],
+  paths: string[][],
+): void {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => {
+      if (item === undefined) {
+        paths.push([...path, String(index)])
+        return
+      }
+      collectUndefinedPaths(item, [...path, String(index)], paths)
+    })
+    return
+  }
+
+  if (value && typeof value === "object" && !(value instanceof Date)) {
+    for (const key of Object.keys(value)) {
+      const child = (value as Record<string, unknown>)[key]
+      if (child === undefined) {
+        paths.push([...path, key])
+        continue
+      }
+      collectUndefinedPaths(child, [...path, key], paths)
+    }
+  }
+}
+
 function serializeDroit(droit: Record<string, unknown>): SerializedDroit {
   const id = droit.id as string
   const base = getCatalogBenefit(id)
   const overlay: Record<string, unknown> = {}
-  const undefinedKeys: string[] = []
+  const undefinedPaths: string[][] = []
 
   for (const key of Object.keys(droit)) {
     const value = droit[key]
 
     if (value === undefined) {
-      undefinedKeys.push(key)
+      undefinedPaths.push([key])
       continue
     }
 
@@ -88,14 +120,15 @@ function serializeDroit(droit: Record<string, unknown>): SerializedDroit {
     }
 
     overlay[key] = value
+    collectUndefinedPaths(value, [key], undefinedPaths)
   }
 
   const serialized: SerializedDroit = { id }
   if (Object.keys(overlay).length) {
     serialized.overlay = overlay
   }
-  if (undefinedKeys.length) {
-    serialized.undefinedKeys = undefinedKeys
+  if (undefinedPaths.length) {
+    serialized.undefinedPaths = undefinedPaths
   }
 
   return serialized
@@ -106,8 +139,14 @@ function deserializeDroit(
 ): Record<string, unknown> {
   const droit = { ...getCatalogBenefit(serialized.id), ...serialized.overlay }
 
-  for (const key of serialized.undefinedKeys ?? []) {
-    droit[key] = undefined
+  for (const path of serialized.undefinedPaths ?? []) {
+    let target: any = droit
+    for (const segment of path.slice(0, -1)) {
+      target = target?.[segment]
+    }
+    if (target && typeof target === "object") {
+      target[path[path.length - 1]] = undefined
+    }
   }
 
   return droit

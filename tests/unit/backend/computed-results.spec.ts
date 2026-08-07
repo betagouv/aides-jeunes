@@ -267,4 +267,24 @@ describe("email rendered from cached results", () => {
       basicBenefitText(lep, openfiscaParameters),
     )
   })
+
+  it("restitue les undefined imbriqués, que BSON écrit en null", () => {
+    const droit = {
+      id: "rsa",
+      montant: 600,
+      institution: { slug: "caf", code_insee: undefined, label: "CAF" },
+      tags: ["a", undefined],
+    }
+
+    const relu = deserializeResults(
+      BSON.deserialize(
+        BSON.serialize(serializeResults({ droitsEligibles: [droit], droitsInjectes: [] })),
+      ) as any,
+    )
+
+    const servi: any = relu.droitsEligibles[0]
+    expect(servi.institution.code_insee).toBeUndefined()
+    expect("code_insee" in servi.institution).toBe(true)
+    expect(servi.tags[1]).toBeUndefined()
+  })
 })

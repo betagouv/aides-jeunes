@@ -579,7 +579,11 @@ export const useStore = defineStore("store", {
       return axios
         .get(`/api/openfisca/parameters/${date.toISOString()}`)
         .then((response) => {
-          this.openFiscaParameters = response.data
+          // Fusion, et non remplacement : un 200 au corps inattendu — page
+          // d'erreur d'un intermédiaire, réponse tronquée — laisserait sinon un
+          // paramètre indéfini, et les options qui s'en déduisent vaudraient
+          // NaN. Le repli est un plancher, pas seulement un état initial.
+          this.openFiscaParameters = { ...parametersList, ...response.data }
         })
         .catch(() => undefined) // Prevent unhandled promise rejection noise in Sentry on network hiccups.
     },

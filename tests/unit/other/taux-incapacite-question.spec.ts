@@ -1,5 +1,6 @@
-import { expect, beforeEach } from "vitest"
+import { expect, vi, beforeEach } from "vitest"
 import { setActivePinia, createPinia } from "pinia"
+import axios from "axios"
 import Individu from "@lib/properties/individu-properties.js"
 import { parametersList } from "@lib/openfisca-parameters.js"
 import { useStore } from "@/stores/index.js"
@@ -28,6 +29,40 @@ describe("question du taux d'incapacité", () => {
 
     expect(items.every((item) => Number.isFinite(item.value))).toBe(true)
     expect(items.every((item) => !item.label.includes("NaN"))).toBe(true)
+  })
+
+  // Un intermédiaire — reverse-proxy, portail captif — peut répondre 200 avec
+  // tout autre chose que les paramètres. Le `.catch` ne voit rien : le statut
+  // est bon. Un remplacement en bloc rouvrirait alors la fabrique de NaN.
+  it.each([
+    ["une page HTML", "<html><body>502 Bad Gateway</body></html>"],
+    ["un corps vide", ""],
+    ["une réponse tronquée", { "marche_travail.salaire_minimum.smic": 12.31 }],
+  ])(
+    "garde des options exploitables face à un 200 portant %s",
+    async (_libelle, data) => {
+      vi.spyOn(axios, "get").mockResolvedValue({ data } as any)
+      const store = useStore()
+
+      await store.setOpenFiscaParameters()
+      const items = Individu.taux_incapacite.getItems(
+        propertyData(store.openFiscaParameters),
+      )
+
+      expect(items.every((item) => Number.isFinite(item.value))).toBe(true)
+      expect(items.every((item) => !item.label.includes("NaN"))).toBe(true)
+    },
+  )
+
+  it("laisse la valeur d'OpenFisca l'emporter sur le repli", async () => {
+    vi.spyOn(axios, "get").mockResolvedValue({
+      data: { [PARAMETRE_TAUX_MAX]: 0.75 },
+    } as any)
+    const store = useStore()
+
+    await store.setOpenFiscaParameters()
+
+    expect(store.openFiscaParameters[PARAMETRE_TAUX_MAX]).toBe(0.75)
   })
 
   it("propose trois paliers exploitables", () => {

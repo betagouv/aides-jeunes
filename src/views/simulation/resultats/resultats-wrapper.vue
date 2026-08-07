@@ -92,8 +92,12 @@ const askUnusableAnswerAgain = (): boolean => {
 // une page qui ne sera jamais affichée pèse sur le service même dont la
 // saturation est en cause.
 const restoreLatestSimulation = async () => {
+  // Sans identifiant en cookie, la restauration renvoie vers l'accueil sans
+  // rien charger. `simulationId` peut pourtant survivre de la session
+  // précédente : s'y fier lancerait un calcul sur une page déjà quittée.
+  const restoredId = Simulation.getLatestId()
   await Simulation.restoreLatestSimulationWithoutResultsComputing()
-  if (!store.simulationId || store.simulationAnonymized) {
+  if (!restoredId || !store.simulationId || store.simulationAnonymized) {
     return
   }
   if (askUnusableAnswerAgain()) {

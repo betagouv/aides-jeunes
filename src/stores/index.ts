@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
 import { version } from "@lib/simulation.js"
+import { parametersList } from "@lib/openfisca-parameters.js"
 import { datesGenerator } from "@lib/dates.js"
 import { generateAllSteps } from "@lib/state/generator.js"
 import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
@@ -68,7 +69,12 @@ function defaultStore(): Store {
     title: null,
     modalState: null,
     saveSituationError: null,
-    openFiscaParameters: {},
+    // Les paramètres partent des valeurs de repli — celles-là mêmes que le
+    // serveur sert quand OpenFisca ne répond pas — et sont remplacés dès que la
+    // requête aboutit. Un dictionnaire vide n'est pas une absence sans
+    // conséquence : les options d'une question calculée à partir d'un paramètre
+    // vaudraient NaN, et cette valeur s'enregistrerait comme réponse.
+    openFiscaParameters: { ...parametersList },
     recapEmailState: undefined,
     recapPhoneState: undefined,
     external_id: undefined,
@@ -573,7 +579,11 @@ export const useStore = defineStore("store", {
       return axios
         .get(`/api/openfisca/parameters/${date.toISOString()}`)
         .then((response) => {
-          this.openFiscaParameters = response.data
+          // Fusion, et non remplacement : un 200 au corps inattendu — page
+          // d'erreur d'un intermédiaire, réponse tronquée — laisserait sinon un
+          // paramètre indéfini, et les options qui s'en déduisent vaudraient
+          // NaN. Le repli est un plancher, pas seulement un état initial.
+          this.openFiscaParameters = { ...parametersList, ...response.data }
         })
         .catch(() => undefined) // Prevent unhandled promise rejection noise in Sentry on network hiccups.
     },

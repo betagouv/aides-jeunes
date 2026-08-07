@@ -233,3 +233,38 @@ describe("assainissement du corps d'erreur", () => {
     expect(err.message).toBeTruthy()
   })
 })
+
+describe("routes anonymes /api/openfisca/*", () => {
+  it("ne renvoie pas l'adresse interne du service via getter.get", async () => {
+    const axiosGet = vi.fn().mockRejectedValue(
+      Object.assign(new Error("connect ECONNREFUSED 10.0.0.12:2000"), {
+        isAxiosError: true,
+        code: "ECONNREFUSED",
+      }),
+    )
+    ;(axios as any).get = axiosGet
+    vi.spyOn(console, "error").mockImplementation(() => {})
+
+    const { default: getter } = await import("@backend/lib/openfisca/getter.js")
+    const callback = vi.fn()
+    const err = await getter.get("/variables", callback).catch((e) => e)
+
+    expect(callback).not.toHaveBeenCalled()
+    expect(err.message).not.toContain("10.0.0.12")
+    expect(err.code).toBe("ECONNREFUSED")
+  })
+
+  it("ne réécrit pas une exception levée par l'appelant", async () => {
+    ;(axios as any).get = vi.fn().mockResolvedValue({ data: { a: 1 } })
+    const bug = new TypeError("boom dans le handler de route")
+
+    const { default: getter } = await import("@backend/lib/openfisca/getter.js")
+    const err = await getter
+      .get("/variables", () => {
+        throw bug
+      })
+      .catch((e) => e)
+
+    expect(err).toBe(bug)
+  })
+})

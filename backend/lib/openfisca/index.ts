@@ -81,6 +81,10 @@ export function sendToOpenfisca(endpoint, transform?: any) {
         // `config` ou `response`, c'est porter la requête sortante et donc la
         // situation personnelle, quelle que soit l'origine.
         if (isTransportError(err)) {
+          // L'objet transmis est volontairement pauvre : le message d'origine,
+          // qui distingue un refus de connexion d'un abandon ou d'un 502, est
+          // conservé côté serveur pour rester diagnosticable.
+          console.error(`OpenFisca ${endpoint} request failed`, err.message)
           return callback(normalizeError(err))
         }
         Sentry.captureException(err)

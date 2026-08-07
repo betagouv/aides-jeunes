@@ -5,13 +5,29 @@ import config from "../../config/index.js"
 // répondre laisse ces requêtes en attente indéfiniment.
 const requestOptions = { timeout: config.openfiscaTimeout }
 
+// Le message d'axios porte l'adresse interne du service, et ces erreurs
+// atteignent le client sur les routes anonymes /api/openfisca/*.
+function unavailable(error) {
+  console.error("OpenFisca request failed", error)
+  return Object.assign(new Error("OF maybe offline - Failed to fetch data"), {
+    code: error.code,
+  })
+}
+
 function get(item: string, callback: (any) => void): Promise<void> {
-  return axios
-    .get(`${config.openfiscaURL}${item}`, requestOptions)
-    .then((response) => response.data)
-    .then(function (result) {
-      callback(result)
-    })
+  return (
+    axios
+      .get(`${config.openfiscaURL}${item}`, requestOptions)
+      .then((response) => response.data)
+      // Placé avant le callback, jamais en fin de chaîne : en fin de chaîne il
+      // réécrirait aussi les exceptions levées par l'appelant.
+      .catch((error) => {
+        throw unavailable(error)
+      })
+      .then(function (result) {
+        callback(result)
+      })
+  )
 }
 
 async function getPromise(item): Promise<any> {
@@ -19,14 +35,7 @@ async function getPromise(item): Promise<any> {
     .get(`${config.openfiscaURL}${item}`, requestOptions)
     .then((response) => response.data)
     .catch((error) => {
-      // Le message d'axios porte l'adresse interne du service, et cette erreur
-      // atteint désormais le client sur les routes /api/openfisca/*.
-      throw Object.assign(
-        new Error("OF maybe offline - Failed to fetch data"),
-        {
-          code: error.code,
-        },
-      )
+      throw unavailable(error)
     })
 }
 

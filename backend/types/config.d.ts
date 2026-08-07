@@ -53,6 +53,7 @@ export interface Configuration {
     url: string
     version: number
   }
+  computedResultsTtlMs: number
   mongodb_url: string
   sessionSecret: string
   mattermost_post_url: string

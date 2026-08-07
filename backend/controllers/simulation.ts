@@ -81,7 +81,14 @@ function validateAccess(req: Request, res, next) {
 }
 
 function show(req: Request, res) {
-  res.send(req.simulation)
+  // `computedResults` est un état interne de cache : ni le front ni les
+  // téléservices ne le consomment, et il alourdit une route chaude.
+  // `toJSON` et non `toObject` : c'est lui qu'Express appellerait, et lui seul
+  // aplatit les Map du schéma. `toObject` rendrait `abtesting` vide.
+  const simulation = req.simulation?.toJSON
+    ? req.simulation.toJSON()
+    : req.simulation
+  res.send(omit(simulation, "computedResults"))
 }
 
 function clearCookies(req: Request, res) {
@@ -114,7 +121,7 @@ async function create(req: Request, res, next) {
 
   try {
     const persistedSimulation = await Simulations.create(
-      omit(req.body, "createdAt", "status", "token"),
+      omit(req.body, "computedResults", "createdAt", "status", "token"),
     )
 
     clearCookies(req, res)

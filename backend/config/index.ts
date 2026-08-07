@@ -17,6 +17,20 @@ const isProduction = process.env.NODE_ENV == "production"
 
 const contextName = process.env.CONTEXT_NAME || "1jeune1solution"
 
+function readNonNegativeNumber(name: string, defaultValue: number): number {
+  const raw = process.env[name]
+  if (raw === undefined || raw === "") {
+    return defaultValue
+  }
+
+  const value = Number(raw)
+  if (!Number.isFinite(value) || value < 0) {
+    throw new Error(`${name} must be a non-negative number, got "${raw}"`)
+  }
+
+  return value
+}
+
 const config: Configuration = {
   env: process.env.NODE_ENV || "development",
   baseURL:
@@ -108,6 +122,12 @@ const config: Configuration = {
     url: process.env.VITE_STATS_URL || "http://localhost:4000/benefits",
     version: Number(process.env.VITE_STATS_VERSION) || 2,
   },
+  // Durée de validité d'un résultat de simulation mis en cache. Elle borne la
+  // dérive que la signature de calcul ne peut pas détecter, par exemple une
+  // modification de la logique JavaScript sans changement de version. Une durée
+  // nulle désactive le cache.
+  computedResultsTtlMs:
+    readNonNegativeNumber("COMPUTED_RESULTS_TTL_HOURS", 24) * 60 * 60 * 1000,
   mongodb_url:
     process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
   sentry: {

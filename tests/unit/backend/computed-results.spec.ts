@@ -278,7 +278,9 @@ describe("email rendered from cached results", () => {
 
     const relu = deserializeResults(
       BSON.deserialize(
-        BSON.serialize(serializeResults({ droitsEligibles: [droit], droitsInjectes: [] })),
+        BSON.serialize(
+          serializeResults({ droitsEligibles: [droit], droitsInjectes: [] }),
+        ),
       ) as any,
     )
 

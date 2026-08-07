@@ -17,6 +17,7 @@ export interface Configuration {
     scopes: string
   }
   openfiscaURL: string
+  openfiscaTimeout: number
   openfiscaAxeURL: string
   openfiscaPublicURL: string
   openfiscaTracerURL: string

@@ -49,6 +49,9 @@ const config: Configuration = {
   },
   openfiscaURL:
     process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",
+  // Doit rester inférieur au `timeout` gunicorn d'OpenFisca (openfisca/config.py) :
+  // abandonner côté client ne libère pas le worker, c'est gunicorn qui le recycle.
+  openfiscaTimeout: Number(process.env.OPENFISCA_TIMEOUT_MS) || 25000,
   openfiscaAxeURL: isProduction
     ? "https://betagouv.github.io/mes-aides-changent"
     : "http://127.0.0.1:3000",

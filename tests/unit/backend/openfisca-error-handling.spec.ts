@@ -190,3 +190,46 @@ describe("remontée des erreurs OpenFisca", () => {
     })
   })
 })
+
+describe("assainissement du corps d'erreur", () => {
+  beforeEach(() => vi.clearAllMocks())
+
+  it("laisse intacte une exception applicative levée par le callback", async () => {
+    vi.mocked(axios.post).mockResolvedValue({ status: 200, data: { a: 1 } })
+    const bug = new TypeError("Cannot set properties of undefined")
+
+    const received = await new Promise<any>((resolve) => {
+      let first = true
+      sendToOpenfisca("calculate", () => ({}))({}, (err) => {
+        if (first) {
+          first = false
+          throw bug
+        }
+        resolve(err)
+      })
+    })
+
+    // Le message et la pile doivent survivre : sans eux, un défaut de calcul
+    // devient indébogable dans les logs comme dans Sentry.
+    expect(received).toBe(bug)
+    expect(received.stack).toBeTruthy()
+  })
+
+  it("ne déplie pas un corps d'erreur textuel en dictionnaire de caractères", async () => {
+    vi.mocked(axios.post).mockRejectedValue(
+      Object.assign(new Error("Request failed with status code 502"), {
+        isAxiosError: true,
+        code: "ERR_BAD_RESPONSE",
+        response: { status: 502, data: "<html>502 Bad Gateway</html>" },
+      }),
+    )
+
+    const { err } = await callbackOf((cb) =>
+      sendToOpenfisca("calculate", () => ({}))({}, cb),
+    )
+
+    expect(err).not.toHaveProperty("0")
+    expect(typeof err).toBe("object")
+    expect(err.message).toBeTruthy()
+  })
+})

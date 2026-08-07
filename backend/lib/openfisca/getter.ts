@@ -19,8 +19,13 @@ async function getPromise(item): Promise<any> {
     .get(`${config.openfiscaURL}${item}`, requestOptions)
     .then((response) => response.data)
     .catch((error) => {
-      throw new Error(
-        `OF maybe offline - Failed to fetch data : ${error.message}`,
+      // Le message d'axios porte l'adresse interne du service, et cette erreur
+      // atteint désormais le client sur les routes /api/openfisca/*.
+      throw Object.assign(
+        new Error("OF maybe offline - Failed to fetch data"),
+        {
+          code: error.code,
+        },
       )
     })
 }

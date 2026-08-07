@@ -26,12 +26,27 @@ app.route("/*").get(function (req, res) {
 // Le reste, dont le corps renvoyé par OpenFisca, est utile au diagnostic.
 const UNSAFE_ERROR_KEYS = ["stack", "config", "request", "response"]
 
+// Un `code` d'erreur n'est un statut HTTP que s'il en a la forme : celui d'une
+// réponse OpenFisca ou d'un pilote Mongo pilote sinon la réponse, jusqu'à faire
+// lever `res.status()` sur une valeur hors plage.
+function httpStatusOf(err): number {
+  const code = Number(err?.code)
+  return Number.isInteger(code) && code >= 400 && code <= 599 ? code : 500
+}
+
 const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err)
-  res.status(parseInt(err?.code) || 500).send({
-    ...omit(err || {}, UNSAFE_ERROR_KEYS),
+  // Une erreur peut être une chaîne — page 502 d'un intermédiaire. L'étaler
+  // comme un objet la déploierait en un dictionnaire indexé caractère par
+  // caractère.
+  const details =
+    err && typeof err === "object" ? omit(err, UNSAFE_ERROR_KEYS) : {}
+  res.status(httpStatusOf(err)).send({
+    ...details,
     name: err?.name,
-    message: err?.message || "Une erreur est survenue.",
+    message:
+      err?.message ||
+      (typeof err === "string" ? err : "Une erreur est survenue."),
   })
   next()
 }

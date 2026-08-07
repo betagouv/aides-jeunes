@@ -43,14 +43,12 @@ const reponse = (fieldName: string, value: unknown) => ({
   value,
 })
 
-// Une simulation telle que le serveur la renvoie après la migration v18 : la
-// réponse au taux d'incapacité en a été retirée, le handicap déclaré demeure.
-function simulationMigree(avecTaux = false) {
+function simulation(reponsesTaux: any[]) {
   const answers = [
     reponse("date_naissance", "1995-01-01"),
     reponse("activite", "inactif"),
     reponse("handicap", true),
-    ...(avecTaux ? [reponse("taux_incapacite", 0.9)] : []),
+    ...reponsesTaux,
   ]
   return {
     _id: "sim-1",
@@ -60,6 +58,16 @@ function simulationMigree(avecTaux = false) {
     answers: { all: answers, current: answers },
   }
 }
+
+// Simulation telle que le serveur la renvoie après la migration v18 : la
+// réponse au taux d'incapacité en a été retirée, le handicap déclaré demeure.
+const simulationMigree = (avecTaux = false) =>
+  simulation(avecTaux ? [reponse("taux_incapacite", 0.9)] : [])
+
+// Simulation née après la migration : la réponse est là, mais sa valeur est
+// perdue.
+const simulationAvecTaux = (taux: unknown) =>
+  simulation([reponse("taux_incapacite", taux)])
 
 function monter() {
   return mount(ResultatsWrapper, {
@@ -73,6 +81,11 @@ const attendreMontage = () => new Promise((resolve) => setTimeout(resolve, 0))
 
 describe("résultats : reprise d'une réponse retirée", () => {
   let get: any
+
+  // Un calcul OpenFisca complet pour une page qui ne sera jamais affichée pèse
+  // sur le service même dont la saturation est en cause.
+  const aCalculeLesResultats = () =>
+    get.mock.calls.some(([url]) => String(url).includes("/results"))
 
   beforeEach(() => {
     setActivePinia(createPinia())
@@ -99,10 +112,7 @@ describe("résultats : reprise d'une réponse retirée", () => {
     await attendreMontage()
 
     expect(router.replace).toHaveBeenCalledWith(ETAPE_TAUX)
-    // Aucun calcul n'est lancé : les résultats ne doivent pas s'afficher amputés.
-    expect(
-      get.mock.calls.some(([url]) => String(url).includes("/results")),
-    ).toBe(false)
+    expect(aCalculeLesResultats()).toBe(false)
   })
 
   // 2. Cookie `lastestSimulation` : la simulation est chargée pendant le montage.
@@ -115,6 +125,7 @@ describe("résultats : reprise d'une réponse retirée", () => {
     await attendreMontage()
 
     expect(router.replace).toHaveBeenCalledWith(ETAPE_TAUX)
+    expect(aCalculeLesResultats()).toBe(false)
   })
 
   // 3. `?simulationId=` dans l'adresse.
@@ -127,6 +138,21 @@ describe("résultats : reprise d'une réponse retirée", () => {
     await attendreMontage()
 
     expect(router.replace).toHaveBeenCalledWith(ETAPE_TAUX)
+    expect(aCalculeLesResultats()).toBe(false)
+  })
+
+  // Une simulation créée après la migration v18 ne repasse pas par elle : sa
+  // réponse perdue lui reste, et la garde doit la reconnaître à sa valeur.
+  it("repose la question quand la réponse existe mais a perdu sa valeur", async () => {
+    const store = useStore()
+    store.reset(simulationAvecTaux(null) as any)
+    store.setSimulationId("sim-1")
+
+    monter()
+    await attendreMontage()
+
+    expect(router.replace).toHaveBeenCalledWith(ETAPE_TAUX)
+    expect(aCalculeLesResultats()).toBe(false)
   })
 
   it("n'interrompt pas une simulation dont le taux est renseigné", async () => {
@@ -138,9 +164,7 @@ describe("résultats : reprise d'une réponse retirée", () => {
     await attendreMontage()
 
     expect(router.replace).not.toHaveBeenCalledWith(ETAPE_TAUX)
-    expect(
-      get.mock.calls.some(([url]) => String(url).includes("/results")),
-    ).toBe(true)
+    expect(aCalculeLesResultats()).toBe(true)
   })
 
   // Une simulation anonymisée n'a plus de réponses à reposer : ses résultats

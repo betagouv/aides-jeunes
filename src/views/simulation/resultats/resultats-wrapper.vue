@@ -8,8 +8,8 @@ import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results"
-import { fieldsToAnswerAgain } from "@lib/simulation.js"
-import { isStepAnswered } from "@lib/answers.js"
+import { fieldsToAnswerAgain, isUnusableAnswer } from "@lib/simulation.js"
+import { getStepAnswer } from "@lib/answers.js"
 import { computed, onMounted, onBeforeUnmount, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import * as Sentry from "@sentry/vue"
@@ -36,15 +36,16 @@ onMounted(async () => {
     MockResults.mock(route.params.benefitId)
     return
   }
-  // Simulation déjà chargée — lien de relance, retour dans le parcours : la
-  // question est reposée avant tout calcul.
-  if (askUnusableAnswerAgain()) {
+  // Simulation déjà chargée — lien de relance, retour dans le parcours. La
+  // garde ne s'applique pas quand l'adresse en réclame une autre : le magasin
+  // porterait alors la précédente.
+  if (!route.query?.simulationId && askUnusableAnswerAgain()) {
     return
   }
   if (route.query?.simulationId) {
     await handleSimulationIdQuery()
   } else if (!store.passSanityCheck) {
-    await Simulation.restoreLatestSimulation()
+    await restoreLatestSimulation()
   } else if (store.calculs.dirty) {
     await saveSimulation()
   } else if (!store.hasResults) {
@@ -54,21 +55,22 @@ onMounted(async () => {
       store.computeResults()
     }
   }
-  // Simulation chargée à l'instant depuis `?simulationId=` ou le cookie : le
-  // magasin ne la portait pas encore au premier passage.
-  askUnusableAnswerAgain()
 })
 
-// Une réponse retirée par la migration v18 rend son étape à nouveau sans
-// réponse. Afficher les résultats sans elle ferait disparaître le droit qui en
-// dépend — plus de mille euros d'AAH par mois — sur une page d'apparence
-// complète. La question est donc reposée.
+// Une réponse manquante ou perdue rend son étape à nouveau sans réponse.
+// Afficher les résultats sans elle ferait disparaître le droit qui en dépend
+// — plus de mille euros d'AAH par mois — sur une page d'apparence complète. La
+// question est donc reposée, et le calcul n'est même pas lancé.
 //
 // Le renvoi vise ces seules réponses, et pas toute étape sans réponse : une
 // question ajoutée après coup en laisse aussi dans les anciennes simulations,
 // et renvoyer celles-là dans le parcours les priverait de leurs résultats.
 // L'étape est cherchée nommément, et non via la première étape sans réponse,
 // qu'un manque sans rapport suffirait à masquer.
+//
+// La valeur est examinée, pas seulement la présence de la réponse : une
+// simulation née après la migration v18 n'en bénéficie pas et porterait sa
+// valeur perdue jusqu'à OpenFisca, qui refuserait la requête entière.
 const askUnusableAnswerAgain = (): boolean => {
   if (store.simulationAnonymized || !store.passSanityCheck) {
     return false
@@ -77,13 +79,27 @@ const askUnusableAnswerAgain = (): boolean => {
     (step) =>
       fieldsToAnswerAgain.includes(step.variable) &&
       step.isActive &&
-      !isStepAnswered(store.simulation.answers.all, step),
+      isUnusableAnswer(getStepAnswer(store.simulation.answers.all, step)),
   )
   if (!step) {
     return false
   }
   router.replace(step.path)
   return true
+}
+
+// Le chargement est séparé du calcul : lancer un calcul OpenFisca complet pour
+// une page qui ne sera jamais affichée pèse sur le service même dont la
+// saturation est en cause.
+const restoreLatestSimulation = async () => {
+  await Simulation.restoreLatestSimulationWithoutResultsComputing()
+  if (!store.simulationId || store.simulationAnonymized) {
+    return
+  }
+  if (askUnusableAnswerAgain()) {
+    return
+  }
+  store.computeResults()
 }
 
 onBeforeUnmount(() => {
@@ -161,6 +177,11 @@ const handleSimulationIdQuery = async () => {
     sendAccessToAnonymizedResults()
     await store.retrieveResultsAlreadyComputed()
   } else {
+    // La question est reposée avant tout calcul, et l'adresse n'est pas
+    // réécrite : le renvoi vers l'étape a déjà eu lieu.
+    if (askUnusableAnswerAgain()) {
+      return
+    }
     store.computeResults()
   }
 

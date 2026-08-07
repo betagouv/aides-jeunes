@@ -45,6 +45,22 @@ describe("Migration to-v18", () => {
     expect(result.answers.all).toEqual([handicap, reponse(0)])
   })
 
+  it("retire un NaN, si jamais il atteint la base sans passer par JSON", () => {
+    const result = Migration.apply(simulationAvec(NaN))
+
+    expect(result.answers.all).toEqual([handicap])
+  })
+
+  // `POST /api/simulation` est public et le schéma déclare `value: Object` :
+  // une chaîne peut donc arriver d'une intégration partenaire. OpenFisca
+  // l'accepte — vérifié : « 0.9 » rend la même AAH que 0.9. La retirer priverait
+  // cette personne de son droit sans qu'il y ait eu de corruption.
+  it("conserve un taux transmis sous forme de chaîne", () => {
+    const result = Migration.apply(simulationAvec("0.9"))
+
+    expect(result.answers.all).toEqual([handicap, reponse("0.9")])
+  })
+
   it("ne touche pas aux autres réponses nulles", () => {
     const autre = {
       entityName: "parents",

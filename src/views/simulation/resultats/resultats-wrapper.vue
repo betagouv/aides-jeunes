@@ -8,6 +8,8 @@ import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results"
+import { fieldsToAnswerAgain } from "@lib/simulation.js"
+import { isStepAnswered } from "@lib/answers.js"
 import { computed, onMounted, onBeforeUnmount, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import * as Sentry from "@sentry/vue"
@@ -33,7 +35,13 @@ onMounted(async () => {
   if (MockResults.mockResultsNeeded()) {
     MockResults.mock(route.params.benefitId)
     return
-  } else if (route.query?.simulationId) {
+  }
+  // Simulation déjà chargée — lien de relance, retour dans le parcours : la
+  // question est reposée avant tout calcul.
+  if (askUnusableAnswerAgain()) {
+    return
+  }
+  if (route.query?.simulationId) {
     await handleSimulationIdQuery()
   } else if (!store.passSanityCheck) {
     await Simulation.restoreLatestSimulation()
@@ -46,7 +54,37 @@ onMounted(async () => {
       store.computeResults()
     }
   }
+  // Simulation chargée à l'instant depuis `?simulationId=` ou le cookie : le
+  // magasin ne la portait pas encore au premier passage.
+  askUnusableAnswerAgain()
 })
+
+// Une réponse retirée par la migration v18 rend son étape à nouveau sans
+// réponse. Afficher les résultats sans elle ferait disparaître le droit qui en
+// dépend — plus de mille euros d'AAH par mois — sur une page d'apparence
+// complète. La question est donc reposée.
+//
+// Le renvoi vise ces seules réponses, et pas toute étape sans réponse : une
+// question ajoutée après coup en laisse aussi dans les anciennes simulations,
+// et renvoyer celles-là dans le parcours les priverait de leurs résultats.
+// L'étape est cherchée nommément, et non via la première étape sans réponse,
+// qu'un manque sans rapport suffirait à masquer.
+const askUnusableAnswerAgain = (): boolean => {
+  if (store.simulationAnonymized || !store.passSanityCheck) {
+    return false
+  }
+  const step = store.getAllSteps.find(
+    (step) =>
+      fieldsToAnswerAgain.includes(step.variable) &&
+      step.isActive &&
+      !isStepAnswered(store.simulation.answers.all, step),
+  )
+  if (!step) {
+    return false
+  }
+  router.replace(step.path)
+  return true
+}
 
 onBeforeUnmount(() => {
   stopSubscription.value?.()

@@ -12,25 +12,31 @@
  * taux au jugé ferait varier l'AAH de plus de quatre cents euros par mois.
  */
 
+import { fieldsToAnswerAgain } from "../../../../lib/simulation.js"
+
 const VERSION = 18
 
-function isUsableTaux(value) {
-  return typeof value === "number" && Number.isFinite(value)
+// Seule la corruption réellement produite est visée : `null`, ce que JSON écrit
+// d'un NaN. Écarter par le type retirerait une chaîne — « 0.9 » — qu'OpenFisca
+// accepte, et que `POST /api/simulation`, public, peut légitimement recevoir.
+function isUnusableValue(value) {
+  return (
+    value === null || (typeof value === "number" && !Number.isFinite(value))
+  )
 }
 
-function removeUnusableTauxIncapacite(answers) {
+function removeUnusableAnswers(answers) {
   return answers.filter(
     (answer) =>
-      answer.fieldName !== "taux_incapacite" || isUsableTaux(answer.value),
+      !fieldsToAnswerAgain.includes(answer.fieldName) ||
+      !isUnusableValue(answer.value),
   )
 }
 
 export default {
   apply(simulation) {
-    simulation.answers.all = removeUnusableTauxIncapacite(
-      simulation.answers.all,
-    )
-    simulation.answers.current = removeUnusableTauxIncapacite(
+    simulation.answers.all = removeUnusableAnswers(simulation.answers.all)
+    simulation.answers.current = removeUnusableAnswers(
       simulation.answers.current,
     )
 

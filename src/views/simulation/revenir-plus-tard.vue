@@ -19,12 +19,7 @@ const postRecapFollowup = async () => {
   const payload = {
     surveyOptin: false,
   }
-  // Le cookie d'accès est un cookie tiers quand le simulateur est intégré en
-  // iframe : Safari le bloque systématiquement. Le jeton porté par l'en-tête
-  // reste, lui, disponible dans tous les contextes.
-  const token = store.getSimulationToken
-  const headers = token ? { Authorization: `Bearer ${token}` } : undefined
-  return await axios.post(uri, payload, { headers })
+  return await axios.post(uri, payload, { headers: store.authHeaders })
 }
 
 const saveSimulationAndShowLink = async () => {

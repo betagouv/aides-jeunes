@@ -215,6 +215,7 @@ export const useStore = defineStore("store", {
             `/api/simulation/${
               simulationId || this.simulationId
             }/${representation}`,
+            { headers: this.authHeaders },
           )
           .then((response) => response.data)
       }
@@ -231,6 +232,13 @@ export const useStore = defineStore("store", {
     },
     getSimulationToken(): string | undefined {
       return this.simulation.simulationToken
+    },
+    // Le cookie d'accès est un cookie tiers quand le simulateur est intégré en
+    // iframe : Safari le bloque sans exception. Le jeton porté par l'en-tête
+    // reste, lui, disponible dans tous les contextes.
+    authHeaders(): Record<string, string> | undefined {
+      const token = this.getSimulationToken
+      return token ? { Authorization: `Bearer ${token}` } : undefined
     },
     getFCUserInfoEmailValue() {
       const userinfo = this.simulation.answers.all.find(
@@ -446,7 +454,13 @@ export const useStore = defineStore("store", {
     },
     reset(simulation: Simulation) {
       this.access.fetching = false
-      this.simulation = simulation
+      // Le serveur nomme le jeton `token`, le store `simulationToken` : sans
+      // cette reprise, toute simulation rechargée repart sans jeton d'accès.
+      this.simulation = {
+        ...simulation,
+        simulationToken:
+          simulation.token ?? this.simulation.simulationToken ?? undefined,
+      }
       this.dates = datesGenerator(simulation.dateDeValeur || new Date())
       this.calculs.dirty = false
     },

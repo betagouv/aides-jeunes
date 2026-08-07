@@ -80,19 +80,30 @@ describe("paramètres OpenFisca", () => {
     expect(retabli[PARAMETRE_TAUX_MAX]).toBe(TAUX_SERVI_PAR_OPENFISCA)
   })
 
-  // `getParameters` est appelé une fois par droit calculé. Repartir sur le
-  // réseau à chaque appel multiplierait la charge sur un OpenFisca déjà saturé.
+  // `getParameters` est appelé une fois par droit calculé, donc en continu.
+  // Les appels sont entrelacés avec l'horloge : les grouper avant toute avance
+  // du temps rendrait le test insensible à la suppression du délai.
   it("ne relance pas la requête à chaque appel pendant le délai de reprise", async () => {
     vi.useFakeTimers()
     getPromise.mockRejectedValue(new Error("OF maybe offline"))
     const { getParameters, parametersList } = await importParameters()
+    const parAppel = Object.keys(parametersList).length
 
-    for (let i = 0; i < 20; i++) {
+    for (let seconde = 0; seconde < 29; seconde++) {
       getParameters(new Date("2026-08-15"))
+      await vi.advanceTimersByTimeAsync(1_000)
     }
+
+    // Une seule tentative en vingt-neuf secondes.
+    expect(getPromise).toHaveBeenCalledTimes(parAppel)
+
+    // Passé le délai, une nouvelle tentative — et une seule.
+    await vi.advanceTimersByTimeAsync(2_000)
+    getParameters(new Date("2026-08-15"))
+    await vi.advanceTimersByTimeAsync(1_000)
+    getParameters(new Date("2026-08-15"))
     await vi.advanceTimersByTimeAsync(1_000)
 
-    // Une seule tentative : un appel réseau par paramètre de la liste.
-    expect(getPromise).toHaveBeenCalledTimes(Object.keys(parametersList).length)
+    expect(getPromise).toHaveBeenCalledTimes(2 * parAppel)
   })
 })

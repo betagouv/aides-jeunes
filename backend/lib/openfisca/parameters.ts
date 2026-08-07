@@ -14,6 +14,11 @@ export const parametersList: OpenfiscaParameters = {
 // Délai avant qu'une tentative échouée puisse être relancée. Sans lui, chaque
 // appel de `getParameters` — un par droit calculé — repartirait sur le réseau
 // et s'ajouterait à la charge d'un OpenFisca déjà en difficulté.
+//
+// Ce qu'il coûte, en regard : pendant une panne, une tentative toutes les
+// trente secondes quelle que soit la charge, soit six cents requêtes par heure
+// et par processus, bornées par le temps et non par le trafic. C'est le prix
+// d'un rétablissement en trente secondes plutôt qu'au redémarrage.
 const FAILURE_COOLDOWN_MS = 30_000
 
 let parameterPromise

@@ -11,6 +11,7 @@ vi.mock("@backend/lib/migrations/index.js", () => ({
 }))
 
 import axios from "axios"
+import config from "@backend/config/index.js"
 import { sendToOpenfisca } from "@backend/lib/openfisca/index.js"
 import simulationController from "@backend/controllers/simulation.js"
 import teleservices from "@backend/controllers/teleservices/index.js"
@@ -140,6 +141,30 @@ describe("remontée des erreurs OpenFisca", () => {
       )
 
       expect(err).toEqual({ error: "unknown variable" })
+    })
+
+    // Le budget par défaut vaut pour le calcul d'une situation. Le tracé d'une
+    // variable sur un axe en empile 141 dans une seule requête et coûte un
+    // multiple de ce temps : sans budget propre, il est abandonné en vol.
+    it("budgète chaque appel selon son coût", async () => {
+      vi.mocked(axios.post).mockResolvedValue({ data: {} })
+
+      await callbackOf((cb) => sendToOpenfisca("calculate", () => ({}))({}, cb))
+      expect(vi.mocked(axios.post).mock.calls[0][2]).toEqual({
+        timeout: config.openfiscaTimeout,
+      })
+
+      await callbackOf((cb) =>
+        sendToOpenfisca("calculate", () => ({}), {
+          timeout: config.openfiscaBulkTimeout,
+        })({}, cb),
+      )
+      expect(vi.mocked(axios.post).mock.calls[1][2]).toEqual({
+        timeout: config.openfiscaBulkTimeout,
+      })
+      expect(config.openfiscaBulkTimeout).toBeGreaterThan(
+        config.openfiscaTimeout,
+      )
     })
   })
 

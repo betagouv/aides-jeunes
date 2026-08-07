@@ -40,7 +40,14 @@ export function normalizeError(err: any) {
   }
 }
 
-export function sendToOpenfisca(endpoint, transform?: any) {
+// `config.openfiscaTimeout` budgète le calcul d'une situation. Un appel qui en
+// empile plusieurs — le tracé d'une variable sur un axe — coûte un multiple de
+// ce temps et déclare son propre budget.
+export function sendToOpenfisca(
+  endpoint,
+  transform?: any,
+  { timeout = config.openfiscaTimeout }: { timeout?: number } = {},
+) {
   if (!transform) {
     transform = buildOpenFiscaRequest
   }
@@ -55,9 +62,7 @@ export function sendToOpenfisca(endpoint, transform?: any) {
     }
 
     axios
-      .post(`${config.openfiscaURL}/${endpoint}`, request, {
-        timeout: config.openfiscaTimeout,
-      })
+      .post(`${config.openfiscaURL}/${endpoint}`, request, { timeout })
       .then((response) => {
         // Une réponse vide n'est pas un résultat : la laisser passer ferait
         // échouer le calcul des aides plus loin, hors du chemin d'erreur.

@@ -18,6 +18,7 @@ export interface Configuration {
   }
   openfiscaURL: string
   openfiscaTimeout: number
+  openfiscaBulkTimeout: number
   openfiscaAxeURL: string
   openfiscaPublicURL: string
   openfiscaTracerURL: string

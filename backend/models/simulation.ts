@@ -181,13 +181,20 @@ async function computeAndCache(
   showPrivate,
   signature,
 ) {
+  // L'état est relevé AVANT tout appel réseau : la requête envoyée à OpenFisca
+  // dépend elle-même des paramètres — l'abattement `salaire_imposable` des
+  // alternants lit le SMIC — et des paramètres arrivés pendant que `/calculate`
+  // est en vol rendraient le garde-fou vrai pour une requête bâtie sur les
+  // constantes de repli.
+  const parametersWereLoaded = areParametersLoaded()
+
   const openfiscaResponse = await calculate(situation)
   const aides = computeBenefits(situation, id, openfiscaResponse, showPrivate)
 
   // Sans paramètres OpenFisca, `getParameters` retombe sur des constantes
-  // figées et les légendes produites sont fausses : le résultat est servi, mais
-  // il ne doit pas être gravé en base.
-  if (signature && areParametersLoaded()) {
+  // figées et les montants comme les légendes sont faux : le résultat est
+  // servi, mais il ne doit pas être gravé en base.
+  if (signature && parametersWereLoaded && areParametersLoaded()) {
     try {
       // `updateOne` plutôt que `save` : le hook `pre("save")` régénère le token
       // et une écriture complète du document exposerait à des conflits de

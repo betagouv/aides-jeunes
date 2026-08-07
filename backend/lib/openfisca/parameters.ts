@@ -52,6 +52,10 @@ function requestParameters() {
         throw error
       },
     )
+    // `getParameters` est synchrone et jette cette promesse sans la traiter.
+    // Chaque fenêtre de réessai produirait sinon un rejet non géré, qui termine
+    // le process quand Sentry est désactivé faute de DSN.
+    parameterPromise.catch(() => {})
   }
   return parameterPromise
 }

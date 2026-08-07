@@ -1,6 +1,8 @@
-import { expect } from "vitest"
+import { expect, beforeEach } from "vitest"
+import { setActivePinia, createPinia } from "pinia"
 import Individu from "@lib/properties/individu-properties.js"
-import { parametersList } from "@backend/lib/openfisca/parameters.js"
+import { parametersList } from "@lib/openfisca-parameters.js"
+import { useStore } from "@/stores/index.js"
 
 const PARAMETRE_TAUX_MAX =
   "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
@@ -12,6 +14,22 @@ const propertyData = (openFiscaParameters) =>
   }) as any
 
 describe("question du taux d'incapacité", () => {
+  beforeEach(() => setActivePinia(createPinia()))
+
+  // Le magasin est l'unique source de ces paramètres pour la question. Tant
+  // qu'il pouvait rester vide, deux des trois options valaient NaN, que JSON
+  // écrit `null` : la valeur choisie était perdue au moment même où elle était
+  // enregistrée. C'est le générateur de la panne, et il doit être fermé à la
+  // source, avant même que la moindre requête ait abouti.
+  it("ne peut pas proposer d'option NaN, aucune requête n'ayant abouti", () => {
+    const items = Individu.taux_incapacite.getItems(
+      propertyData(useStore().openFiscaParameters),
+    )
+
+    expect(items.every((item) => Number.isFinite(item.value))).toBe(true)
+    expect(items.every((item) => !item.label.includes("NaN"))).toBe(true)
+  })
+
   it("propose trois paliers exploitables", () => {
     const items = Individu.taux_incapacite.getItems(
       propertyData({ [PARAMETRE_TAUX_MAX]: 0.8 }),

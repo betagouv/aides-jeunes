@@ -1,6 +1,6 @@
 import { expect } from "vitest"
 import Migration from "@backend/lib/migrations/simulations/to-v18.js"
-import { parametersList } from "@backend/lib/openfisca/parameters.js"
+import { parametersList } from "@lib/openfisca-parameters.js"
 import { generateSituation } from "@lib/situations.js"
 import { generateAllSteps } from "@lib/state/generator.js"
 import { isStepAnswered } from "@lib/answers.js"

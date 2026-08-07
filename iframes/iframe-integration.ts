@@ -3,9 +3,12 @@ import iframeResize from "@iframe-resizer/parent"
 // Ce fichier est empaqueté par webpack sans loader TypeScript : il est parsé
 // comme du JavaScript, donc écrit sans annotation de type.
 
-// Marge de déclenchement : l'iframe démarre avant d'entrer dans le champ de
-// vision, pour qu'un utilisateur qui fait défiler ne perçoive pas d'attente.
-const ROOT_MARGIN = "400px"
+// Marge de déclenchement, exprimée en hauteurs de fenêtre pour valoir autant
+// sur mobile que sur grand écran. Elle doit couvrir le temps de démarrage du
+// simulateur : `iframe-resizer` ajuste la hauteur du cadre une fois le contenu
+// prêt, et ce réajustement doit avoir eu lieu AVANT que le visiteur arrive
+// dessus. Sinon la page hôte se réorganise sous ses yeux.
+const ROOT_MARGIN = "200%"
 
 function buildSource(script) {
   const page = script.dataset.fromHome !== undefined ? "" : "simulation"
@@ -30,8 +33,9 @@ function buildIframe() {
   const iframeAttributes = {
     id: "simulateur",
     title: process.env.IFRAME_TITLE,
-    // La hauteur est posée dès l'insertion, avant le chargement : la mise en
-    // page de l'hôte ne bouge pas quand le simulateur démarre.
+    // Gabarit de départ. `iframe-resizer` le remplace par la hauteur réelle du
+    // simulateur une fois celui-ci chargé ; c'est ce réajustement que la marge
+    // de déclenchement doit rendre invisible.
     style: "border: none; width: 100%; display: block; height: 700px",
     allow: "clipboard-write",
     allowfullscreen: true,
@@ -71,8 +75,13 @@ export function mountSimulator(script) {
   insert(script, iframe)
 
   // Le simulateur est une application complète : la démarrer pour un visiteur
-  // qui ne descendra jamais jusqu'à elle coûte une quarantaine de requêtes pour
-  // rien. `data-eager` rétablit le chargement immédiat.
+  // qui ne descendra jamais jusqu'à elle est du téléchargement perdu.
+  // `data-eager` rétablit le chargement immédiat.
+  //
+  // L'absence d'`IntersectionObserver` y ramène également. Ce repli ne rend pas
+  // le simulateur pleinement fonctionnel pour autant — `iframe-resizer` dépend
+  // lui aussi de cette API, et le cadre restera au gabarit — mais il garantit
+  // au moins que l'iframe reçoive une source, comme avant ce changement.
   const eager =
     script.dataset.eager !== undefined || !("IntersectionObserver" in window)
 
@@ -97,4 +106,12 @@ export function mountSimulator(script) {
 
 if (document.currentScript) {
   mountSimulator(document.currentScript)
+} else {
+  // Sans `document.currentScript`, l'emplacement d'insertion est introuvable.
+  // Le cas se produit avec `type="module"` ou une injection différée : mieux
+  // vaut le dire que de ne rien afficher sans explication.
+  console.error(
+    "[aides-jeunes] simulateur non inséré : document.currentScript est absent. " +
+      'Le script doit être inclus par une balise <script src>, sans type="module".',
+  )
 }

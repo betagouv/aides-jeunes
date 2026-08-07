@@ -95,6 +95,19 @@ describe("intégration iframe", () => {
     expect(observed).toEqual([])
   })
 
+  it("insère l'iframe quand le script est dans le head", () => {
+    const script = document.createElement("script")
+    document.head.appendChild(script)
+
+    const iframe = mountSimulator(script)
+
+    expect(iframe.parentElement).toBe(document.body)
+    expect(observed).toEqual([iframe])
+  })
+
+  // Repli minimal : `iframeResize` dépend lui aussi d'`IntersectionObserver` et
+  // échouera de toute façon. Ce chemin garantit seulement que l'iframe reçoit
+  // une source, comme avant le chargement différé.
   it("charge immédiatement si IntersectionObserver est absent", () => {
     delete (window as any).IntersectionObserver
 

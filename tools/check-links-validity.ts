@@ -276,7 +276,13 @@ async function main() {
       `Ajout: ${recordsByOperationTypes.add.length}`,
       `Mise à jour: ${recordsByOperationTypes.update.length}`,
     ].join("\n")
-    Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL)
+    // La mise à jour Grist est déjà faite à ce stade : une notification qui
+    // n'aboutit pas ne doit pas faire échouer le compte rendu de l'outil. Aucun
+    // gestionnaire de processus n'est installé ici, donc un rejet laissé libre
+    // arrêterait le programme après coup.
+    await Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL).catch(
+      (error) => console.error("Notification Mattermost", error),
+    )
   }
 }
 

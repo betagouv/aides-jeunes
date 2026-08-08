@@ -15,15 +15,17 @@ vi.mock("openid-client", () => ({
 // Le chargement du module lit le système de fichiers, ce que l'environnement
 // de test ne permet pas ; seul `apply` est utilisé par le contrôleur.
 vi.mock("@backend/lib/migrations/index.js", () => ({
-  apply: (simulation) => simulation,
+  apply: vi.fn((simulation) => simulation),
 }))
 
 import axios from "axios"
 import { discovery } from "openid-client"
 import config from "@backend/config/index.js"
+import { apply } from "@backend/lib/migrations/index.js"
 import moncompteproController from "@backend/controllers/moncomptepro.js"
 import teleservices from "@backend/controllers/teleservices/index.js"
 import franceConnectRoutes from "@backend/routes/france-connect.js"
+import { asyncHandler } from "@backend/lib/async-handler.js"
 import DemarchesSimplifiees, {
   TeleserviceMetadataError,
 } from "@backend/lib/teleservices/demarches-simplifiees.js"
@@ -363,10 +365,140 @@ describe("routes france-connect", () => {
     }
     const req: any = { cookies: {}, query: {} }
 
-    await Promise.resolve(handler(req, res, next)).catch(() => undefined)
+    // Express n'attend pas la promesse renvoyée : on draine la file plutôt que
+    // de dépendre de ce que le gestionnaire rend.
+    handler(req, res, next)
+    await new Promise((resolve) => setImmediate(resolve))
 
     expect(res.redirect).not.toHaveBeenCalled()
     expect(next).toHaveBeenCalledTimes(1)
     expect(next.mock.calls[0][0]).toBeInstanceOf(TypeError)
+  })
+})
+
+// `/api/simulation/via/:signedPayload` est atteignable sans authentification :
+// `decodePayload` décode le jeton sans en vérifier la signature, `ds` est un
+// téléservice public, et `verifyRequest` n'intervient qu'après avoir chargé la
+// simulation. Le `payload.id` est donc entièrement choisi par l'appelant.
+describe("/api/simulation/via/:signedPayload avec un jeton non signé", () => {
+  function unsignedToken(payload: object) {
+    const encode = (value: object) =>
+      Buffer.from(JSON.stringify(value)).toString("base64url")
+    return [
+      encode({ alg: "HS256", typ: "JWT" }),
+      encode(payload),
+      "signature-bidon",
+    ].join(".")
+  }
+
+  afterEach(() => {
+    vi.mocked(apply).mockImplementation((simulation) => simulation)
+  })
+
+  it("répond au lieu de retenir le socket quand la charge fait lever apply()", async () => {
+    // Ce que la revue a observé en production sur un `id` objet.
+    vi.mocked(apply).mockImplementation(() => {
+      throw new TypeError(
+        "Cannot read properties of undefined (reading 'toLowerCase')",
+      )
+    })
+
+    const req: any = {}
+    const res: any = { status: vi.fn().mockReturnThis(), send: vi.fn() }
+
+    // Le jeton n'est pas signé : `decodePayload` l'accepte tout de même.
+    const decoded = vi.fn()
+    teleservices.decodePayload(
+      req,
+      res,
+      decoded,
+      unsignedToken({
+        id: { _id: "charge-choisie-par-l-appelant" },
+        scope: "ds",
+      }),
+    )
+    expect(decoded).toHaveBeenCalledTimes(1)
+    expect(req.payload.id).toEqual({ _id: "charge-choisie-par-l-appelant" })
+
+    // `checkCredentials` laisse passer : `ds` est public.
+    const authorised = vi.fn()
+    teleservices.checkCredentials(req, res, authorised)
+    expect(authorised).toHaveBeenCalledTimes(1)
+
+    // `attachPayloadSituation` appelle `simulation()` sans rendre la promesse :
+    // si le jet n'est pas rattrapé dedans, plus rien ne répond.
+    const next = vi.fn()
+    teleservices.attachPayloadSituation(req, res, next)
+    await new Promise((resolve) => setImmediate(resolve))
+
+    expect(next).toHaveBeenCalledTimes(1)
+    expect(next.mock.calls[0][0]).toBeInstanceOf(TypeError)
+  })
+})
+
+describe("asyncHandler", () => {
+  // Un gestionnaire `param` reçoit `(req, res, next, valeur, nom)`. Une
+  // enveloppe à trois arguments les lui retire en silence : ni le typage ni
+  // l'exécution ne le signalent, et le paramètre devient `undefined`.
+  it("propage les arguments d'un gestionnaire param", async () => {
+    const handler = vi.fn(async () => undefined)
+    const next = vi.fn()
+
+    await asyncHandler(handler)(
+      {} as any,
+      {} as any,
+      next,
+      "valeur42",
+      "accessToken",
+    )
+
+    expect(handler).toHaveBeenCalledWith(
+      {},
+      {},
+      next,
+      "valeur42",
+      "accessToken",
+    )
+  })
+
+  // Express distingue un middleware d'erreur par l'arité : 4 le convertirait
+  // en gestionnaire d'erreur et le sortirait de la chaîne normale.
+  it("garde une arité de 3", () => {
+    expect(asyncHandler(async () => undefined).length).toBe(3)
+  })
+
+  it("rend à next() le jet synchrone d'un gestionnaire non asynchrone", async () => {
+    const failure = new TypeError("Invalid URL")
+    const next = vi.fn()
+
+    await asyncHandler(() => {
+      throw failure
+    })({} as any, {} as any, next)
+
+    expect(next).toHaveBeenCalledWith(failure)
+  })
+})
+
+// Deux modes d'échec distincts : un résumé impossible n'est pas un journal hors
+// service, et confondre les deux fait tout perdre dans le premier cas.
+describe("registerProcessErrorHandlers, résumé impossible", () => {
+  it("journalise un repli quand summarize lève mais que le journal est sain", () => {
+    const listeners: ((reason: unknown) => void)[] = []
+    const processLike: any = {
+      on: (_event: string, listener: (reason: unknown) => void) =>
+        listeners.push(listener),
+    }
+    const logger = vi.fn()
+    registerProcessErrorHandlers(processLike, logger)
+
+    // `summarize` teste `reason instanceof Error`, ce qui lève ici.
+    const { proxy, revoke } = Proxy.revocable({}, {})
+    revoke()
+
+    expect(() => listeners[0](proxy)).not.toThrow()
+    expect(logger).toHaveBeenCalledWith(
+      "unhandledRejection",
+      "<résumé impossible>",
+    )
   })
 })

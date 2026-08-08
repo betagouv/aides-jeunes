@@ -94,8 +94,17 @@ export function registerProcessErrorHandlers(
   processLike.on("unhandledRejection", (reason: unknown) => {
     // Un garde-fou qui lève détruit ce qu'il existe pour préserver : le rejet
     // deviendrait une exception non rattrapée, et le résumé ne paraîtrait pas.
+    // Les deux étapes sont distinguées : un résumé impossible — `instanceof` sur
+    // un Proxy révoqué — ne doit pas passer pour un journal hors service.
+    let resume: string
     try {
-      logger("unhandledRejection", formatRejection(reason))
+      resume = formatRejection(reason)
+    } catch {
+      resume = "<résumé impossible>"
+    }
+
+    try {
+      logger("unhandledRejection", resume)
     } catch {
       // Rien : le seul moyen de journaliser vient d'échouer, et rappeler
       // `logger` ici relèverait la même erreur — donc une `uncaughtException`.

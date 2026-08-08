@@ -285,14 +285,16 @@ async function main() {
     try {
       await Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL)
     } catch (error: any) {
-      // Résumé plat, jamais l'objet brut : une erreur axios porte l'URL
+      // Résumé plat, jamais l'objet brut ici : une erreur axios porte l'URL
       // appelée dans `path`, `pathname` et `_header`, et le journal d'Actions
       // est public. Le masquage de GitHub ne couvre que la valeur exacte du
       // secret, pas ses fragments.
       console.error("Notification Mattermost", formatRejection(error))
       // Une URL absente ne se répare pas en réessayant : la veille resterait
       // muette sans que rien ne le dise. Seul ce cas fait échouer le compte
-      // rendu ; une panne passagère du service, non.
+      // rendu ; une panne passagère du service, non — au prix, assumé, de
+      // l'alerte de cette nuit-là : un lien déjà consigné dans Grist ne
+      // produit plus d'`add` les nuits suivantes, donc plus de notification.
       if (error?.name === ErrorName.MattermostNotConfiguredError) {
         process.exitCode = 1
       }

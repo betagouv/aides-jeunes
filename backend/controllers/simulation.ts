@@ -229,19 +229,19 @@ function enrichBenefitsList(benefits) {
 }
 
 async function getLatestFollowup(req: Request, res) {
-  const followup = (await Followups.findOne(
-    {
-      simulation: req.simulation?._id,
-    },
-    null,
-    { sort: { createdAt: -1 } },
-  )) as Followup
-
-  if (!followup) {
-    return res.status(404).send({ error: "No followup found" })
-  }
-
   try {
+    const followup = (await Followups.findOne(
+      {
+        simulation: req.simulation?._id,
+      },
+      null,
+      { sort: { createdAt: -1 } },
+    )) as Followup
+
+    if (!followup) {
+      return res.status(404).send({ error: "No followup found" })
+    }
+
     followup.benefits = enrichBenefitsList(followup.benefits)
 
     return res.send(followup)

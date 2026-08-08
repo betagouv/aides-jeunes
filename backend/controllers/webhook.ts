@@ -83,13 +83,18 @@ export const validateRequestPayload = (
 export async function postOnMattermost(
   req: Request,
   res: Response,
-): Promise<Response> {
+  next: NextFunction,
+): Promise<Response | void> {
   const { id: rdvId, organisation } = req.body.data || {}
   const { id: organisationId } = organisation || {}
 
   const message = `Une personne vient de prendre RDV.
 Plus d'informations ${config.rdvAideNumerique.baseUrl}/admin/organisations/${organisationId}/rdvs/${rdvId}`
 
-  await Mattermost.post(message)
+  try {
+    await Mattermost.post(message)
+  } catch (error) {
+    return next(error)
+  }
   return res.status(200).json({ message: "OK" })
 }

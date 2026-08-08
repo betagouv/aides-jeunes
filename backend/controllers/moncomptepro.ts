@@ -35,6 +35,10 @@ const login = async (req, res) => {
   return res.redirect(redirectUrl.href)
 }
 
+// Monté directement sur une route, le rejet de `login` n'aurait personne pour le
+// recevoir : Express 4 ignore la promesse renvoyée par un gestionnaire.
+const loginRoute = (req, res, next) => login(req, res).catch(next)
+
 const retrieveMcpAccessToken = async (req) => {
   try {
     const mcpIssuer = await getMcpClient()
@@ -91,7 +95,9 @@ const access = async (req, res, next) => {
       }
     }
 
-    return login(req, res)
+    // `return await` et non `return` : dans une fonction asynchrone, la promesse
+    // renvoyée est résolue hors du `try`, et son rejet échapperait au `catch`.
+    return await login(req, res)
   } catch (error) {
     Sentry.captureException(error)
     clearCookie(res)
@@ -125,4 +131,4 @@ const logout = async (req, res, next) => {
   }
 }
 
-export default { access, login, loginCallbackRedirect, logout }
+export default { access, login, loginRoute, loginCallbackRedirect, logout }

@@ -8,7 +8,7 @@ import { SmsType } from "../../../../lib/enums/messaging.js"
 import { Followup } from "../../../../lib/types/followup.js"
 import { Survey } from "../../../../lib/types/survey.d.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
-import { ErrorType } from "../../../../lib/enums/error.js"
+import { ErrorName, ErrorType } from "../../../../lib/enums/error.js"
 import dayjs from "dayjs"
 import * as Sentry from "@sentry/node"
 
@@ -22,6 +22,21 @@ async function getSMSConfig() {
   return { username, password }
 }
 
+// Le fournisseur répond 200 avec un `responseCode` non nul pour signaler un
+// refus. Le porter en champ propre le rend classable et observable ; le message
+// garde le corps entier, seul endroit où figure le libellé du refus.
+export class SmsProviderError extends Error {
+  readonly responseCode?: number
+  readonly httpStatus: number
+
+  constructor(data: any, httpStatus: number) {
+    super(`SMS request failed. Body: ${JSON.stringify(data)}`)
+    this.name = ErrorName.SmsProviderError
+    this.responseCode = data?.responseCode
+    this.httpStatus = httpStatus
+  }
+}
+
 async function createAxiosInstance() {
   const instance = create({
     timeout: 10000,
@@ -30,7 +45,7 @@ async function createAxiosInstance() {
     (response) => {
       const { data, status } = response
       if (status !== 200 || data.responseCode !== 0) {
-        throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
+        throw new SmsProviderError(data, status)
       }
       return response
     },
@@ -105,7 +120,7 @@ export async function sendSimulationResultsSms(
     return await followup.save()
   } catch (error: any) {
     // Avoid sending invalid destination address error to sentry
-    if (!error?.message?.includes("Invalid destination address")) {
+    if (!error?.message?.includes(ErrorType.InvalidDestinationAddress)) {
       Sentry.captureException(error)
     }
     followup.smsError = error?.message

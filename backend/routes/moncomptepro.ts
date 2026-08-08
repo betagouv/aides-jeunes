@@ -11,7 +11,7 @@ const moncompteproRoutes = function (api: Express) {
     "/login",
     cookieParser(),
     loginRateLimiter,
-    moncompteproController.login,
+    moncompteproController.loginRoute,
   )
   api.get(
     "/auth/redirect",

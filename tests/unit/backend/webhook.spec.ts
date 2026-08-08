@@ -8,6 +8,7 @@ import {
 } from "../../../backend/controllers/webhook.js"
 import Mattermost from "../../../backend/lib/mattermost-bot/mattermost.js"
 import config from "../../../backend/config/index.js"
+import axios from "axios"
 
 type MockRequest = {
   body: any
@@ -197,10 +198,43 @@ describe("postOnMattermost", () => {
     await postOnMattermost(
       req as unknown as Request,
       res as unknown as Response,
+      vi.fn(),
     )
 
     expect(mattermostSpy).toHaveBeenCalledWith(expectedMessage)
     expect(res.status).toHaveBeenCalledWith(200)
     expect(res.json).toHaveBeenCalledWith({ message: "OK" })
+  })
+
+  it("passe l'échec de Mattermost à next() au lieu de rejeter la promesse", async () => {
+    const failure = new Error("connect ECONNREFUSED")
+    mattermostSpy.mockRejectedValue(failure)
+    const next = vi.fn()
+
+    await postOnMattermost(
+      req as unknown as Request,
+      res as unknown as Response,
+      next,
+    )
+
+    expect(next).toHaveBeenCalledWith(failure)
+    expect(res.status).not.toHaveBeenCalled()
+  })
+})
+
+// Le rattrapage de `postOnMattermost` ne vaut que si le collaborateur peut
+// échouer : tant que `Mattermost.post` avalait l'erreur d'axios, le webhook
+// répondait 200 « OK » alors que la notification n'était jamais partie.
+describe("Mattermost.post", () => {
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it("propage l'échec du POST au lieu de l'avaler", async () => {
+    vi.restoreAllMocks()
+    const failure = new Error("connect ECONNREFUSED")
+    vi.spyOn(axios, "post").mockRejectedValue(failure)
+
+    await expect(Mattermost.post("coucou")).rejects.toBe(failure)
   })
 })

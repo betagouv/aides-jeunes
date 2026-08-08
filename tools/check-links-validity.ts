@@ -9,6 +9,8 @@ import {
 } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
 import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
+import { formatRejection } from "../backend/lib/process-error-handlers.js"
+import { ErrorName } from "../lib/enums/error.js"
 
 import axios from "axios"
 import https from "https"
@@ -276,13 +278,25 @@ async function main() {
       `Ajout: ${recordsByOperationTypes.add.length}`,
       `Mise à jour: ${recordsByOperationTypes.update.length}`,
     ].join("\n")
-    // La mise à jour Grist est déjà faite à ce stade : une notification qui
-    // n'aboutit pas ne doit pas faire échouer le compte rendu de l'outil. Aucun
-    // gestionnaire de processus n'est installé ici, donc un rejet laissé libre
-    // arrêterait le programme après coup.
-    await Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL).catch(
-      (error) => console.error("Notification Mattermost", error),
-    )
+    // La mise à jour Grist est déjà tentée à ce stade : une notification qui
+    // n'aboutit pas ne doit pas emporter le compte rendu de l'outil. Ce module
+    // n'installe aucun écouteur `unhandledRejection`, donc un rejet laissé
+    // libre arrêterait le programme après coup.
+    try {
+      await Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL)
+    } catch (error: any) {
+      // Résumé plat, jamais l'objet brut : une erreur axios porte l'URL
+      // appelée dans `path`, `pathname` et `_header`, et le journal d'Actions
+      // est public. Le masquage de GitHub ne couvre que la valeur exacte du
+      // secret, pas ses fragments.
+      console.error("Notification Mattermost", formatRejection(error))
+      // Une URL absente ne se répare pas en réessayant : la veille resterait
+      // muette sans que rien ne le dise. Seul ce cas fait échouer le compte
+      // rendu ; une panne passagère du service, non.
+      if (error?.name === ErrorName.MattermostNotConfiguredError) {
+        process.exitCode = 1
+      }
+    }
   }
 }
 

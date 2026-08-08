@@ -1,12 +1,10 @@
 import axios from "axios"
 import { Express } from "express"
+import { asyncHandler } from "../lib/async-handler.js"
 
 export default function (api: Express) {
-  // Express 4 ignore la promesse renvoyée par un gestionnaire : sans `next`, un
-  // échec de démarches-simplifiées.fr devient un `unhandledRejection` et laisse
-  // la requête pendante.
-  api.route("/proxy/ds").get(async (req, res, next) => {
-    try {
+  api.route("/proxy/ds").get(
+    asyncHandler(async (req, res) => {
       const dataURL = `${process.env.MES_AIDES_ROOT_URL}/api/simulation/via/${req.query.token}`
       const dataResponse = await axios.get(dataURL)
       const { data, teleservice } = dataResponse.data
@@ -18,8 +16,6 @@ export default function (api: Express) {
       const postData = postResponse.data
 
       res.redirect(postData.dossier_url)
-    } catch (error) {
-      next(error)
-    }
-  })
+    }),
+  )
 }

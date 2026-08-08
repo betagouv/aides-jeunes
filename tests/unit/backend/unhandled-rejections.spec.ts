@@ -23,6 +23,7 @@ import { discovery } from "openid-client"
 import config from "@backend/config/index.js"
 import moncompteproController from "@backend/controllers/moncomptepro.js"
 import teleservices from "@backend/controllers/teleservices/index.js"
+import franceConnectRoutes from "@backend/routes/france-connect.js"
 import DemarchesSimplifiees, {
   TeleserviceMetadataError,
 } from "@backend/lib/teleservices/demarches-simplifiees.js"
@@ -32,20 +33,25 @@ import {
   summarize,
 } from "@backend/lib/process-error-handlers.js"
 
-// Un AxiosError de production : `request.res` et `response.request` se
+// `axios` est simulé pour le reste du fichier ; l'oracle de sérialisation, lui,
+// exige la vraie classe : un objet approchant serait plus facile à résumer que
+// ce qui arrive réellement en production.
+const { AxiosError } = await vi.importActual<typeof import("axios")>("axios")
+
+// Un AxiosError de production : le `ClientRequest` et l'`IncomingMessage` se
 // référencent l'un l'autre. C'est cette boucle qui fait échouer la
-// sérialisation du rejet par l'IPC de pm2.
+// sérialisation du rejet une fois recopié.
 function circularAxios404() {
   const request: any = { path: "/preremplir/cd53-bafa/schema" }
   const response: any = { status: 404, data: "<html>404</html>", request }
   request.res = response
-  return Object.assign(new Error("Request failed with status code 404"), {
-    name: "AxiosError",
-    isAxiosError: true,
-    code: "ERR_BAD_REQUEST",
+  return new AxiosError(
+    "Request failed with status code 404",
+    AxiosError.ERR_BAD_REQUEST,
+    { url: "https://www.demarches-simplifiees.fr" } as any,
     request,
     response,
-  })
+  )
 }
 
 function metadataRequest() {
@@ -225,8 +231,53 @@ describe("registerProcessErrorHandlers", () => {
       name: "AxiosError",
       message: "Request failed with status code 404",
       code: "ERR_BAD_REQUEST",
+      status: 404,
       upstreamStatus: 404,
     })
+  })
+
+  // La recopie que subit l'erreur avant diffusion lui ôte le `toJSON` d'axios
+  // et expose la boucle req/res : c'est ce que le résumé doit remplacer.
+  it("résume une erreur que la recopie rend insérialisable", () => {
+    expect(() => JSON.stringify({ ...circularAxios404() })).toThrow(
+      /circular structure/i,
+    )
+    expect(() => JSON.parse(formatRejection(circularAxios404()))).not.toThrow()
+  })
+
+  // Une valeur fautive ne doit pas emporter les champs voisins, qui portent
+  // l'essentiel du diagnostic.
+  it("conserve name et message quand une autre clé est insérialisable", () => {
+    const boucle: any = {}
+    boucle.soi = boucle
+    const resume = JSON.parse(
+      formatRejection(
+        Object.assign(new Error("panne amont"), {
+          name: "AxiosError",
+          code: boucle,
+        }),
+      ),
+    )
+
+    expect(resume.name).toBe("AxiosError")
+    expect(resume.message).toBe("panne amont")
+    expect(resume.code).toContain("non sérialisable")
+  })
+
+  it("ne relance pas un logger qui vient d'échouer", () => {
+    const listeners: ((reason: unknown) => void)[] = []
+    const processLike: any = {
+      on: (_event: string, listener: (reason: unknown) => void) =>
+        listeners.push(listener),
+    }
+    const logger = vi.fn(() => {
+      throw new Error("stderr fermé")
+    })
+
+    registerProcessErrorHandlers(processLike, logger)
+
+    expect(() => listeners[0](new Error("peu importe"))).not.toThrow()
+    expect(logger).toHaveBeenCalledTimes(1)
   })
 
   it("résume un rejet qui n'est pas une erreur", () => {
@@ -273,5 +324,49 @@ describe("registerProcessErrorHandlers", () => {
         formatRejection(Object.assign(new Error("b"), { code: 1n })),
       ).toContain('"code":"1"')
     })
+  })
+})
+
+// `/api/france-connect/login` et `/logout` sont montés nus : leur rejet n'a
+// personne pour le recevoir. En production `FRANCE_CONNECT_ROOT_URL` est
+// absente, donc `new URL("undefined/api/v1/authorize")` lève à chaque appel et
+// la requête pend jusqu'au délai du client.
+describe("routes france-connect", () => {
+  // Enregistre les gestionnaires montés, pour éprouver le câblage réel et non
+  // le seul contrôleur.
+  function mountedHandlers(path: string) {
+    const routes: Record<string, any[]> = {}
+    const api: any = {
+      route: (p: string) => ({
+        get: (...handlers: any[]) => {
+          routes[p] = handlers
+          return api
+        },
+      }),
+    }
+    franceConnectRoutes(api)
+    return routes[path]
+  }
+
+  it.each([
+    ["/france-connect/login", "/france-connect/login"],
+    ["/france-connect/logout", "/france-connect/logout"],
+  ])("passe à next() le jet de %s", async (_libelle, path) => {
+    const handlers = mountedHandlers(path)
+    const handler = handlers[handlers.length - 1]
+
+    const next = vi.fn()
+    const res: any = {
+      cookie: vi.fn(),
+      clearCookie: vi.fn(),
+      redirect: vi.fn(),
+    }
+    const req: any = { cookies: {}, query: {} }
+
+    await Promise.resolve(handler(req, res, next)).catch(() => undefined)
+
+    expect(res.redirect).not.toHaveBeenCalled()
+    expect(next).toHaveBeenCalledTimes(1)
+    expect(next.mock.calls[0][0]).toBeInstanceOf(TypeError)
   })
 })

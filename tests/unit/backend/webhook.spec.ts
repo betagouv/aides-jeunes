@@ -1,4 +1,10 @@
 import { expect, vi } from "vitest"
+
+vi.mock("@sentry/node", () => ({
+  init: vi.fn(),
+  captureException: vi.fn(),
+  setupExpressErrorHandler: vi.fn(),
+}))
 import { Request, Response } from "express"
 import crypto from "node:crypto"
 import {
@@ -9,6 +15,8 @@ import {
 import Mattermost from "../../../backend/lib/mattermost-bot/mattermost.js"
 import config from "../../../backend/config/index.js"
 import axios from "axios"
+import * as Sentry from "@sentry/node"
+import { MattermostNotConfiguredError } from "../../../backend/lib/mattermost-bot/mattermost.js"
 
 type MockRequest = {
   body: any
@@ -235,6 +243,52 @@ describe("Mattermost.post", () => {
     const failure = new Error("connect ECONNREFUSED")
     vi.spyOn(axios, "post").mockRejectedValue(failure)
 
-    await expect(Mattermost.post("coucou")).rejects.toBe(failure)
+    await expect(
+      Mattermost.post("coucou", "https://mattermost.test/hook"),
+    ).rejects.toBe(failure)
+  })
+
+  // Sans MATTERMOST_POST_URL — préproduction, review app, poste de
+  // développement — axios posterait sur une URL vide.
+  it("distingue l'absence de configuration d'une panne", async () => {
+    vi.restoreAllMocks()
+    const axiosPost = vi.spyOn(axios, "post")
+
+    await expect(Mattermost.post("coucou", "")).rejects.toMatchObject({
+      name: "MattermostNotConfiguredError",
+    })
+    expect(axiosPost).not.toHaveBeenCalled()
+  })
+})
+
+// Un webhook ne doit pas être invité à réessayer une erreur de configuration :
+// aucune tentative ne la réparera, et le tiers rappellerait indéfiniment.
+describe("postOnMattermost sans configuration Mattermost", () => {
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it("répond 200 et signale, au lieu de renvoyer une erreur au tiers", async () => {
+    vi.restoreAllMocks()
+    vi.spyOn(console, "error").mockImplementation(() => undefined)
+    vi.mocked(Sentry.captureException).mockClear()
+    vi.spyOn(Mattermost, "post").mockRejectedValue(
+      new MattermostNotConfiguredError(),
+    )
+
+    const res: any = { status: vi.fn().mockReturnThis(), json: vi.fn() }
+    const next = vi.fn()
+
+    await postOnMattermost(
+      {
+        body: { data: { id: "rdv123", organisation: { id: "org456" } } },
+      } as unknown as Request,
+      res as unknown as Response,
+      next,
+    )
+
+    expect(res.status).toHaveBeenCalledWith(200)
+    expect(next).not.toHaveBeenCalled()
+    expect(Sentry.captureException).toHaveBeenCalled()
   })
 })

@@ -13,7 +13,12 @@ import Request from "../types/express.d.js"
 import config from "../config/index.js"
 import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service.js"
 import { sendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
-import { ErrorType, ErrorStatus, ErrorName } from "../../lib/enums/error.js"
+import {
+  ErrorType,
+  ErrorStatus,
+  isRejectedDestination,
+  isUserInputError,
+} from "../../lib/enums/error.js"
 
 export async function followup(
   req: Request,
@@ -45,27 +50,16 @@ async function createSimulationRecapUrl(req: Request, res: Response) {
   return res.send({ simulationRecapUrl })
 }
 
-// Refus du fournisseur pour un numéro non joignable : l'usager qui réessaie
-// obtient le même refus. Le libellé du refus n'a pas de champ propre dans la
-// réponse du fournisseur — seul le corps entier le porte, d'où l'inclusion.
-export function isRejectedDestination(error: any): boolean {
-  if (error?.name !== ErrorName.SmsProviderError) {
-    return false
-  }
-  const message = typeof error?.message === "string" ? error.message : ""
-  return message.includes(ErrorType.InvalidDestinationAddress)
-}
+// Le message d'un `SmsProviderError` porte la réponse entière du fournisseur :
+// un contenu décidé par un tiers, de longueur non bornée, versé dans nos
+// journaux. `responseCode` en donne l'essentiel ; le reste est écourté.
+const LOGGED_MESSAGE_MAX = 300
 
-// Conditions dues à la saisie de l'usager : une entrée irrecevable, pas une
-// panne, et reproductible à chaque nouvelle tentative.
-export function isUserInputError(error: any): boolean {
-  if (error?.name === ErrorName.ValidationError) {
-    return true
+function forLog(message: unknown): unknown {
+  if (typeof message !== "string" || message.length <= LOGGED_MESSAGE_MAX) {
+    return message
   }
-  if (error?.message === ErrorType.UnsupportedPhoneNumberFormat) {
-    return true
-  }
-  return isRejectedDestination(error)
+  return `${message.slice(0, LOGGED_MESSAGE_MAX)}… (${message.length} caractères)`
 }
 
 export async function persist(req: Request, res: Response) {
@@ -100,7 +94,7 @@ export async function persist(req: Request, res: Response) {
       `POST /api/simulation/${simulation?._id}/followup → ${status}`,
       JSON.stringify({
         name: error?.name,
-        message: error?.message,
+        message: forLog(error?.message),
         code: error?.code,
         // Rend observables les codes de refus du fournisseur de SMS : sans
         // table de correspondance, seuls ceux constatés ici pourront un jour
@@ -121,7 +115,7 @@ export async function persist(req: Request, res: Response) {
 
     return res
       .status(status)
-      .send(error.message || ErrorType.PersistingFollowup)
+      .send(error?.message || ErrorType.PersistingFollowup)
   }
 }
 

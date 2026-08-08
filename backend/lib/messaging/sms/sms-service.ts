@@ -8,7 +8,11 @@ import { SmsType } from "../../../../lib/enums/messaging.js"
 import { Followup } from "../../../../lib/types/followup.js"
 import { Survey } from "../../../../lib/types/survey.d.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
-import { ErrorName, ErrorType } from "../../../../lib/enums/error.js"
+import {
+  ErrorName,
+  ErrorType,
+  isRejectedDestination,
+} from "../../../../lib/enums/error.js"
 import dayjs from "dayjs"
 import * as Sentry from "@sentry/node"
 
@@ -119,8 +123,9 @@ export async function sendSimulationResultsSms(
     followup.smsMessageId = data.messageIds[0]
     return await followup.save()
   } catch (error: any) {
-    // Avoid sending invalid destination address error to sentry
-    if (!error?.message?.includes(ErrorType.InvalidDestinationAddress)) {
+    // Un numéro refusé par le fournisseur est une saisie à corriger, affichée à
+    // l'usager : la signaler noierait les vraies pannes.
+    if (!isRejectedDestination(error)) {
       Sentry.captureException(error)
     }
     followup.smsError = error?.message

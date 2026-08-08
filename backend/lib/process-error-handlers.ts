@@ -58,12 +58,20 @@ function jsonSafe(_key: string, value: unknown): unknown {
     : value
 }
 
+// Sérialisation clé par clé : une seule valeur fautive — référence circulaire
+// dans `code`, accesseur piégé — ne doit pas emporter `name` et `message`, qui
+// sont l'essentiel du diagnostic.
 export function formatRejection(reason: unknown): string {
-  try {
-    return JSON.stringify(summarize(reason), jsonSafe)
-  } catch (error) {
-    return `<résumé non sérialisable : ${safeString(error)}>`
-  }
+  const entries = Object.entries(summarize(reason)).map(([key, value]) => {
+    let encoded: string | undefined
+    try {
+      encoded = JSON.stringify(value, jsonSafe)
+    } catch (error) {
+      encoded = JSON.stringify(`<non sérialisable : ${safeString(error)}>`)
+    }
+    return `${JSON.stringify(key)}:${encoded ?? '"<non sérialisable>"'}`
+  })
+  return `{${entries.join(",")}}`
 }
 
 /*
@@ -89,7 +97,8 @@ export function registerProcessErrorHandlers(
     try {
       logger("unhandledRejection", formatRejection(reason))
     } catch {
-      logger("unhandledRejection", "<résumé impossible>")
+      // Rien : le seul moyen de journaliser vient d'échouer, et rappeler
+      // `logger` ici relèverait la même erreur — donc une `uncaughtException`.
     }
   })
 }

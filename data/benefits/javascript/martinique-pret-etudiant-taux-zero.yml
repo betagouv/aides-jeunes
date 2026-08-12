@@ -14,10 +14,6 @@ conditions:
     suivant l'obtention du diplôme préparé ou la fin des études.
   - Avoir remboursé intégralement la dette au plus tard six ans après la date de
     début du paiement de la créance.
-  - Télécharger <a target="_blank" title="Formulaire de cautionnement solidaire -
-    Nouvelle fenêtre" rel="noopener"
-    href="https://www.spot.mq/sites/default/files/Documents/SPOT_FORMULAIRE%20CAUTIONNEMENT.pdf">le
-    formulaire de cautionnement solidaire (PDF - 697ko). </a>.
 prefix: le
 conditions_generales:
   - type: regions
@@ -30,12 +26,11 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2024-2025-26-juillet-2024
-instructions: https://www.spot.mq/trouver-un-dispositif/pret-detudes-remboursable-sans-interet-per
-teleservice: https://ct-martinique-production.mgcloud.fr/account-management/ctmartinique-demandeurs/ux/#/login
+link: https://ct-martinique-production.mgcloud.fr/document-collect/ctmartinique/root/public/usagers/PER%20-%20FICHE%20INFORMATIVE.pdf
+instructions: https://ct-martinique-production.mgcloud.fr/document-collect/ctmartinique/root/public/usagers/PER%20-%20FICHE%20INFORMATIVE.pdf
+teleservice: https://mesaides.collectivitedemartinique.mq/aides/#/ctmartinique/connecte/F_PER_2026/depot/simple
 type: float
 unit: €
 montant: 3500
 legend: maximum
 periodicite: autre
-private: true

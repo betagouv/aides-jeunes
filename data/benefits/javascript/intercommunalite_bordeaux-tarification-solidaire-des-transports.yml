@@ -1,9 +1,10 @@
-label: Tarification Solidaire des Transports pour les personnes en situation de handicap
+label: Tarification Solidaire des Transports pour les personnes en situation de
+  handicap
 institution: intercommunalite_bordeaux
-description:
-  La tarification solidaire de la métropole de Bordeaux propose 10 voyages à tarif réduit
-  pour les transports en commun aux personnes ayant un taux de handicap supérieur ou égal à 50%
-  sous réserve de présentation du justificatif correspondant.
+description: La tarification solidaire de la métropole de Bordeaux propose 10
+  voyages à tarif réduit pour les transports en commun aux personnes ayant un
+  taux de handicap supérieur ou égal à 50% sous réserve de présentation du
+  justificatif correspondant.
 prefix: la
 conditions_generales:
   - type: quotient_familial
@@ -22,3 +23,5 @@ periodicite: ponctuelle
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
 teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationCompte.aspx
 instructions: ""
+conditions:
+  - taux de handicap supérieur ou égal à 50 %

@@ -1,6 +1,5 @@
 label: rémunération des stagiaires de la formation professionnelle
 institution: region_provence_alpes_cote_azur
-description: La Région propose une rémunération à destination des stagiaires de
 description: La Région Sud peut vous verser une rémunération de stage, ainsi qu’une prise en charge de vos frais de transport et/ou d’hébergement selon votre situation dans le cadre d'une formation professionnelle.
 prefix: la
 conditions_generales:
@@ -8,8 +7,8 @@ conditions_generales:
     values:
       - "93"
   - type: age
-     operator: ">="
-     value: 16
+   operator: ">="
+   value: 16
 profils:
   - type: chomeur
     conditions: []

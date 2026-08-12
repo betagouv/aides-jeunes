@@ -7,12 +7,8 @@ description: >-
   semaines) et de la destination. Contact: BIJ de Vannes (02 97 01 61 00,
   bij@mairie-vannes.fr).
 conditions:
-  - Avoir des parents domiciliés fiscalement à Vannes depuis au moins un an.
-  - Être inscrit au moins en 1ère année d'un cursus post-bac sanctionné par un
-    diplôme reconnu par le Ministère de l'Education Nationale.
-  - Justifier soit d'une attestation de l'université d'origine ou d'une
-    inscription dans une université à l'étranger pour complément de formation,
-    soit d'une attestation ou convention de stage.
+  - Être âgé de moins de 25 ans
+  - Séjour de 3 semaines au minimum
 conditions_generales:
   - type: communes
     values:
@@ -27,3 +23,4 @@ prefix: l’
 link: https://bij-vannes.fr/aide-aux-sejours-letranger
 type: bool
 periodicite: annuelle
+montant: 850

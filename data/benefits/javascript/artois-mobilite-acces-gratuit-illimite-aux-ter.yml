@@ -158,7 +158,7 @@ conditions_generales:
       - "62895"
       - "62900"
 conditions:
-  - Remplir le <a target="_blank" rel="noopener" title="Formualire - Nouvelle fenêtre" href="https://demande-titre-ter.tadao.fr/">formulaire</a>
+  - Remplir le <a target="_blank" rel="noopener" title="Formualire - Nouvelle fenêtre" href="https://demande-titre-ter.tadao.fr/">formulaire</a>.
 link: https://www.tadao.fr/fr/JY5-demande-acces-TER.html
 instructions: https://demande-titre-ter.tadao.fr/
 type: bool

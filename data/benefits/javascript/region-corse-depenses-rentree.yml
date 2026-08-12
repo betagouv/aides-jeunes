@@ -1,16 +1,20 @@
 label: aide aux dépenses de rentrée scolaire pour les étudiants et étudiantes
 institution: region_corse
-description:
-  La Région aide financièrement les étudiants, boursiers ou pas, inscrits dans un cursus en Corse ou en France
-  continentale, pour leurs dépenses de rentrée scolaire. Il s'agit d'une aide sur critères sociaux dont le montant varie
-  de 300 € à 800 €, en fonction du quotient familial de l'étudiant ou de sa famille. Cette aide est gérée directement
-  par le CROUS de Corse pour les étudiants boursiers de l'Académie de Corse.
+description: La Région aide financièrement les étudiants, boursiers ou pas,
+  inscrits dans un cursus en Corse ou en France continentale, pour leurs
+  dépenses de rentrée scolaire. Il s'agit d'une aide sur critères sociaux dont
+  le montant varie de 300 € à 800 €, en fonction du quotient familial de
+  l'étudiant ou de sa famille. Cette aide est gérée directement par le CROUS de
+  Corse pour les étudiants boursiers de l'Académie de Corse.
 conditions:
-  - Être domicilié fiscalement en Corse au cours des trois dernières années.
-  - Contacter <a target="_blank" rel="noopener" title="votre CROUS - Nouvelle fenêtre"
-    href="https://www.crous-corse.fr/contact/">votre CROUS</a> si vous êtes boursier.
-  - Envoyer votre dossier via <a href="https://www.ghjuventu.corsica/my/dashboard" rel="noopener" target="_blank" title="Connexion à GHJUVENTÙ - Nouvelle fenêtre">la plateforme GHJUVENTÙ</a> si vous étudiez en France continentale (boursiers et non-boursiers) ou si vous n'êtes pas boursier et étudiez en Corse.
-  - Poser vos questions par sms au <a href="tel:+33625879180">06 25 87 91 80</a> ou par email à <a href="mailto:vieetudiante@isula.corsica">vieetudiante@isula.corsica</a>.
+  - Être domicilié fiscalement en Corse au cours des trois dernières années
+  - Être âgé de moins de 28 ans au 31 décembre de l'année en cours
+  - Être inscrit en formation initiale dans un établissement d'enseignement
+    supérieur de l'Académie de Corse ou de France (pour les non‑boursiers)
+  - Être inscrit en France continentale pour les boursiers
+  - Ne pas être inscrit dans une formation du sanitaire et sociale
+  - L’aide de rentrée n’est pas cumulable avec une aide pour un cursus post‑bac
+    effectué à l’étranger ou une autre aide de rentrée
 conditions_generales:
   - type: regions
     values:

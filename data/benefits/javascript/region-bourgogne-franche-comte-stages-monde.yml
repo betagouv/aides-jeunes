@@ -26,5 +26,5 @@ type: float
 unit: €
 periodicite: mensuelle
 legend: ""
-montant: 900
+montant: 790
 interestFlag: _interetEtudesEtranger

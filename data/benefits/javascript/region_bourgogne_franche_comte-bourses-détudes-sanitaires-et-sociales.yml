@@ -1,10 +1,14 @@
 label: bourses d'études sanitaires et sociales
 institution: region_bourgogne_franche_comte
 description: Une bourse d’études est accordée par la Région sur critères sociaux
-  aux étudiants et étudiantes en travail social et aux élèves et étudiants et étudiantes inscrits ou inscrites
-  dans les instituts et écoles de formation de certaines professions de santé.
+  aux étudiants et étudiantes en travail social et aux élèves et étudiants et
+  étudiantes inscrits ou inscrites dans les instituts et écoles de formation de
+  certaines professions de santé.
 conditions:
   - Être inscrit ou inscrite dans les instituts autorisés/agréés par la Région.
+  - Le niveau de ressources familiales ou personnelles doit être reconnu
+    insuffisant au regard des charges de la formation.
+  - Les préparations aux concours n’ouvrent pas droit aux bourses.
 conditions_generales:
   - type: regions
     values:

@@ -26,12 +26,12 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2024-2025-26-juillet-2024
-instructions: https://www.spot.mq/trouver-un-dispositif/aide-territoriale-aux-etudiants-ate
-teleservice: https://ct-martinique-production.mgcloud.fr/account-management/ctmartinique-demandeurs/ux/#/login
+link: https://ct-martinique-production.mgcloud.fr/document-collect/ctmartinique/root/public/usagers/ATE%20-%20FICHE%20INFORMATIVE.pdf
+instructions: https://ct-martinique-production.mgcloud.fr/document-collect/ctmartinique/root/public/usagers/ATE%20-%20FICHE%20INFORMATIVE.pdf
+teleservice: https://mesaides.collectivitedemartinique.mq/account-management/ctmartinique-demandeurs/ux/#/login
+is_teleservice_need_register: true
 type: float
 unit: €
-montant: 2500
+montant: 1400
 legend: maximum
 periodicite: annuelle
-private: true

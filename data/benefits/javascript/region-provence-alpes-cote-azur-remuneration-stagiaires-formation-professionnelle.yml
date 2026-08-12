@@ -13,7 +13,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être en recherche d’emploi ou relever d’un public spécifique (bénéficiaire du RSA, de l’ASS, de l’ATA, 
+  - Être en recherche d’emploi ou relever d’un public spécifique (bénéficiaire du RSA, de l’ASS, de l’ATA,
     de l’AAH, personne en situation de handicap, personne placée sous main de justice…).
   - Suivre une formation agréée par l’État ou la Région (formation sanitaire et
     sociale, école de la 2ᵉ chance, enseignement supérieur, service militaire

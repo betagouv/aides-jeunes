@@ -4,8 +4,8 @@ description: La Région Bourgogne-Franche-Comté offre aux jeunes la possibilit�
   d’acquérir une expérience dans le domaine de la solidarité internationale
   grâce à un soutien financier individuel.
 voluntary_conditions:
-  - Mener une action de développement ou humanitaire à titre bénévole grâce à
-    une structure relevant du secteur public, privé ou mixte.
+  - Mener une action de développement ou humanitaire à titre bénévole grâce à une
+    structure relevant du secteur public, privé ou mixte.
 conditions_generales:
   - type: regions
     values:
@@ -40,3 +40,10 @@ periodicite: ponctuelle
 legend: maximum
 montant: 1000
 interestFlag: _interetEtudesEtranger
+conditions:
+  - Âge entre 18 et 30 ans
+  - Domicilié(e) et/ou étudiant(e) en Bourgogne‑Franche‑Comté
+  - Projet mené dans un pays en développement bénéficiaire de l’Aide Publique au
+    Développement (hors collectivités françaises et Outre‑Mer)
+  - Durée du projet entre 1 et 6 mois
+  - Un seul projet par jeune sur le même exercice budgétaire

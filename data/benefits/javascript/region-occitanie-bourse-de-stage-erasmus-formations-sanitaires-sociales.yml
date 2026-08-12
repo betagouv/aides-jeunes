@@ -1,8 +1,7 @@
 label: bourse de stage ERASMUS+ formations sanitaire et sociale
 institution: region_occitanie
-description:
-  La Région favorise la mobilité de stage des étudiants et étudiantes de la
-  filière Sanitaire et Sociale.
+description: La Région favorise la mobilité de stage des étudiants et étudiantes
+  de la filière Sanitaire et Sociale.
 prefix: la
 conditions_generales:
   - type: regions
@@ -11,7 +10,8 @@ conditions_generales:
   - type: formation_sanitaire_social
 profils: []
 conditions:
-  - Effectuer un stage entre 4 et 20 semaines à temps plein.
+  - Être étudiant boursier sur critères sociaux ou avoir un quotient familial
+    inférieur à 20 000 €
 interestFlag: _interetEtudesEtranger
 type: float
 unit: €

@@ -9,10 +9,9 @@ conditions_generales:
   - type: communes
     values:
       - "49092"
-link: https://www.chemille-en-anjou.fr/actualites/lancement-dune-mutuelle-communale/
-instructions: https://www.chemille-en-anjou.fr/actualites/lancement-dune-mutuelle-communale/
+link: https://www.chemille-en-anjou.fr/chemille-en-anjou-mutuelle-communale/
+instructions: https://www.chemille-en-anjou.fr/chemille-en-anjou-mutuelle-communale/
 prefix: la
 type: bool
 periodicite: ponctuelle
 top: 2.3
-private: true

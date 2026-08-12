@@ -12,8 +12,8 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être inscrit ou inscrite à France travail ou auprès d’une mission locale.
-  - Ne pas être en continuité de parcours scolaire.
+  - Être âgé(e) de plus de 16 ans
+  - Ne pas être indemnisé(e) par France Travail
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €
@@ -21,3 +21,4 @@ periodicite: autre
 link: https://entreprises.maregionsud.fr/aides-et-appels-a-projet/detail/remuneration-des-stagiaires-de-la-formation-professionnelle
 teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
 instructions: https://entreprises.maregionsud.fr/aides-et-appels-a-projet/detail/remuneration-des-stagiaires-de-la-formation-professionnelle
+montant: 2170.9

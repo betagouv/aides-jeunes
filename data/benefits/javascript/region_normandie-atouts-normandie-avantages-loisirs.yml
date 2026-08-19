@@ -5,7 +5,7 @@ description: La Région Normandie soutient la découverte de pratiques
   ans.
 conditions:
   - Créer un compte sur <a target="_blank" rel="noopener" title ="Créer un compte
-    - Nouvelle fenêtre" href="https://atouts.normandie.fr/">cette page</a>.
+    - Nouvelle fenêtre" href="https://atouts.normandie.fr/beneficiary/register?targetUrl/my/dashboard">cette page</a>.
   - Adhérer à Atouts Normandie pour 10 €.
 conditions_generales:
   - type: regions

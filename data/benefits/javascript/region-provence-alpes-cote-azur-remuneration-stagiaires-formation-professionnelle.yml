@@ -23,7 +23,6 @@ conditions:
     Cap emploi, APEC, CIBC…) dans le cadre d’un Projet Personnalisé d’Accès à
     l’Emploi (PPAE).
   - Ne pas être indemnisé par France Travail.
-interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €
 periodicite: autre

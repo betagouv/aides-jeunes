@@ -11,8 +11,7 @@ conditions_generales:
     value: 16
 profils: []
 conditions:
-  - Avoir 16 ans
-  - Être résident de Villefranche
+  - Récupérer le dossier d'inscription au Pôle Ressources Jeunesse Numérique du Service Jeunesse.
 interestFlag: _interetBafa
 type: bool
 unit: €

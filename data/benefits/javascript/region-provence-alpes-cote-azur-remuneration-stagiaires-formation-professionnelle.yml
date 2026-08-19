@@ -22,7 +22,7 @@ conditions:
     conseillère en évolution professionnelle (mission locale, France Travail,
     Cap emploi, APEC, CIBC…) dans le cadre d’un Projet Personnalisé d’Accès à
     l’Emploi (PPAE).
-  - Ne pas être indemnisé(e) par France Travail
+  - Ne pas être indemnisé par France Travail.
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €

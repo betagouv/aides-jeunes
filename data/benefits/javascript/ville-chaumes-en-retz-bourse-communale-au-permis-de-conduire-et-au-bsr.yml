@@ -25,7 +25,7 @@ conditions:
   - Avoir un projet scolaire ou professionnel.
   - Être inscrit dans l'auto-école de la commune.
   - Justifier de ressources modestes (avis d’imposition, bulletins de salaire,
-    CAF…)
+    CAF…).
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

@@ -16,16 +16,16 @@ conditions_generales:
 profils:
   - type: parent
 conditions:
-  - Vérifier votre tarif, compris entre 2 et 11,54€ pour une demi-journée en fonction de votre quotient familial sur  <a target="_blank" title="le site de la ville de Vannes - Nouvelle fenêtre" rel="noopener"
+  - Vérifier le montant éligible, compris entre 2 et 11,54€ pour une demi-journée en fonction de votre quotient familial sur  <a target="_blank" title="le site de la ville de Vannes - Nouvelle fenêtre" rel="noopener"
     href="https://www.mairie-vannes.fr/ticket-sport-culture-et-nature">le site de la ville de Vannes</a>.
-  - Créer votre compte sur le <a target="_blank" title="créer son espace sur Vannes et Vous -
+  - Créer son compte sur le <a target="_blank" title="créer son compte sur Vannes et Vous -
     Nouvelle fenêtre" rel="noopener"
     href="https://www.espace-citoyens.net/vannesetvous/espace-citoyens/CompteCitoyen/Creation">Vannes et vous</a>.
 type: float
 unit: €
 periodicite: ponctuelle
 is_teleservice_need_register: true
-legend: à 10 € par demi-journée
+legend: à 11,54 € par demi-journée
 montant: 2
 link: https://www.mairie-vannes.fr/ticket-sport-culture-et-nature
 teleservice: https://www.espace-citoyens.net/vannesetvous/espace-citoyens/

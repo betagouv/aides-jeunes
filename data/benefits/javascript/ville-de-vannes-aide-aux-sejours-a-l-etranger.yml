@@ -27,3 +27,5 @@ prefix: l’
 link: https://bij-vannes.fr/aide-aux-sejours-letranger
 type: bool
 periodicite: annuelle
+legend: maximum
+montant: 850

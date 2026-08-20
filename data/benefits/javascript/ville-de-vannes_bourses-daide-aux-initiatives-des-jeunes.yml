@@ -13,7 +13,11 @@ conditions:
   - Formuler par écrit son projet.
   - S’engager à réaliser le projet présenté et fournir un compte rendu de sa
     réalisation.
-  - Faire une demande au BIJ (Bureau Information Jeunesse) par téléphone au <a href="tel:+33297016100">02 97 01 61 00</a> ou par email à <a href="mailto:bij@mairie-vannes.fr">bij@mairie-vannes.fr</a>.
+  - Faire une demande au BIJ (Bureau Information Jeunesse) par téléphone au 02 97
+    01 61 00 ou par email à bij@mairie-vannes.fr.
+  - Être âgé de 14 à 25 ans au moment du dépôt du projet.
+  - Au moins un tiers des jeunes doit être domicilié, scolarisé ou en formation à
+    Vannes.
 conditions_generales:
   - type: communes
     values:
@@ -54,3 +58,4 @@ profils:
 link: https://bij-vannes.fr/bourses-daide-aux-initiatives-des-jeunes
 type: bool
 periodicite: ponctuelle
+montant: 800

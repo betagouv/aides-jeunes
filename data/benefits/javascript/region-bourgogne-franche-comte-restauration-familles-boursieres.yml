@@ -16,3 +16,9 @@ prefix: les
 type: bool
 unit: €
 periodicite: autre
+conditions:
+  - Être inscrit dans un établissement public ou privé sous contrat
+  - Être lycéen (3e, 4e, 3e découverte professionnelle ou 3e agricole)
+  - Être demi‑pensionnaire, interne ou interne‑externé
+  - Être bénéficiaire d’une bourse ou, le cas échéant, ne pas être bénéficiaire
+    d’une bourse (selon le dispositif)

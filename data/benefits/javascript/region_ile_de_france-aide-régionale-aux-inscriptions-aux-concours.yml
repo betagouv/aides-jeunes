@@ -4,8 +4,8 @@ description: "L’aide régionale aux frais de concours vise à soutenir les
   élèves des classes préparatoires aux grandes écoles (CPGE) pour le paiement
   des frais de concours : inscription, hébergement, transport."
 conditions:
-  - Aide accordée dans la limite de 3 concours maximum par élève, sur
-    production des justificatifs de dépenses
+  - Produire les justificatifs de dépenses, dans la limite de 3 concours
+    maximum par élève.
 conditions_generales:
   - type: regions
     values:

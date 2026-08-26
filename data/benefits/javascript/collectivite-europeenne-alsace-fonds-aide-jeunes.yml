@@ -20,10 +20,9 @@ profils: []
 conditions:
   - Être en difficulté financière.
   - Effectuer votre demande auprès de votre Mission Locale.
-interestFlag: null
+interestFlag:
 type: bool
 unit: €
 periodicite: ponctuelle
 link: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
 instructions: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
-private: true

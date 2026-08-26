@@ -1,11 +1,10 @@
-label: Aide régionale aux frais de concours CPGE
+label: Aide régionale aux inscriptions aux concours
 institution: region_ile_de_france
-description: "L’aide régionale aux frais de concours vise à soutenir les
-  élèves des classes préparatoires aux grandes écoles (CPGE) pour le paiement
-  des frais de concours : inscription, hébergement, transport."
+description: "La Région Ile-de-France soutient les élèves de 2ème année des
+  classes préparatoires aux grandes écoles (CPGE) pour le paiement des frais de
+  concours : inscription, hébergement, transport."
 conditions:
-  - Aide accordée dans la limite de 3 concours maximum par élève, sur
-    production des justificatifs de dépenses
+  - Vous rapprocher de votre établissement qui vous indiquera la marche à suivre.
 conditions_generales:
   - type: regions
     values:
@@ -27,5 +26,5 @@ prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
-legend: par concours maximum
-montant: 325
+legend: maximum
+montant: 846

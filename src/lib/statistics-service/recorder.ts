@@ -93,8 +93,7 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
       body: JSON.stringify(benefitsStats),
     })
   } catch {
-    // Un échec réseau (offline, bloqueur de pub...)
-    // n'a aucun impact utilisateur, inutile de le remonter à Sentry.
+    // Un échec réseau (offline, bloqueur de pub...) n'a aucun impact utilisateur, inutile de le remonter à Sentry.
     if (!isProduction) {
       console.debug("Event to recorder", event)
     }

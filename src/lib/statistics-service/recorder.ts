@@ -80,7 +80,11 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
   try {
     new URL(url)
   } catch {
-    Sentry.captureException(new Error(`VITE_STATS_URL invalide : ${url}`))
+    if (!isProduction) {
+      console.debug("VITE_STATS_URL invalide", url)
+    } else {
+      Sentry.captureException(new Error(`VITE_STATS_URL invalide : ${url}`))
+    }
     return
   }
 

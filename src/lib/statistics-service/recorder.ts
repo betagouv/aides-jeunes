@@ -76,7 +76,13 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
   })
 
   const url = getEnvVariable("VITE_STATS_URL")
-  const body = JSON.stringify(benefitsStats)
+
+  try {
+    new URL(url)
+  } catch {
+    Sentry.captureException(new Error(`VITE_STATS_URL invalide : ${url}`))
+    return
+  }
 
   try {
     await fetch(url, {
@@ -84,16 +90,13 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
       headers: {
         "Content-Type": "application/json",
       },
-      body,
+      body: JSON.stringify(benefitsStats),
     })
-  } catch (e) {
-    if (e instanceof TypeError && e.message === "Failed to fetch") {
-      if (!isProduction) {
-        console.debug("Event to recorder", event)
-      }
-    } else {
-      console.error(e)
-      Sentry.captureException(e)
+  } catch {
+    // Appel fire-and-forget : un échec réseau (offline, bloqueur de pub...)
+    // n'a aucun impact utilisateur, inutile de le remonter à Sentry.
+    if (!isProduction) {
+      console.debug("Event to recorder", event)
     }
   }
 }

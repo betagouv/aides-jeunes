@@ -93,7 +93,7 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
       body: JSON.stringify(benefitsStats),
     })
   } catch {
-    // Appel fire-and-forget : un échec réseau (offline, bloqueur de pub...)
+    // Un échec réseau (offline, bloqueur de pub...)
     // n'a aucun impact utilisateur, inutile de le remonter à Sentry.
     if (!isProduction) {
       console.debug("Event to recorder", event)

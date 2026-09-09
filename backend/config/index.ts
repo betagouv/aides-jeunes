@@ -92,10 +92,8 @@ const config: Configuration = {
       process.env.NODE_ENV === "production"
         ? [
             "jeremy.pastouret@beta.gouv.fr",
-            "julie.marshall@sg.social.gouv.fr",
             "simon.hamery@beta.gouv.fr",
-            "thomas.guillet@beta.gouv.fr",
-            "yasmine.berrada@beta.gouv.fr",
+            "juliette.dixmier@beta.gouv.fr",
           ]
         : ["user@yopmail.com"],
     client_id:

@@ -6,8 +6,8 @@ prefix: le
 type: float
 unit: €
 periodicite: autre
-link: https://www.service-public.fr/particuliers/actualites/A16017
-instructions: https://www.service-public.fr/particuliers/actualites/A16017
+link: https://www.lescrous.fr/repas-a-1-euro-foire-aux-questions/
+instructions: https://www.lescrous.fr/repas-a-1-euro-foire-aux-questions/
 floorAt: 0.01
 entity: individus
 openfiscaPeriod: thisMonth

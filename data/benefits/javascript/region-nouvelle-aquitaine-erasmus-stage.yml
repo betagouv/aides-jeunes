@@ -25,7 +25,7 @@ type: float
 unit: €
 periodicite: mensuelle
 legend: maximum
-montant: 420
+montant: 470
 link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-enseignement-superieur-0
 teleservice: https://mes-demarches.nouvelle-aquitaine.fr/craPortailFO/externe/creationDossier.do?codeDispositif=MI_VOLET5_APP_26_27
 is_teleservice_need_register: true

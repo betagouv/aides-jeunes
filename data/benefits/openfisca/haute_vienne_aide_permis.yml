@@ -8,12 +8,11 @@ conditions:
     Nouvelle-Aquitaine.
   - Être inscrite ou inscrit dans une auto-école haut-viennoise.
 periodicite: ponctuelle
-link: https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire
-instructions: https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire/bourse-daide-au-permis-de-conduire
+link: https://www.haute-vienne.fr/mes-demarches/jeunesse/demander-une-bourse-daide-au-permis-de-conduire-/-au-code-de-la-route
+instructions: https://www.haute-vienne.fr/mes-demarches/jeunesse/demander-une-bourse-daide-au-permis-de-conduire-/-au-code-de-la-route
 prefix: l’
 type: float
 unit: "€"
 entity: individus
 openfiscaPeriod: thisMonth
 interestFlag: _interetPermisDeConduire
-private: true

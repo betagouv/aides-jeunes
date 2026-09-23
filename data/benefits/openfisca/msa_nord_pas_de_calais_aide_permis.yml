@@ -8,7 +8,7 @@ description: Cette aide est un coup de pouce de la Mutualité Sociale Agricole
   voiture (B)</a>.
 prefix: l’
 conditions:
-  - Avoir obtenu le code de la route en 2026
+  - Avoir obtenu le code de la route.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

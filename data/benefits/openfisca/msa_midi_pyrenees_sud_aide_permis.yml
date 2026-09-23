@@ -18,3 +18,4 @@ entity: individus
 openfiscaPeriod: thisMonth
 periodicite: ponctuelle
 interestFlag: _interetPermisDeConduire
+private: true

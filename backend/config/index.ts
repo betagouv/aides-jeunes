@@ -94,6 +94,9 @@ const config: Configuration = {
             "jeremy.pastouret@beta.gouv.fr",
             "simon.hamery@beta.gouv.fr",
             "juliette.dixmier@beta.gouv.fr",
+            "eypentest9@eycyberlab.fr",
+            "eypentest1@eycyberlab.fr",
+            "assia.rachedi@sg.social.gouv.fr",
           ]
         : ["user@yopmail.com"],
     client_id:

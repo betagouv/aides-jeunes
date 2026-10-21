@@ -1,11 +1,10 @@
-# veille-snapshot 2026-10-07 : page modifiée (montants) — à vérifier
 label: chèque emploi
 institution: region_centre_val_de_loire
 description: Le chéquier régional pour l’emploi permet aux demandeurs d’emploi
   de voyager gratuitement en région Centre-Val de Loire pour leurs recherches.
   Il est valable 12 mois et comporte 10 chèques pour voyager dans tous les
   trains et cars REMI circulant en région Centre-Val de Loire.
- Le demandeur d’emploi peut bénéficier jusqu’à 2 chéquiers par an (soit 20 chèques/an maximum).
+  Le demandeur d’emploi peut bénéficier jusqu’à 2 chéquiers par an (soit 20 chèques/an maximum).
 conditions: []
 conditions_generales:
   - type: regions

@@ -12,6 +12,7 @@ import vannesIframe from "./vannes-iframe.js"
 import vannesSimulations from "./vannes-simulations.js"
 import vannesBenefitsDisplays from "./vannes-benefits-displays.js"
 import mainBenefitsDisplays from "./main-benefits-displays.js"
+import averageAge from "./average-age.js"
 
 interface Stat {
   label: string
@@ -25,6 +26,7 @@ const STATS: Stat[] = [
   vannesSimulations,
   vannesBenefitsDisplays,
   mainBenefitsDisplays,
+  averageAge,
 ]
 
 async function main() {

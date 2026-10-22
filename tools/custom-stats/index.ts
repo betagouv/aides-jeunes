@@ -11,6 +11,7 @@ import montpellierAppointmentClicks from "./montpellier-appointment-clicks.js"
 import vannesIframe from "./vannes-iframe.js"
 import vannesSimulations from "./vannes-simulations.js"
 import vannesBenefitsDisplays from "./vannes-benefits-displays.js"
+import { cityBenefitsClicks } from "./city-benefits-clicks.js"
 import mainBenefitsDisplays from "./main-benefits-displays.js"
 
 interface Stat {
@@ -20,10 +21,12 @@ interface Stat {
 
 const STATS: Stat[] = [
   benefitsByLevel,
-  montpellierAppointmentClicks,
   vannesIframe,
   vannesSimulations,
   vannesBenefitsDisplays,
+  cityBenefitsClicks("Vannes", "ville-de-vannes"),
+  cityBenefitsClicks("Montpellier", "ville_montpellier"),
+  montpellierAppointmentClicks,
   mainBenefitsDisplays,
 ]
 

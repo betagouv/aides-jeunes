@@ -13,6 +13,7 @@ import vannesSimulations from "./vannes-simulations.js"
 import vannesBenefitsDisplays from "./vannes-benefits-displays.js"
 import { cityBenefitsClicks } from "./city-benefits-clicks.js"
 import mainBenefitsDisplays from "./main-benefits-displays.js"
+import averageAge from "./average-age.js"
 
 interface Stat {
   label: string
@@ -28,6 +29,7 @@ const STATS: Stat[] = [
   cityBenefitsClicks("Montpellier", "ville_montpellier"),
   montpellierAppointmentClicks,
   mainBenefitsDisplays,
+  averageAge,
 ]
 
 async function main() {
